@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Wine Pairing Web App | Fabio D'Anna</title>
+  <meta
+    name="description"
+    content="Interactive wine pairing web app built with HTML, CSS and JavaScript."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="../project.html" class="back-link">← Back to Portfolio</a>
+
+      <div class="hero-card">
+        <div class="hero-copy">
+          <span class="hero-badge">Portfolio Project</span>
+
+          <h1>Wine Pairing Web App</h1>
+
+          <p class="hero-text">
+            An interactive restaurant-style wine pairing tool. Select a dish,
+            view the recommended wine, pairing notes, flavour profile and service suggestion.
+          </p>
+
+          <div class="hero-tags">
+            <span class="hero-tag">HTML</span>
+            <span class="hero-tag">CSS</span>
+            <span class="hero-tag">JavaScript</span>
+            <span class="hero-tag">UX Logic</span>
+          </div>
+        </div>
+
+        <div class="hero-side-card">
+          <span class="side-label">Selected Pairing</span>
+          <strong id="heroDishDisplay">No dish selected</strong>
+          <p id="heroWineDisplay">Choose a dish to see the pairing.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">🍽️</span>
+          <span class="stat-label">Dishes</span>
+        </div>
+        <strong id="dishCount">0</strong>
+        <p>Menu items available.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">🍷</span>
+          <span class="stat-label">Wines</span>
+        </div>
+        <strong id="wineCount">0</strong>
+        <p>Pairing recommendations.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">⭐</span>
+          <span class="stat-label">Match Score</span>
+        </div>
+        <strong id="matchScore">--</strong>
+        <p>Based on flavour balance.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">🧭</span>
+          <span class="stat-label">Category</span>
+        </div>
+        <strong id="selectedCategory">None</strong>
+        <p>Selected dish category.</p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+
+      <div class="left-column">
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Step 1</span>
+              <h2>Select a dish</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Choose a dish from the menu to generate the recommended wine pairing.
+          </p>
+
+          <div class="form-group">
+            <label for="dishSelect">Dish</label>
+            <select id="dishSelect">
+              <option value="">Select a dish</option>
+            </select>
+          </div>
+
+          <button id="pairingBtn" class="btn btn-primary">Show Pairing</button>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Menu</span>
+              <h2>Dish details</h2>
+            </div>
+          </div>
+
+          <div class="dish-card">
+            <span id="dishCategory" class="pill">No category</span>
+            <h3 id="dishName">No dish selected</h3>
+            <p id="dishDescription">
+              Select a dish to view description, flavour profile and pairing logic.
+            </p>
+          </div>
+
+          <div class="flavour-grid">
+            <article>
+              <span>Body</span>
+              <strong id="dishBody">--</strong>
+            </article>
+
+            <article>
+              <span>Acidity</span>
+              <strong id="dishAcidity">--</strong>
+            </article>
+
+            <article>
+              <span>Richness</span>
+              <strong id="dishRichness">--</strong>
+            </article>
+
+            <article>
+              <span>Intensity</span>
+              <strong id="dishIntensity">--</strong>
+            </article>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="right-column">
+
+        <article class="panel pairing-panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Recommendation</span>
+              <h2>Wine pairing</h2>
+            </div>
+          </div>
+
+          <div class="wine-result">
+            <span id="wineType" class="pill">No wine selected</span>
+            <h3 id="wineName">Select a dish first</h3>
+            <p id="wineDescription">
+              The recommended wine and pairing explanation will appear here.
+            </p>
+          </div>
+
+          <div class="service-grid">
+            <article class="mini-status-card">
+              <span>Serving Temperature</span>
+              <strong id="servingTemp">--</strong>
+              <p>Suggested service condition.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Glassware</span>
+              <strong id="glassware">--</strong>
+              <p>Recommended glass style.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Pairing Style</span>
+              <strong id="pairingStyle">--</strong>
+              <p>Contrast or complement.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Service Note</span>
+              <strong id="serviceNote">--</strong>
+              <p>Short note for restaurant service.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Explanation</span>
+              <h2>Why it works</h2>
+            </div>
+          </div>
+
+          <p id="pairingReason" class="reason-box">
+            Select a dish to see the pairing logic.
+          </p>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="table-header">
+            <div>
+              <span class="panel-kicker">Full Menu</span>
+              <h2>Pairing list</h2>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Dish</th>
+                  <th>Category</th>
+                  <th>Wine</th>
+                  <th>Style</th>
+                </tr>
+              </thead>
+
+              <tbody id="pairingTable"></tbody>
+            </table>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p>
+        Built with HTML, CSS and JavaScript as an interactive restaurant wine pairing demo.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
