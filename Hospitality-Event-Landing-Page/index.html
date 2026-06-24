@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hospitality Event Landing Page | TechGnomo</title>
+  <meta
+    name="description"
+    content="Responsive hospitality event landing page built with HTML, CSS and JavaScript."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="../project.html" class="logo">← Portfolio</a>
+
+      <nav class="nav-links">
+        <a href="#events">Events</a>
+        <a href="#menu">Menu</a>
+        <a href="#booking">Booking</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">French Restaurant Event Campaign</span>
+
+          <h1>Discover France One Night at a Time</h1>
+
+          <p>
+            A polished landing page for weekly restaurant events, designed to promote
+            set menus, wine pairing nights and cheese experiences.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#events" class="btn btn-primary">View Events</a>
+            <a href="#booking" class="btn btn-secondary">Book a Table</a>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <span>Featured Event</span>
+          <h2 id="featuredEventTitle">Thursday — Wine Affair</h2>
+          <p id="featuredEventText">
+            Order any main and add just $8 to enjoy a selected wine pairing.
+          </p>
+          <strong id="featuredEventPrice">$8 add-on</strong>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Weekly Events</span>
+          <h2>Restaurant event schedule</h2>
+          <p>
+            Interactive event cards for a weekly hospitality campaign.
+          </p>
+        </div>
+
+        <div class="event-grid">
+          <article class="event-card active" data-event="alps">
+            <span class="event-day">Tuesday & Wednesday</span>
+            <h3>French Alps</h3>
+            <p>Three-course set menu inspired by the comfort of alpine French dining.</p>
+            <strong>$59 per person</strong>
+          </article>
+
+          <article class="event-card" data-event="wine">
+            <span class="event-day">Thursday</span>
+            <h3>Wine Affair</h3>
+            <p>A midweek indulgence for wine lovers with selected wine pairing.</p>
+            <strong>$8 wine add-on</strong>
+          </article>
+
+          <article class="event-card" data-event="fromage">
+            <span class="event-day">Friday & Sunday</span>
+            <h3>The Fromage Experience</h3>
+            <p>French cheese, wine and bistro dining in one complete experience.</p>
+            <strong>From $59 per person</strong>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="menu" class="section alt-section">
+      <div class="container menu-grid">
+        <div>
+          <span class="eyebrow">Event Details</span>
+          <h2 id="eventDetailTitle">French Alps</h2>
+          <p id="eventDetailDescription">
+            A three-course set menu designed to bring warm, rustic French alpine dining
+            to the middle of the week.
+          </p>
+
+          <ul id="eventDetailList" class="feature-list">
+            <li>Three-course set menu</li>
+            <li>French-inspired comfort dishes</li>
+            <li>Available Tuesday and Wednesday</li>
+          </ul>
+        </div>
+
+        <div class="price-card">
+          <span>Selected Package</span>
+          <h3 id="eventPackageName">French Alps Set Menu</h3>
+          <strong id="eventPackagePrice">$59 pp</strong>
+          <p id="eventPackageNote">
+            Ideal for guests looking for a complete midweek dining experience.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container highlights-grid">
+        <article>
+          <span>01</span>
+          <h3>Clear event structure</h3>
+          <p>Designed to quickly explain the offer, price and availability.</p>
+        </article>
+
+        <article>
+          <span>02</span>
+          <h3>Restaurant-focused UX</h3>
+          <p>Simple CTA flow from event discovery to booking enquiry.</p>
+        </article>
+
+        <article>
+          <span>03</span>
+          <h3>Responsive layout</h3>
+          <p>Built to look clean on desktop, tablet and mobile devices.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="booking" class="section booking-section">
+      <div class="container booking-card">
+        <div>
+          <span class="eyebrow">Booking CTA</span>
+          <h2>Ready to reserve a table?</h2>
+          <p>
+            This demo form simulates a restaurant booking enquiry and demonstrates
+            front-end form interaction.
+          </p>
+        </div>
+
+        <form id="bookingForm" class="booking-form">
+          <div class="form-row">
+            <input id="guestName" type="text" placeholder="Name" />
+            <input id="guestEmail" type="email" placeholder="Email" />
+          </div>
+
+          <div class="form-row">
+            <select id="eventSelect">
+              <option value="">Select event</option>
+              <option value="French Alps">French Alps</option>
+              <option value="Wine Affair">Wine Affair</option>
+              <option value="The Fromage Experience">The Fromage Experience</option>
+            </select>
+
+            <input id="guestCount" type="number" placeholder="Guests" min="1" />
+          </div>
+
+          <button type="submit" class="btn btn-primary">Send Enquiry</button>
+
+          <p id="formMessage" class="form-message"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Built with HTML, CSS and JavaScript as a hospitality marketing landing page demo.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
