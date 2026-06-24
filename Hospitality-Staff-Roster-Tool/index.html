@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Hospitality Staff Roster Tool | Fabio D'Anna</title>
+  <meta
+    name="description"
+    content="Hospitality staff roster tool demo built with HTML, CSS and JavaScript."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="../project.html" class="back-link">← Back to Portfolio</a>
+
+      <div class="hero-card">
+        <div class="hero-copy">
+          <span class="hero-badge">Portfolio Project</span>
+
+          <h1>Hospitality Staff Roster Tool</h1>
+
+          <p class="hero-text">
+            A practical roster planner for hospitality teams. Add staff members,
+            create weekly shifts, track rostered hours and estimate labour cost.
+          </p>
+
+          <div class="hero-tags">
+            <span class="hero-tag">HTML</span>
+            <span class="hero-tag">CSS</span>
+            <span class="hero-tag">JavaScript</span>
+            <span class="hero-tag">Local Storage</span>
+          </div>
+        </div>
+
+        <div class="hero-side-card">
+          <span class="side-label">Roster Week</span>
+          <strong id="heroWeekDisplay">No week selected</strong>
+          <p id="heroSummaryDisplay">Set up your roster week to begin.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">👥</span>
+          <span class="stat-label">Staff</span>
+        </div>
+        <strong id="staffCount">0</strong>
+        <p>Team members saved.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">📅</span>
+          <span class="stat-label">Shifts</span>
+        </div>
+        <strong id="shiftCount">0</strong>
+        <p>Total rostered shifts.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">⏱️</span>
+          <span class="stat-label">Hours</span>
+        </div>
+        <strong id="totalHours">0h</strong>
+        <p>Total rostered hours.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">💵</span>
+          <span class="stat-label">Labour Cost</span>
+        </div>
+        <strong id="labourCost">$0.00</strong>
+        <p>Estimated roster cost.</p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+
+      <div class="left-column">
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Step 1</span>
+              <h2>Roster setup</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Set the week name and optional labour budget for this roster.
+          </p>
+
+          <div class="form-group">
+            <label for="weekName">Week Name</label>
+            <input id="weekName" type="text" placeholder="Example: 24 Jun → 30 Jun" />
+          </div>
+
+          <div class="form-group">
+            <label for="labourBudget">Labour Budget</label>
+            <input id="labourBudget" type="number" placeholder="Example: 3500" />
+          </div>
+
+          <button id="saveWeekBtn" class="btn btn-primary">Save Week</button>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Step 2</span>
+              <h2>Add staff member</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Add team members with role and hourly rate.
+          </p>
+
+          <div class="form-group">
+            <label for="staffName">Staff Name</label>
+            <input id="staffName" type="text" placeholder="Example: Alex" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="staffRole">Role</label>
+              <select id="staffRole">
+                <option value="Restaurant Manager">Restaurant Manager</option>
+                <option value="Supervisor">Supervisor</option>
+                <option value="Bartender">Bartender</option>
+                <option value="Waiter">Waiter</option>
+                <option value="Runner">Runner</option>
+                <option value="Kitchen Hand">Kitchen Hand</option>
+                <option value="Chef">Chef</option>
+                <option value="Host">Host</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="hourlyRate">Hourly Rate</label>
+              <input id="hourlyRate" type="number" placeholder="Example: 32" />
+            </div>
+          </div>
+
+          <button id="addStaffBtn" class="btn btn-primary">Add Staff</button>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Step 3</span>
+              <h2>Add shift</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Assign shifts to staff members and calculate rostered hours automatically.
+          </p>
+
+          <div class="form-group">
+            <label for="shiftStaff">Staff Member</label>
+            <select id="shiftStaff">
+              <option value="">Add staff first</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="shiftDay">Day</label>
+              <select id="shiftDay">
+                <option value="Monday">Monday</option>
+                <option value="Tuesday">Tuesday</option>
+                <option value="Wednesday">Wednesday</option>
+                <option value="Thursday">Thursday</option>
+                <option value="Friday">Friday</option>
+                <option value="Saturday">Saturday</option>
+                <option value="Sunday">Sunday</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="shiftArea">Area</label>
+              <select id="shiftArea">
+                <option value="Floor">Floor</option>
+                <option value="Bar">Bar</option>
+                <option value="Pass">Pass</option>
+                <option value="Host">Host</option>
+                <option value="Kitchen">Kitchen</option>
+                <option value="Management">Management</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="startTime">Start</label>
+              <input id="startTime" type="time" />
+            </div>
+
+            <div class="form-group">
+              <label for="endTime">Finish</label>
+              <input id="endTime" type="time" />
+            </div>
+          </div>
+
+          <button id="addShiftBtn" class="btn btn-primary">Add Shift</button>
+        </article>
+
+      </div>
+
+      <div class="right-column">
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Dashboard</span>
+              <h2>Roster overview</h2>
+            </div>
+
+            <button id="resetBtn" class="btn btn-danger">Reset All</button>
+          </div>
+
+          <div class="overview-grid">
+            <article class="mini-status-card">
+              <span>Budget Status</span>
+              <strong id="budgetStatus">No budget</strong>
+              <p id="budgetHint">Set a labour budget to track cost.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Average Shift</span>
+              <strong id="averageShift">0h</strong>
+              <p>Average rostered shift length.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Busiest Day</span>
+              <strong id="busiestDay">No shifts</strong>
+              <p>Day with the most rostered hours.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Roster Health</span>
+              <strong id="rosterHealth">Set roster first</strong>
+              <p id="rosterHealthHint">Add staff and shifts to review the roster.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="table-header">
+            <div>
+              <span class="panel-kicker">Team</span>
+              <h2>Staff list</h2>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Role</th>
+                  <th>Rate</th>
+                  <th>Hours</th>
+                  <th>Cost</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody id="staffTable">
+                <tr>
+                  <td colspan="6" class="empty-row">No staff added yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="panel table-panel">
+          <div class="table-header">
+            <div>
+              <span class="panel-kicker">Weekly roster</span>
+              <h2>Shift list</h2>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Day</th>
+                  <th>Staff</th>
+                  <th>Area</th>
+                  <th>Time</th>
+                  <th>Hours</th>
+                  <th>Cost</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody id="shiftTable">
+                <tr>
+                  <td colspan="7" class="empty-row">No shifts added yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p>
+        Built with HTML, CSS and JavaScript. Data is saved locally in the browser using Local Storage.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
