@@ -6,10 +6,11 @@ This website presents my background, skills, resume and portfolio projects in a 
 
 ---
 
-Live Website https://techgnomo.github.io
+## Live Website 
+https://techgnomo.github.io
 
 Live demo link will be added here once the website is deployed.
-https://techgnomo.github.io/Budget-Planner-App/
+
 ---
 
 ## About the Project

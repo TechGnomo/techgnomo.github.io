@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Motorcycle Maintenance Tracker | Fabio D'Anna</title>
+  <meta
+    name="description"
+    content="Motorcycle maintenance tracker demo built with HTML, CSS and JavaScript."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="../project.html" class="back-link">← Back to Portfolio</a>
+
+      <div class="hero-card">
+        <div class="hero-copy">
+          <span class="hero-badge">Portfolio Project</span>
+
+          <h1>Motorcycle Maintenance Tracker</h1>
+
+          <p class="hero-text">
+            A practical maintenance dashboard for tracking service history,
+            tyre pressure, chain care, registration, insurance and upcoming work.
+          </p>
+
+          <div class="hero-tags">
+            <span class="hero-tag">HTML</span>
+            <span class="hero-tag">CSS</span>
+            <span class="hero-tag">JavaScript</span>
+            <span class="hero-tag">Local Storage</span>
+          </div>
+        </div>
+
+        <div class="hero-bike-card">
+          <span class="bike-label">Current Bike</span>
+          <strong id="bikeNameDisplay">No bike saved yet</strong>
+          <p id="bikeModelDisplay">Add your motorcycle details to begin.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <!-- BIKE SUMMARY -->
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">🏍️</span>
+          <span class="stat-label">Bike</span>
+        </div>
+        <strong id="summaryBike">Not set</strong>
+        <p>Saved motorcycle profile.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">🧭</span>
+          <span class="stat-label">Current KM</span>
+        </div>
+        <strong id="summaryKm">0 km</strong>
+        <p>Current odometer reading.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">🛠️</span>
+          <span class="stat-label">Maintenance Items</span>
+        </div>
+        <strong id="summaryLogs">0</strong>
+        <p>Total service records saved.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">⚠️</span>
+          <span class="stat-label">Next Priority</span>
+        </div>
+        <strong id="summaryPriority">Set bike first</strong>
+        <p>Based on saved maintenance data.</p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+
+      <!-- LEFT COLUMN -->
+      <div class="left-column">
+
+        <!-- BIKE PROFILE -->
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Step 1</span>
+              <h2>Bike profile</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Save your motorcycle details so the dashboard can track maintenance properly.
+          </p>
+
+          <div class="form-group">
+            <label for="bikeName">Bike Name</label>
+            <input id="bikeName" type="text" placeholder="Example: Fenrir" />
+          </div>
+
+          <div class="form-group">
+            <label for="bikeModel">Model</label>
+            <input id="bikeModel" type="text" placeholder="Example: 2017 Kawasaki Z900" />
+          </div>
+
+          <div class="form-group">
+            <label for="currentKm">Current Kilometres</label>
+            <input id="currentKm" type="number" placeholder="Example: 73500" />
+          </div>
+
+          <button id="saveBikeBtn" class="btn btn-primary">Save Bike</button>
+        </article>
+
+        <!-- ADD MAINTENANCE -->
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Step 2</span>
+              <h2>Add maintenance</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Add service records such as oil, chain, tyres, brakes, rego or insurance.
+          </p>
+
+          <div class="form-group">
+            <label for="maintenanceType">Maintenance Type</label>
+            <select id="maintenanceType">
+              <option value="Oil Change">Oil Change</option>
+              <option value="Oil Filter">Oil Filter</option>
+              <option value="Chain Clean">Chain Clean</option>
+              <option value="Chain Adjustment">Chain Adjustment</option>
+              <option value="Tyre Pressure">Tyre Pressure</option>
+              <option value="Brake Pads">Brake Pads</option>
+              <option value="Brake Fluid">Brake Fluid</option>
+              <option value="Rego">Rego</option>
+              <option value="Insurance">Insurance</option>
+              <option value="General Service">General Service</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="maintenanceKm">KM</label>
+              <input id="maintenanceKm" type="number" placeholder="Example: 73500" />
+            </div>
+
+            <div class="form-group">
+              <label for="maintenanceDate">Date</label>
+              <input id="maintenanceDate" type="date" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="maintenanceNotes">Notes</label>
+            <textarea id="maintenanceNotes" placeholder="Example: Cleaned and lubed chain after rain."></textarea>
+          </div>
+
+          <button id="addMaintenanceBtn" class="btn btn-primary">Add Record</button>
+        </article>
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="right-column">
+
+        <!-- SERVICE SUGGESTIONS -->
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Dashboard</span>
+              <h2>Maintenance overview</h2>
+            </div>
+
+            <button id="resetBtn" class="btn btn-danger">Reset All</button>
+          </div>
+
+          <div class="overview-grid">
+            <article class="mini-status-card">
+              <span>Oil Change</span>
+              <strong id="oilStatus">No data</strong>
+              <p id="oilHint">Add an oil change record.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Chain Care</span>
+              <strong id="chainStatus">No data</strong>
+              <p id="chainHint">Add chain clean or adjustment.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Tyres</span>
+              <strong id="tyreStatus">No data</strong>
+              <p id="tyreHint">Add tyre pressure record.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Rego / Insurance</span>
+              <strong id="regoStatus">No data</strong>
+              <p id="regoHint">Add rego or insurance record.</p>
+            </article>
+          </div>
+        </article>
+
+        <!-- MAINTENANCE LOG -->
+        <article class="panel log-panel">
+          <div class="table-header">
+            <div>
+              <span class="panel-kicker">Service history</span>
+              <h2>Maintenance log</h2>
+            </div>
+          </div>
+
+          <div class="table-wrapper">
+            <table>
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>KM</th>
+                  <th>Date</th>
+                  <th>Notes</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+
+              <tbody id="maintenanceTable">
+                <tr>
+                  <td colspan="5" class="empty-row">No maintenance records yet.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p>
+        Built with HTML, CSS and JavaScript. Data is saved locally in the browser using Local Storage.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
