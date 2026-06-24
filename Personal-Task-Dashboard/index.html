@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Personal Task Dashboard | Fabio D'Anna</title>
+  <meta
+    name="description"
+    content="Personal task dashboard built with HTML, CSS and JavaScript."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <header class="app-header">
+    <div class="header-inner">
+      <a href="../project.html" class="back-link">← Back to Portfolio</a>
+
+      <div class="hero-card">
+        <div class="hero-copy">
+          <span class="hero-badge">Portfolio Project</span>
+
+          <h1>Personal Task Dashboard</h1>
+
+          <p class="hero-text">
+            A productivity dashboard for organising tasks by priority, category and status.
+            Built as a practical JavaScript app with filters and Local Storage.
+          </p>
+
+          <div class="hero-tags">
+            <span class="hero-tag">HTML</span>
+            <span class="hero-tag">CSS</span>
+            <span class="hero-tag">JavaScript</span>
+            <span class="hero-tag">Local Storage</span>
+          </div>
+        </div>
+
+        <div class="hero-side-card">
+          <span class="side-label">Today Focus</span>
+          <strong id="heroFocusTitle">No tasks yet</strong>
+          <p id="heroFocusText">Add a task to start organising your day.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="app-main">
+
+    <section class="stats-grid">
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">📌</span>
+          <span class="stat-label">Total Tasks</span>
+        </div>
+        <strong id="totalTasks">0</strong>
+        <p>All saved tasks.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">🔥</span>
+          <span class="stat-label">High Priority</span>
+        </div>
+        <strong id="highPriorityTasks">0</strong>
+        <p>Tasks requiring attention.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">⏳</span>
+          <span class="stat-label">In Progress</span>
+        </div>
+        <strong id="inProgressTasks">0</strong>
+        <p>Currently active tasks.</p>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-top">
+          <span class="stat-icon">✅</span>
+          <span class="stat-label">Completed</span>
+        </div>
+        <strong id="completedTasks">0</strong>
+        <p>Finished tasks.</p>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+
+      <div class="left-column">
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Step 1</span>
+              <h2>Add task</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Create a task with category, priority and due date.
+          </p>
+
+          <div class="form-group">
+            <label for="taskTitle">Task Title</label>
+            <input id="taskTitle" type="text" placeholder="Example: Update portfolio project links" />
+          </div>
+
+          <div class="form-group">
+            <label for="taskDescription">Description</label>
+            <textarea id="taskDescription" placeholder="Example: Check project cards, live demos and GitHub links."></textarea>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taskCategory">Category</label>
+              <select id="taskCategory">
+                <option value="Portfolio">Portfolio</option>
+                <option value="Study">Study</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Finance">Finance</option>
+                <option value="Admin">Admin</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="taskPriority">Priority</label>
+              <select id="taskPriority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taskStatus">Status</label>
+              <select id="taskStatus">
+                <option value="To Do">To Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="taskDueDate">Due Date</label>
+              <input id="taskDueDate" type="date" />
+            </div>
+          </div>
+
+          <button id="addTaskBtn" class="btn btn-primary">Add Task</button>
+        </article>
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Filters</span>
+              <h2>Task filters</h2>
+            </div>
+          </div>
+
+          <p class="panel-description">
+            Search and filter the task list.
+          </p>
+
+          <div class="form-group">
+            <label for="searchInput">Search</label>
+            <input id="searchInput" type="text" placeholder="Search by title, description or category" />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="statusFilter">Status</label>
+              <select id="statusFilter">
+                <option value="All">All</option>
+                <option value="To Do">To Do</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="priorityFilter">Priority</label>
+              <select id="priorityFilter">
+                <option value="All">All</option>
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+              </select>
+            </div>
+          </div>
+
+          <button id="clearFiltersBtn" class="btn btn-secondary">Clear Filters</button>
+        </article>
+
+      </div>
+
+      <div class="right-column">
+
+        <article class="panel">
+          <div class="panel-head">
+            <div>
+              <span class="panel-kicker">Dashboard</span>
+              <h2>Productivity overview</h2>
+            </div>
+
+            <button id="resetBtn" class="btn btn-danger">Reset All</button>
+          </div>
+
+          <div class="overview-grid">
+            <article class="mini-status-card">
+              <span>Completion Rate</span>
+              <strong id="completionRate">0%</strong>
+              <p>Completed tasks divided by total tasks.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Next Due</span>
+              <strong id="nextDueTask">No tasks</strong>
+              <p id="nextDueHint">Add due dates to track deadlines.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Current Filter</span>
+              <strong id="currentFilter">All tasks</strong>
+              <p>Based on selected filters.</p>
+            </article>
+
+            <article class="mini-status-card">
+              <span>Dashboard Health</span>
+              <strong id="dashboardHealth">Add tasks</strong>
+              <p id="dashboardHealthHint">Start by adding your first task.</p>
+            </article>
+          </div>
+        </article>
+
+        <article class="panel task-panel">
+          <div class="table-header">
+            <div>
+              <span class="panel-kicker">Task list</span>
+              <h2>Tasks</h2>
+            </div>
+          </div>
+
+          <div id="taskList" class="task-list">
+            <p class="empty-state">No tasks added yet.</p>
+          </div>
+        </article>
+
+      </div>
+
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <p>
+        Built with HTML, CSS and JavaScript. Data is saved locally in the browser using Local Storage.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
