@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Survivor Arena Game | Fabio D'Anna</title>
+  <meta
+    name="description"
+    content="Browser-based survival arena game built with HTML, CSS and JavaScript."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="page-bg"></div>
+
+  <header class="app-header">
+    <div class="container">
+      <a href="../project.html" class="back-link">← Back to Portfolio</a>
+
+      <div class="hero">
+        <div>
+          <span class="eyebrow">Portfolio Game Project</span>
+          <h1>Survivor Arena Game</h1>
+          <p>
+            A browser-based survival arena game built with vanilla JavaScript.
+            Move, dodge enemies, survive as long as possible and let the auto-attack clear the arena.
+          </p>
+
+          <div class="tags">
+            <span>HTML</span>
+            <span>CSS</span>
+            <span>JavaScript</span>
+            <span>Canvas</span>
+            <span>Game Loop</span>
+          </div>
+        </div>
+
+        <div class="info-card">
+          <span>Status</span>
+          <strong>Playable Prototype</strong>
+          <p>Keyboard controls, enemies, collisions, score and restart system.</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container game-layout">
+
+    <section class="game-panel">
+      <div class="game-topbar">
+        <div>
+          <span>Health</span>
+          <strong id="healthDisplay">100</strong>
+        </div>
+
+        <div>
+          <span>Score</span>
+          <strong id="scoreDisplay">0</strong>
+        </div>
+
+        <div>
+          <span>Time</span>
+          <strong id="timeDisplay">0s</strong>
+        </div>
+
+        <div>
+          <span>Level</span>
+          <strong id="levelDisplay">1</strong>
+        </div>
+      </div>
+
+      <canvas id="gameCanvas" width="900" height="520"></canvas>
+
+      <div id="gameOverlay" class="game-overlay">
+        <div>
+          <h2>Survivor Arena</h2>
+          <p>
+            Use WASD or arrow keys to move. Avoid enemies. Your character attacks automatically.
+          </p>
+          <button id="startBtn">Start Game</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side-panel">
+      <article class="panel-card">
+        <span class="panel-kicker">Controls</span>
+        <h2>How to play</h2>
+
+        <ul>
+          <li>Move with WASD or arrow keys.</li>
+          <li>Enemies chase the player.</li>
+          <li>Auto-attack fires every second.</li>
+          <li>Survive and increase your score.</li>
+        </ul>
+      </article>
+
+      <article class="panel-card">
+        <span class="panel-kicker">Project skills</span>
+        <h2>What this demonstrates</h2>
+
+        <ul>
+          <li>Canvas rendering</li>
+          <li>Animation loop</li>
+          <li>Collision detection</li>
+          <li>Enemy spawning</li>
+          <li>Keyboard input handling</li>
+          <li>Game state management</li>
+        </ul>
+      </article>
+    </aside>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>
+        Built with HTML Canvas, CSS and vanilla JavaScript as a browser game portfolio project.
+      </p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
