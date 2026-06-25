@@ -412,6 +412,17 @@ section {
   object-fit: contain;
   display: block;
 }
+.logo-avatar {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 3px solid red;
+}
 .profile-card h2 {
   font-size: 1.35rem;
   margin-bottom: 0.5rem;
