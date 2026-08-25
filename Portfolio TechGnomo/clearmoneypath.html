@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ClearMoneyPath | Pay Cycle Budgeting App</title>
+
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .app-hero {
+      padding: 6rem 0 4rem;
+    }
+
+    .app-hero-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .app-hero h1 {
+      font-size: clamp(3rem, 7vw, 5.8rem);
+      line-height: 0.95;
+      letter-spacing: -3px;
+      margin-bottom: 1.5rem;
+      max-width: 950px;
+    }
+
+    .app-hero-copy {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 760px;
+      margin-bottom: 2rem;
+    }
+
+    .app-hero-copy strong {
+      color: var(--text);
+    }
+
+    .app-status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 2rem 0;
+    }
+
+    .app-status-pill {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .app-status-pill strong {
+      color: var(--emerald);
+    }
+
+    .phone-showcase {
+      display: flex;
+      justify-content: center;
+    }
+
+    .phone-frame {
+      width: min(360px, 100%);
+      min-height: 690px;
+      background: #061a2d;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 42px;
+      padding: 1.2rem;
+      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phone-frame::before {
+      content: "";
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 92px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.35);
+      z-index: 2;
+    }
+
+    .phone-screen {
+      background:
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 38%),
+        #001c31;
+      border-radius: 32px;
+      min-height: 650px;
+      padding: 3.1rem 1rem 1rem;
+      overflow: hidden;
+    }
+
+    .mock-title {
+      font-size: 1.75rem;
+      line-height: 1;
+      font-weight: 900;
+      color: #ffffff;
+      margin-bottom: 0.45rem;
+    }
+
+    .mock-subtitle {
+      color: #cbd5e1;
+      font-size: 0.85rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .mock-card {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 1rem;
+      margin-bottom: 0.9rem;
+    }
+
+    .mock-card.dark {
+      background: #0f172a;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .mock-label {
+      color: #64748b;
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.35rem;
+    }
+
+    .mock-money {
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 900;
+      color: #10b981;
+      margin-bottom: 0.45rem;
+    }
+
+    .mock-small {
+      color: #64748b;
+      font-size: 0.78rem;
+      line-height: 1.4;
+    }
+
+    .mock-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.7rem;
+    }
+
+    .mock-mini {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 0.85rem;
+    }
+
+    .mock-mini span {
+      display: block;
+      color: #94a3b8;
+      font-size: 0.7rem;
+      font-weight: 800;
+      margin-bottom: 0.3rem;
+    }
+
+    .mock-mini strong {
+      color: #ffffff;
+      font-size: 1rem;
+    }
+
+    .mock-progress {
+      height: 10px;
+      border-radius: 999px;
+      background: #e2e8f0;
+      overflow: hidden;
+      margin-top: 0.7rem;
+    }
+
+    .mock-progress-fill {
+      width: 68%;
+      height: 100%;
+      background: linear-gradient(135deg, #10b981, #8b5cf6);
+      border-radius: 999px;
+    }
+
+    .feature-wide {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 2rem;
+      align-items: center;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(139, 92, 246, 0.12));
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      padding: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .feature-wide h3 {
+      font-size: clamp(1.9rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+    }
+
+    .feature-wide p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .app-list {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .app-list-item {
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      color: var(--muted);
+      padding: 0.9rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .app-list-item strong {
+      color: var(--text);
+    }
+
+    .check-dot {
+      width: 26px;
+      height: 26px;
+      flex: 0 0 26px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: rgba(16, 185, 129, 0.14);
+      color: var(--emerald);
+      font-weight: 900;
+      font-size: 0.85rem;
+    }
+
+    .roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .roadmap-card {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 1.5rem;
+    }
+
+    .roadmap-step {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      display: grid;
+      place-items: center;
+      background: rgba(139, 92, 246, 0.16);
+      color: var(--violet);
+      font-weight: 900;
+      margin-bottom: 1rem;
+    }
+
+    .roadmap-card h3 {
+      margin-bottom: 0.7rem;
+    }
+
+    .roadmap-card p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-top: 1.5rem;
+    }
+
+    .stack-pill {
+      padding: 0.55rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+
+    .app-cta {
+      background:
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.22), transparent 35%),
+        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.25), transparent 35%),
+        rgba(255, 255, 255, 0.035);
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 3rem;
+      text-align: center;
+    }
+
+    .app-cta h2 {
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 1rem;
+    }
+
+    .app-cta p {
+      color: var(--muted);
+      max-width: 760px;
+      margin: 0 auto 2rem;
+      font-size: 1.05rem;
+    }
+
+    @media (max-width: 900px) {
+      .app-hero-grid,
+      .feature-wide {
+        grid-template-columns: 1fr;
+      }
+
+      .phone-showcase {
+        order: -1;
+      }
+
+      .roadmap-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 620px) {
+      .app-hero {
+        padding: 4rem 0 2rem;
+      }
+
+      .app-hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .phone-frame {
+        min-height: 610px;
+      }
+
+      .phone-screen {
+        min-height: 570px;
+      }
+
+      .roadmap-grid,
+      .cards-grid,
+      .overview-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .app-cta {
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container navbar">
+    <a href="index.html" class="site-logo">
+      <img src="assets/logo2.png" alt="TechGnomo Logo">
+    </a>
+
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="project.html" class="nav-button active">Projects</a>
+      <a href="resume.html">Resume</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="app-hero">
+    <div class="container app-hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          Mobile budgeting app · React Native · Expo · Firebase
+        </div>
+
+        <h1>
+          ClearMoneyPath<br />
+          <span class="gradient-text">Know what to pay, save and spend.</span>
+        </h1>
+
+        <p class="app-hero-copy">
+          ClearMoneyPath is a mobile-first pay cycle budgeting app built for people who need
+          a clear view of their money before payday arrives. It helps users plan income,
+          bills, debt payments, savings targets, reserves and safe-to-spend money in one simple flow.
+        </p>
+
+        <p class="app-hero-copy">
+          This project started from a real personal budgeting workflow and is being developed into
+          a commercial iOS and Android app with authentication, cloud backup and future subscription features.
+        </p>
+
+        <div class="hero-actions">
+          <a href="https://github.com/TechGnomo/ClearMoneyPath" class="btn btn-primary" target="_blank" rel="noopener">
+            View App Repository
+          </a>
+          <a href="project.html" class="btn btn-secondary">
+            Back to Projects
+          </a>
+          <a href="contact.html" class="btn btn-secondary">
+            Contact Me
+          </a>
+        </div>
+
+        <div class="app-status-row">
+          <span class="app-status-pill"><strong>Status:</strong> MVP in development</span>
+          <span class="app-status-pill"><strong>Platform:</strong> Android development build</span>
+          <span class="app-status-pill"><strong>Next:</strong> Google Sign-In testing</span>
+        </div>
+      </div>
+
+      <div class="phone-showcase">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <div class="mock-title">ClearMoneyPath</div>
+            <div class="mock-subtitle">Know what to pay, save and spend.</div>
+
+            <div class="mock-card">
+              <div class="mock-label">Remaining safe to spend</div>
+              <div class="mock-money">$423.15</div>
+              <div class="mock-small">
+                After bills, debts, reserves, savings and spending.
+              </div>
+            </div>
+
+            <div class="mock-row">
+              <div class="mock-mini">
+                <span>Income</span>
+                <strong>$1,092.25</strong>
+              </div>
+
+              <div class="mock-mini">
+                <span>Must pay</span>
+                <strong>$548.00</strong>
+              </div>
+
+              <div class="mock-mini">
+                <span>Savings</span>
+                <strong>$300.00</strong>
+              </div>
+
+              <div class="mock-mini">
+                <span>Debt focus</span>
+                <strong>Card 1</strong>
+              </div>
+            </div>
+
+            <div class="mock-card dark">
+              <div class="mock-label">Bills progress</div>
+              <div class="mock-small">
+                7 of 10 bills paid this cycle
+              </div>
+              <div class="mock-progress">
+                <div class="mock-progress-fill"></div>
+              </div>
+            </div>
+
+            <div class="mock-card">
+              <div class="mock-label">Payday checklist</div>
+              <div class="mock-small">✓ Review income</div>
+              <div class="mock-small">✓ Pay bills</div>
+              <div class="mock-small">○ Move money to savings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>The problem it solves</h2>
+        <p>
+          Many budgeting tools show what was spent after the damage is done. ClearMoneyPath is designed
+          around the moment that matters most: payday. It answers the question users actually ask:
+          “After everything I need to pay, how much is safe to spend?”
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="info-card">
+          <div class="icon">💸</div>
+          <h3>Payday confusion</h3>
+          <p>
+            Users often receive income, pay bills, move money around and only later realise the budget
+            is tighter than expected.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <div class="icon">💳</div>
+          <h3>Debt pressure</h3>
+          <p>
+            Credit cards, loans and buy-now-pay-later repayments can be hard to prioritise without a clear
+            payment strategy.
+          </p>
+        </article>
+
+        <article class="info-card">
+          <div class="icon">🧾</div>
+          <h3>Irregular costs</h3>
+          <p>
+            Rego, insurance, subscriptions and annual bills create stress when they are not broken down into
+            manageable pay cycle amounts.
+          </p>
+        </article>
+      </div>
+
+      <div class="feature-wide">
+        <div>
+          <h3>Designed around pay cycles, not generic monthly budgets.</h3>
+          <p>
+            ClearMoneyPath is built for weekly, fortnightly and monthly earners who want practical guidance
+            before they spend. The app focuses on real cash flow, not complicated financial jargon.
+          </p>
+        </div>
+
+        <div class="app-list">
+          <div class="app-list-item">
+            <span class="check-dot">✓</span>
+            <div>
+              <strong>Income planning</strong><br />
+              Track main payday income, extra income and one-off cash payments.
+            </div>
+          </div>
+
+          <div class="app-list-item">
+            <span class="check-dot">✓</span>
+            <div>
+              <strong>Bills and due dates</strong><br />
+              Organise recurring bills, mark them as paid and see what is still due.
+            </div>
+          </div>
+
+          <div class="app-list-item">
+            <span class="check-dot">✓</span>
+            <div>
+              <strong>Debt payoff focus</strong><br />
+              Use snowball, avalanche or custom strategies to decide what to attack first.
+            </div>
+          </div>
+
+          <div class="app-list-item">
+            <span class="check-dot">✓</span>
+            <div>
+              <strong>Safe-to-spend calculation</strong><br />
+              See the amount left after must-pay items, reserves, savings and logged spending.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>MVP features</h2>
+        <p>
+          The current version focuses on the core experience: helping a user create a pay cycle plan,
+          track what has been paid, and keep their data backed up.
+        </p>
+      </div>
+
+      <div class="overview-grid">
+        <article class="overview-card">
+          <div class="overview-icon">🏦</div>
+          <h3>Income</h3>
+          <p>Main payday income, extra income, cash income and one-off payments.</p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-icon">📅</div>
+          <h3>Planner</h3>
+          <p>Upcoming bills, payday countdown, checklist and automatic pay cycle reset logic.</p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-icon">💳</div>
+          <h3>Debts</h3>
+          <p>Debt balance tracking, regular payments, extra payments and payoff estimates.</p>
+        </article>
+
+        <article class="overview-card">
+          <div class="overview-icon">☁️</div>
+          <h3>Cloud backup</h3>
+          <p>Firebase Authentication and Firestore backup for user budget data.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>Technology stack</h2>
+        <p>
+          ClearMoneyPath is being built as a real cross-platform mobile application using modern tools
+          for app development, authentication, cloud data and deployment.
+        </p>
+      </div>
+
+      <div class="story-card">
+        <h3>Built with practical mobile development tools</h3>
+        <p>
+          The app is developed with React Native and Expo, tested through Android Studio emulator and
+          Expo development builds, and connected to Firebase for authentication and cloud backup.
+        </p>
+
+        <div class="stack-grid">
+          <span class="stack-pill">React Native</span>
+          <span class="stack-pill">Expo</span>
+          <span class="stack-pill">JavaScript</span>
+          <span class="stack-pill">Firebase Authentication</span>
+          <span class="stack-pill">Cloud Firestore</span>
+          <span class="stack-pill">AsyncStorage</span>
+          <span class="stack-pill">EAS Build</span>
+          <span class="stack-pill">Android Studio</span>
+          <span class="stack-pill">GitHub</span>
+          <span class="stack-pill">VS Code</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>Commercial roadmap</h2>
+        <p>
+          ClearMoneyPath is being shaped as a commercial subscription app. The first priority is a reliable
+          MVP, then premium features, store release preparation and real user feedback.
+        </p>
+      </div>
+
+      <div class="roadmap-grid">
+        <article class="roadmap-card">
+          <div class="roadmap-step">1</div>
+          <h3>Android MVP</h3>
+          <p>
+            Stabilise the development build, authentication, cloud backup and core budgeting flow.
+          </p>
+        </article>
+
+        <article class="roadmap-card">
+          <div class="roadmap-step">2</div>
+          <h3>Google Login</h3>
+          <p>
+            Complete native Google Sign-In and confirm users are created correctly in Firebase.
+          </p>
+        </article>
+
+        <article class="roadmap-card">
+          <div class="roadmap-step">3</div>
+          <h3>Premium logic</h3>
+          <p>
+            Separate free and premium features, including automatic sync, exports and advanced simulations.
+          </p>
+        </article>
+
+        <article class="roadmap-card">
+          <div class="roadmap-step">4</div>
+          <h3>Store release</h3>
+          <p>
+            Prepare app icon, screenshots, privacy policy, terms, Google Play and App Store builds.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>Why this project matters</h2>
+        <p>
+          This is not just a portfolio exercise. ClearMoneyPath combines product thinking, personal finance,
+          mobile development, cloud infrastructure and a real monetisation path.
+        </p>
+      </div>
+
+      <div class="cards-grid">
+        <article class="value-card">
+          <div class="value-number">01</div>
+          <h3>Real-world problem</h3>
+          <p>
+            The app is based on a genuine budgeting workflow and a common problem faced by people managing
+            pay cycles, debt and bills.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-number">02</div>
+          <h3>Full product mindset</h3>
+          <p>
+            It covers user experience, business model, platform strategy, data backup, authentication and
+            app store planning.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <div class="value-number">03</div>
+          <h3>Career transition proof</h3>
+          <p>
+            It demonstrates practical development skills, problem solving and the ability to turn an idea
+            into a working application.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="app-cta">
+        <h2>ClearMoneyPath is moving from MVP to product.</h2>
+        <p>
+          The goal is to turn this budgeting planner into a polished mobile app for iOS and Android,
+          with cloud sync, premium features and a clean onboarding experience for everyday users.
+        </p>
+
+        <div class="hero-actions" style="justify-content: center; margin-bottom: 0;">
+          <a href="https://github.com/TechGnomo/ClearMoneyPath" class="btn btn-primary" target="_blank" rel="noopener">
+            View Repository
+          </a>
+          <a href="project.html" class="btn btn-secondary">
+            View More Projects
+          </a>
+          <a href="contact.html" class="btn btn-secondary">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Fabio D'Anna · TechGnomo Portfolio</p>
+  </div>
+</footer>
+
+</body>
+</html>
