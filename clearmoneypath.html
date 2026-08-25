@@ -4,765 +4,1244 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>ClearMoneyPath | Pay Cycle Budgeting App</title>
+  <title>ClearMoneyPath | Pay Cycle Budget Planner</title>
+
+  <meta
+    name="description"
+    content="ClearMoneyPath is a pay cycle budgeting app that helps you know what to pay, what to save and what is safe to spend every payday. Coming soon on iOS and Android."
+  />
 
   <link rel="stylesheet" href="css/style.css" />
 
   <style>
-    .app-hero {
-      padding: 6rem 0 4rem;
+    :root {
+      --cmp-bg: #050816;
+      --cmp-bg-soft: #0b1224;
+      --cmp-card: rgba(255, 255, 255, 0.08);
+      --cmp-card-strong: rgba(255, 255, 255, 0.14);
+      --cmp-border: rgba(255, 255, 255, 0.16);
+      --cmp-text: #f8fafc;
+      --cmp-muted: #cbd5e1;
+      --cmp-soft: #94a3b8;
+      --cmp-green: #10b981;
+      --cmp-green-light: #86efac;
+      --cmp-cyan: #22d3ee;
+      --cmp-blue: #38bdf8;
+      --cmp-dark: #020617;
+      --cmp-danger: #fb7185;
+      --cmp-radius: 32px;
+      --cmp-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
     }
 
-    .app-hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 3rem;
-      align-items: center;
+    * {
+      box-sizing: border-box;
     }
 
-    .app-hero h1 {
-      font-size: clamp(3rem, 7vw, 5.8rem);
-      line-height: 0.95;
-      letter-spacing: -3px;
-      margin-bottom: 1.5rem;
-      max-width: 950px;
+    html {
+      scroll-behavior: smooth;
     }
 
-    .app-hero-copy {
-      color: var(--muted);
-      font-size: 1.12rem;
-      max-width: 760px;
-      margin-bottom: 2rem;
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.22), transparent 36%),
+        radial-gradient(circle at top right, rgba(34, 211, 238, 0.16), transparent 34%),
+        linear-gradient(180deg, #050816 0%, #020617 42%, #06111f 100%);
+      color: var(--cmp-text);
+      overflow-x: hidden;
     }
 
-    .app-hero-copy strong {
-      color: var(--text);
+    .cmp-page {
+      min-height: 100vh;
+      color: var(--cmp-text);
     }
 
-    .app-status-row {
+    .cmp-nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(22px);
+      background: rgba(2, 6, 23, 0.72);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cmp-nav-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      min-height: 72px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 2rem 0;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
     }
 
-    .app-status-pill {
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted);
-      padding: 0.55rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.9rem;
+    .cmp-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+    }
+
+    .cmp-brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 13px;
+      background:
+        linear-gradient(135deg, rgba(16, 185, 129, 1), rgba(34, 211, 238, 1));
+      display: grid;
+      place-items: center;
+      box-shadow: 0 18px 36px rgba(16, 185, 129, 0.25);
+    }
+
+    .cmp-nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 14px;
       font-weight: 800;
     }
 
-    .app-status-pill strong {
-      color: var(--emerald);
+    .cmp-nav-links a {
+      color: var(--cmp-muted);
+      text-decoration: none;
+      transition: color 0.25s ease, transform 0.25s ease;
     }
 
-    .phone-showcase {
-      display: flex;
-      justify-content: center;
+    .cmp-nav-links a:hover {
+      color: #fff;
+      transform: translateY(-1px);
     }
 
-    .phone-frame {
-      width: min(360px, 100%);
-      min-height: 690px;
-      background: #061a2d;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 42px;
-      padding: 1.2rem;
-      box-shadow: 0 35px 90px rgba(0, 0, 0, 0.55);
+    .cmp-nav-cta {
+      color: #001c31 !important;
+      background: #fff;
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: 0 14px 34px rgba(255, 255, 255, 0.12);
+    }
+
+    .cmp-section {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 96px 0;
+    }
+
+    .cmp-hero {
       position: relative;
       overflow: hidden;
+      padding: 88px 0 64px;
     }
 
-    .phone-frame::before {
-      content: "";
-      position: absolute;
-      top: 12px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 92px;
-      height: 24px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.35);
-      z-index: 2;
-    }
-
-    .phone-screen {
-      background:
-        radial-gradient(circle at top left, rgba(16, 185, 129, 0.16), transparent 38%),
-        #001c31;
-      border-radius: 32px;
-      min-height: 650px;
-      padding: 3.1rem 1rem 1rem;
-      overflow: hidden;
-    }
-
-    .mock-title {
-      font-size: 1.75rem;
-      line-height: 1;
-      font-weight: 900;
-      color: #ffffff;
-      margin-bottom: 0.45rem;
-    }
-
-    .mock-subtitle {
-      color: #cbd5e1;
-      font-size: 0.85rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .mock-card {
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 1rem;
-      margin-bottom: 0.9rem;
-    }
-
-    .mock-card.dark {
-      background: #0f172a;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .mock-label {
-      color: #64748b;
-      font-size: 0.72rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 0.35rem;
-    }
-
-    .mock-money {
-      font-size: 2rem;
-      line-height: 1;
-      font-weight: 900;
-      color: #10b981;
-      margin-bottom: 0.45rem;
-    }
-
-    .mock-small {
-      color: #64748b;
-      font-size: 0.78rem;
-      line-height: 1.4;
-    }
-
-    .mock-row {
+    .cmp-hero-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.7rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 54px;
+      align-items: center;
     }
 
-    .mock-mini {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
-      padding: 0.85rem;
+    .cmp-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--cmp-green-light);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(134, 239, 172, 0.22);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
     }
 
-    .mock-mini span {
+    .cmp-pulse {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--cmp-green-light);
+      box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.6);
+      animation: cmpPulse 2s infinite;
+    }
+
+    .cmp-hero h1 {
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      margin: 0 0 26px;
+      max-width: 820px;
+    }
+
+    .cmp-gradient-text {
+      background: linear-gradient(135deg, #fff 0%, #d1fae5 38%, #67e8f9 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .cmp-hero-copy {
+      font-size: clamp(18px, 2vw, 23px);
+      line-height: 1.55;
+      color: var(--cmp-muted);
+      max-width: 700px;
+      margin: 0 0 34px;
+    }
+
+    .cmp-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+
+    .cmp-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 22px;
+      border-radius: 999px;
+      font-weight: 900;
+      text-decoration: none;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    }
+
+    .cmp-button:hover {
+      transform: translateY(-3px);
+    }
+
+    .cmp-button-primary {
+      color: #001c31;
+      background: linear-gradient(135deg, #fff, #d1fae5);
+      box-shadow: 0 22px 48px rgba(134, 239, 172, 0.22);
+    }
+
+    .cmp-button-secondary {
+      color: #fff;
+      border: 1px solid var(--cmp-border);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .cmp-store-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .cmp-store-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #e2e8f0;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 11px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    .cmp-device-stage {
+      position: relative;
+      min-height: 640px;
+      display: grid;
+      place-items: center;
+      perspective: 1100px;
+    }
+
+    .cmp-glow-orb {
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, rgba(16, 185, 129, 0.42), transparent 64%);
+      filter: blur(12px);
+      animation: cmpFloat 7s ease-in-out infinite;
+    }
+
+    .cmp-phone {
+      position: relative;
+      width: min(340px, 86vw);
+      min-height: 640px;
+      border-radius: 48px;
+      padding: 14px;
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.06));
+      box-shadow:
+        0 50px 120px rgba(0, 0, 0, 0.55),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.24);
+      transform: rotateY(-10deg) rotateX(3deg);
+      animation: cmpPhoneFloat 8s ease-in-out infinite;
+    }
+
+    .cmp-phone-screen {
+      min-height: 612px;
+      border-radius: 38px;
+      overflow: hidden;
+      padding: 22px;
+      background:
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.42), transparent 38%),
+        linear-gradient(180deg, #0f172a 0%, #020617 100%);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .cmp-phone-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 28px;
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .cmp-phone-card {
+      background: rgba(255, 255, 255, 0.95);
+      color: #0f172a;
+      border-radius: 26px;
+      padding: 20px;
+      margin-bottom: 14px;
+      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
+    }
+
+    .cmp-phone-label {
+      color: #64748b;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .cmp-phone-amount {
+      font-size: 40px;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      color: #059669;
+      margin-bottom: 6px;
+    }
+
+    .cmp-phone-small {
+      color: #64748b;
+      font-size: 13px;
+      line-height: 1.4;
+      font-weight: 700;
+    }
+
+    .cmp-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .cmp-mini-card {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 20px;
+      padding: 14px;
+    }
+
+    .cmp-mini-card span {
       display: block;
       color: #94a3b8;
-      font-size: 0.7rem;
+      font-size: 12px;
       font-weight: 800;
-      margin-bottom: 0.3rem;
+      margin-bottom: 6px;
     }
 
-    .mock-mini strong {
-      color: #ffffff;
-      font-size: 1rem;
+    .cmp-mini-card strong {
+      color: #fff;
+      font-size: 17px;
+      font-weight: 900;
     }
 
-    .mock-progress {
-      height: 10px;
-      border-radius: 999px;
-      background: #e2e8f0;
+    .cmp-floating-tag {
+      position: absolute;
+      padding: 14px 16px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(18px);
+      color: #fff;
+      font-weight: 900;
+      box-shadow: var(--cmp-shadow);
+      animation: cmpFloat 6s ease-in-out infinite;
+    }
+
+    .cmp-floating-tag.one {
+      top: 120px;
+      left: 0;
+    }
+
+    .cmp-floating-tag.two {
+      right: 0;
+      bottom: 160px;
+      animation-delay: -2s;
+    }
+
+    .cmp-kpis {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 44px;
+    }
+
+    .cmp-kpi {
+      background: var(--cmp-card);
+      border: 1px solid var(--cmp-border);
+      border-radius: 24px;
+      padding: 22px;
+      backdrop-filter: blur(18px);
+    }
+
+    .cmp-kpi strong {
+      display: block;
+      font-size: 28px;
+      letter-spacing: -0.04em;
+      margin-bottom: 6px;
+    }
+
+    .cmp-kpi span {
+      color: var(--cmp-soft);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .cmp-section-heading {
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto 54px;
+    }
+
+    .cmp-section-heading h2 {
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 0.98;
+      letter-spacing: -0.065em;
+      margin: 0 0 18px;
+    }
+
+    .cmp-section-heading p {
+      color: var(--cmp-muted);
+      font-size: 19px;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .cmp-problem-grid,
+    .cmp-feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .cmp-card {
+      position: relative;
       overflow: hidden;
-      margin-top: 0.7rem;
+      background: var(--cmp-card);
+      border: 1px solid var(--cmp-border);
+      border-radius: var(--cmp-radius);
+      padding: 30px;
+      backdrop-filter: blur(18px);
+      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
     }
 
-    .mock-progress-fill {
-      width: 68%;
-      height: 100%;
-      background: linear-gradient(135deg, #10b981, #8b5cf6);
-      border-radius: 999px;
+    .cmp-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.18), transparent 42%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
     }
 
-    .feature-wide {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 2rem;
-      align-items: center;
-      background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(139, 92, 246, 0.12));
-      border: 1px solid var(--border);
-      border-radius: 30px;
-      padding: 2rem;
-      margin-top: 1.5rem;
+    .cmp-card:hover::before {
+      opacity: 1;
     }
 
-    .feature-wide h3 {
-      font-size: clamp(1.9rem, 4vw, 3.2rem);
-      line-height: 1;
-      letter-spacing: -1px;
-      margin-bottom: 1rem;
+    .cmp-card > * {
+      position: relative;
+      z-index: 1;
     }
 
-    .feature-wide p {
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
-    .app-list {
-      display: grid;
-      gap: 0.85rem;
-    }
-
-    .app-list-item {
-      display: flex;
-      gap: 0.9rem;
-      align-items: flex-start;
-      color: var(--muted);
-      padding: 0.9rem 0;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .app-list-item strong {
-      color: var(--text);
-    }
-
-    .check-dot {
-      width: 26px;
-      height: 26px;
-      flex: 0 0 26px;
-      border-radius: 999px;
+    .cmp-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 17px;
       display: grid;
       place-items: center;
       background: rgba(16, 185, 129, 0.14);
-      color: var(--emerald);
-      font-weight: 900;
-      font-size: 0.85rem;
+      color: var(--cmp-green-light);
+      font-size: 22px;
+      margin-bottom: 20px;
     }
 
-    .roadmap-grid {
+    .cmp-card h3 {
+      font-size: 24px;
+      letter-spacing: -0.035em;
+      margin: 0 0 12px;
+    }
+
+    .cmp-card p {
+      color: var(--cmp-muted);
+      line-height: 1.65;
+      margin: 0;
+      font-size: 16px;
+    }
+
+    .cmp-how {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 24px;
+      align-items: stretch;
     }
 
-    .roadmap-card {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 1.5rem;
-    }
-
-    .roadmap-step {
-      width: 44px;
-      height: 44px;
-      border-radius: 15px;
+    .cmp-sticky-panel {
+      min-height: 560px;
+      border-radius: 42px;
+      background:
+        radial-gradient(circle at top, rgba(34, 211, 238, 0.25), transparent 40%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--cmp-border);
       display: grid;
       place-items: center;
-      background: rgba(139, 92, 246, 0.16);
-      color: var(--violet);
-      font-weight: 900;
-      margin-bottom: 1rem;
+      padding: 26px;
+      overflow: hidden;
+      position: sticky;
+      top: 110px;
     }
 
-    .roadmap-card h3 {
-      margin-bottom: 0.7rem;
+    .cmp-big-number {
+      font-size: clamp(120px, 16vw, 220px);
+      line-height: 0.8;
+      font-weight: 950;
+      letter-spacing: -0.11em;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(255, 255, 255, 0.18);
+      text-shadow: 0 0 80px rgba(16, 185, 129, 0.35);
     }
 
-    .roadmap-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
+    .cmp-steps {
+      display: grid;
+      gap: 18px;
     }
 
-    .stack-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.7rem;
-      margin-top: 1.5rem;
+    .cmp-step {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 22px;
+      padding: 28px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--cmp-border);
+      backdrop-filter: blur(18px);
     }
 
-    .stack-pill {
-      padding: 0.55rem 0.85rem;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.04);
-      color: var(--muted);
-      font-weight: 800;
-      font-size: 0.9rem;
+    .cmp-step-number {
+      width: 58px;
+      height: 58px;
+      border-radius: 22px;
+      background: #fff;
+      color: #001c31;
+      display: grid;
+      place-items: center;
+      font-weight: 950;
+      font-size: 20px;
     }
 
-    .app-cta {
+    .cmp-step h3 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      letter-spacing: -0.04em;
+    }
+
+    .cmp-step p {
+      margin: 0;
+      color: var(--cmp-muted);
+      line-height: 1.65;
+    }
+
+    .cmp-showcase {
+      border-radius: 46px;
+      padding: 54px;
       background:
-        radial-gradient(circle at top left, rgba(16, 185, 129, 0.22), transparent 35%),
-        radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.25), transparent 35%),
-        rgba(255, 255, 255, 0.035);
-      border: 1px solid var(--border);
-      border-radius: 34px;
-      padding: 3rem;
+        radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.26), transparent 32%),
+        radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.2), transparent 34%),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+      border: 1px solid var(--cmp-border);
+      box-shadow: var(--cmp-shadow);
       text-align: center;
+      overflow: hidden;
+      position: relative;
     }
 
-    .app-cta h2 {
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      line-height: 1;
-      letter-spacing: -2px;
-      margin-bottom: 1rem;
+    .cmp-showcase h2 {
+      font-size: clamp(40px, 6vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.07em;
+      margin: 0 auto 18px;
+      max-width: 860px;
     }
 
-    .app-cta p {
-      color: var(--muted);
+    .cmp-showcase p {
+      color: var(--cmp-muted);
+      font-size: 19px;
+      line-height: 1.6;
       max-width: 760px;
-      margin: 0 auto 2rem;
-      font-size: 1.05rem;
+      margin: 0 auto 30px;
     }
 
-    @media (max-width: 900px) {
-      .app-hero-grid,
-      .feature-wide {
+    .cmp-price-cards {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      max-width: 900px;
+      margin: 38px auto 0;
+    }
+
+    .cmp-price-card {
+      text-align: left;
+      padding: 30px;
+      border-radius: 32px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid var(--cmp-border);
+    }
+
+    .cmp-price-card.highlight {
+      background: rgba(16, 185, 129, 0.14);
+      border-color: rgba(134, 239, 172, 0.36);
+    }
+
+    .cmp-price-card h3 {
+      font-size: 26px;
+      margin: 0 0 10px;
+    }
+
+    .cmp-price {
+      font-size: 34px;
+      font-weight: 950;
+      letter-spacing: -0.06em;
+      margin-bottom: 16px;
+    }
+
+    .cmp-price-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+      color: var(--cmp-muted);
+      font-weight: 700;
+    }
+
+    .cmp-price-card li::before {
+      content: "✓";
+      color: var(--cmp-green-light);
+      font-weight: 950;
+      margin-right: 8px;
+    }
+
+    .cmp-final-cta {
+      text-align: center;
+      padding-bottom: 120px;
+    }
+
+    .cmp-final-cta h2 {
+      font-size: clamp(44px, 7vw, 88px);
+      line-height: 0.94;
+      letter-spacing: -0.075em;
+      margin: 0 auto 22px;
+      max-width: 900px;
+    }
+
+    .cmp-final-cta p {
+      color: var(--cmp-muted);
+      font-size: 20px;
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto 32px;
+    }
+
+    .cmp-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 34px 0;
+      color: var(--cmp-soft);
+      font-size: 14px;
+    }
+
+    .cmp-footer-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .cmp-footer a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-weight: 800;
+    }
+
+    .cmp-reveal {
+      opacity: 0;
+      transform: translateY(34px) scale(0.985);
+      transition:
+        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--delay, 0s);
+    }
+
+    .cmp-reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    @keyframes cmpPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.6);
+      }
+
+      70% {
+        box-shadow: 0 0 0 12px rgba(134, 239, 172, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(134, 239, 172, 0);
+      }
+    }
+
+    @keyframes cmpFloat {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+
+      50% {
+        transform: translate3d(0, -18px, 0);
+      }
+    }
+
+    @keyframes cmpPhoneFloat {
+      0%, 100% {
+        transform: rotateY(-10deg) rotateX(3deg) translateY(0);
+      }
+
+      50% {
+        transform: rotateY(-5deg) rotateX(2deg) translateY(-18px);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .cmp-hero-inner,
+      .cmp-how {
         grid-template-columns: 1fr;
       }
 
-      .phone-showcase {
-        order: -1;
+      .cmp-device-stage {
+        min-height: 580px;
       }
 
-      .roadmap-grid {
+      .cmp-kpis,
+      .cmp-problem-grid,
+      .cmp-feature-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+
+      .cmp-sticky-panel {
+        position: relative;
+        top: auto;
+        min-height: 260px;
+      }
     }
 
-    @media (max-width: 620px) {
-      .app-hero {
-        padding: 4rem 0 2rem;
+    @media (max-width: 720px) {
+      .cmp-nav-inner {
+        min-height: auto;
+        padding: 14px 0;
+        align-items: flex-start;
       }
 
-      .app-hero h1 {
-        letter-spacing: -2px;
+      .cmp-nav-links {
+        display: none;
       }
 
-      .phone-frame {
-        min-height: 610px;
+      .cmp-section {
+        padding: 72px 0;
       }
 
-      .phone-screen {
-        min-height: 570px;
+      .cmp-hero {
+        padding-top: 58px;
       }
 
-      .roadmap-grid,
-      .cards-grid,
-      .overview-grid {
+      .cmp-hero h1 {
+        font-size: 54px;
+      }
+
+      .cmp-hero-copy {
+        font-size: 18px;
+      }
+
+      .cmp-kpis,
+      .cmp-problem-grid,
+      .cmp-feature-grid,
+      .cmp-price-cards {
         grid-template-columns: 1fr;
       }
 
-      .app-cta {
-        padding: 2rem;
+      .cmp-device-stage {
+        min-height: 560px;
+      }
+
+      .cmp-phone {
+        transform: none;
+        animation: cmpFloat 8s ease-in-out infinite;
+      }
+
+      .cmp-floating-tag {
+        display: none;
+      }
+
+      .cmp-showcase {
+        padding: 34px 20px;
+        border-radius: 34px;
+      }
+
+      .cmp-step {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+
+      .cmp-reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
+  <main class="cmp-page">
+    <nav class="cmp-nav">
+      <div class="cmp-nav-inner">
+        <a href="index.html" class="cmp-brand">
+          <span class="cmp-brand-mark">💸</span>
+          <span>ClearMoneyPath</span>
+        </a>
 
-<header>
-  <div class="container navbar">
-    <a href="index.html" class="site-logo">
-      <img src="assets/logo2.png" alt="TechGnomo Logo">
-    </a>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="skills.html">Skills</a>
-      <a href="project.html" class="nav-button active">Projects</a>
-      <a href="resume.html">Resume</a>
-      <a href="contact.html">Contact</a>
+        <div class="cmp-nav-links">
+          <a href="#how-it-works">How it works</a>
+          <a href="#features">Features</a>
+          <a href="#pricing">Plans</a>
+          <a href="project.html">Projects</a>
+          <a href="#download" class="cmp-nav-cta">Coming soon</a>
+        </div>
+      </div>
     </nav>
-  </div>
-</header>
 
-<main>
+    <section class="cmp-hero">
+      <div class="cmp-hero-inner">
+        <div class="cmp-reveal">
+          <div class="cmp-eyebrow">
+            <span class="cmp-pulse"></span>
+            Coming soon on iOS & Android
+          </div>
 
-  <section class="app-hero">
-    <div class="container app-hero-grid">
-      <div>
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Mobile budgeting app · React Native · Expo · Firebase
+          <h1>
+            Budget around your
+            <span class="cmp-gradient-text">real payday.</span>
+          </h1>
+
+          <p class="cmp-hero-copy">
+            ClearMoneyPath is a pay cycle budgeting app that shows you exactly
+            what to pay, what to save, what debt to focus on and what is truly
+            safe to spend before the next payday.
+          </p>
+
+          <div class="cmp-hero-actions">
+            <a href="#download" class="cmp-button cmp-button-primary">
+              Join the launch list
+            </a>
+
+            <a href="#how-it-works" class="cmp-button cmp-button-secondary">
+              See how it works
+            </a>
+          </div>
+
+          <div class="cmp-store-row">
+            <span class="cmp-store-pill"> iOS app coming soon</span>
+            <span class="cmp-store-pill">▶ Android app coming soon</span>
+          </div>
         </div>
 
-        <h1>
-          ClearMoneyPath<br />
-          <span class="gradient-text">Know what to pay, save and spend.</span>
-        </h1>
+        <div class="cmp-device-stage cmp-reveal" style="--delay: 0.16s">
+          <div class="cmp-glow-orb"></div>
 
-        <p class="app-hero-copy">
-          ClearMoneyPath is a mobile-first pay cycle budgeting app built for people who need
-          a clear view of their money before payday arrives. It helps users plan income,
-          bills, debt payments, savings targets, reserves and safe-to-spend money in one simple flow.
-        </p>
+          <div class="cmp-floating-tag one">Next bill: Rent</div>
+          <div class="cmp-floating-tag two">Safe to spend: $286</div>
 
-        <p class="app-hero-copy">
-          This project started from a real personal budgeting workflow and is being developed into
-          a commercial iOS and Android app with authentication, cloud backup and future subscription features.
-        </p>
-
-        <div class="hero-actions">
-          <a href="https://github.com/TechGnomo/ClearMoneyPath" class="btn btn-primary" target="_blank" rel="noopener">
-            View App Repository
-          </a>
-          <a href="project.html" class="btn btn-secondary">
-            Back to Projects
-          </a>
-          <a href="contact.html" class="btn btn-secondary">
-            Contact Me
-          </a>
-        </div>
-
-        <div class="app-status-row">
-          <span class="app-status-pill"><strong>Status:</strong> MVP in development</span>
-          <span class="app-status-pill"><strong>Platform:</strong> Android development build</span>
-          <span class="app-status-pill"><strong>Next:</strong> Google Sign-In testing</span>
-        </div>
-      </div>
-
-      <div class="phone-showcase">
-        <div class="phone-frame">
-          <div class="phone-screen">
-            <div class="mock-title">ClearMoneyPath</div>
-            <div class="mock-subtitle">Know what to pay, save and spend.</div>
-
-            <div class="mock-card">
-              <div class="mock-label">Remaining safe to spend</div>
-              <div class="mock-money">$423.15</div>
-              <div class="mock-small">
-                After bills, debts, reserves, savings and spending.
-              </div>
-            </div>
-
-            <div class="mock-row">
-              <div class="mock-mini">
-                <span>Income</span>
-                <strong>$1,092.25</strong>
+          <div class="cmp-phone">
+            <div class="cmp-phone-screen">
+              <div class="cmp-phone-top">
+                <span>ClearMoneyPath</span>
+                <span>Payday</span>
               </div>
 
-              <div class="mock-mini">
-                <span>Must pay</span>
-                <strong>$548.00</strong>
+              <div class="cmp-phone-card">
+                <div class="cmp-phone-label">Remaining safe to spend</div>
+                <div class="cmp-phone-amount">$286.40</div>
+                <div class="cmp-phone-small">
+                  After bills, debts, savings and spending.
+                </div>
               </div>
 
-              <div class="mock-mini">
-                <span>Savings</span>
-                <strong>$300.00</strong>
+              <div class="cmp-mini-grid">
+                <div class="cmp-mini-card">
+                  <span>Income</span>
+                  <strong>$1,092</strong>
+                </div>
+
+                <div class="cmp-mini-card">
+                  <span>Bills</span>
+                  <strong>$420</strong>
+                </div>
+
+                <div class="cmp-mini-card">
+                  <span>Debt</span>
+                  <strong>$180</strong>
+                </div>
+
+                <div class="cmp-mini-card">
+                  <span>Savings</span>
+                  <strong>$200</strong>
+                </div>
               </div>
 
-              <div class="mock-mini">
-                <span>Debt focus</span>
-                <strong>Card 1</strong>
+              <div class="cmp-phone-card" style="margin-top: 16px">
+                <div class="cmp-phone-label">Focus debt</div>
+                <div style="font-size: 22px; font-weight: 950; margin-bottom: 8px">
+                  Credit Card
+                </div>
+                <div class="cmp-phone-small">
+                  Snowball strategy · 31 pay cycles remaining
+                </div>
               </div>
-            </div>
-
-            <div class="mock-card dark">
-              <div class="mock-label">Bills progress</div>
-              <div class="mock-small">
-                7 of 10 bills paid this cycle
-              </div>
-              <div class="mock-progress">
-                <div class="mock-progress-fill"></div>
-              </div>
-            </div>
-
-            <div class="mock-card">
-              <div class="mock-label">Payday checklist</div>
-              <div class="mock-small">✓ Review income</div>
-              <div class="mock-small">✓ Pay bills</div>
-              <div class="mock-small">○ Move money to savings</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>The problem it solves</h2>
+      <div class="cmp-section">
+        <div class="cmp-kpis">
+          <div class="cmp-kpi cmp-reveal">
+            <strong>Pay cycle</strong>
+            <span>Plan weekly, fortnightly or monthly income.</span>
+          </div>
+
+          <div class="cmp-kpi cmp-reveal" style="--delay: 0.08s">
+            <strong>Safe spend</strong>
+            <span>Know what is actually available to use.</span>
+          </div>
+
+          <div class="cmp-kpi cmp-reveal" style="--delay: 0.16s">
+            <strong>Debt plan</strong>
+            <span>Track payoff progress and focus debt.</span>
+          </div>
+
+          <div class="cmp-kpi cmp-reveal" style="--delay: 0.24s">
+            <strong>Cloud backup</strong>
+            <span>Securely save and restore your budget.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cmp-section" id="problem">
+      <div class="cmp-section-heading cmp-reveal">
+        <h2>Monthly budgets do not work for everyone.</h2>
         <p>
-          Many budgeting tools show what was spent after the damage is done. ClearMoneyPath is designed
-          around the moment that matters most: payday. It answers the question users actually ask:
-          “After everything I need to pay, how much is safe to spend?”
+          If you get paid weekly or fortnightly, a monthly spreadsheet can feel
+          disconnected from real life. ClearMoneyPath is built around the money
+          that actually lands in your account on payday.
         </p>
       </div>
 
-      <div class="cards-grid">
-        <article class="info-card">
-          <div class="icon">💸</div>
-          <h3>Payday confusion</h3>
+      <div class="cmp-problem-grid">
+        <article class="cmp-card cmp-reveal">
+          <div class="cmp-icon">🧾</div>
+          <h3>Bills arrive unevenly</h3>
           <p>
-            Users often receive income, pay bills, move money around and only later realise the budget
-            is tighter than expected.
+            Rent, fuel, loans, insurance, cards and subscriptions rarely line up
+            nicely. ClearMoneyPath helps you prepare before they hit.
           </p>
         </article>
 
-        <article class="info-card">
-          <div class="icon">💳</div>
-          <h3>Debt pressure</h3>
+        <article class="cmp-card cmp-reveal" style="--delay: 0.08s">
+          <div class="cmp-icon">💳</div>
+          <h3>Debt needs a plan</h3>
           <p>
-            Credit cards, loans and buy-now-pay-later repayments can be hard to prioritise without a clear
-            payment strategy.
+            See which debt to focus on and track your progress every pay cycle
+            using snowball, avalanche or custom strategies.
           </p>
         </article>
 
-        <article class="info-card">
-          <div class="icon">🧾</div>
-          <h3>Irregular costs</h3>
+        <article class="cmp-card cmp-reveal" style="--delay: 0.16s">
+          <div class="cmp-icon">🛟</div>
+          <h3>Safe spending matters</h3>
           <p>
-            Rego, insurance, subscriptions and annual bills create stress when they are not broken down into
-            manageable pay cycle amounts.
+            The app separates money you can spend from money already needed for
+            bills, debt payments, savings and future expenses.
           </p>
         </article>
       </div>
+    </section>
 
-      <div class="feature-wide">
-        <div>
-          <h3>Designed around pay cycles, not generic monthly budgets.</h3>
-          <p>
-            ClearMoneyPath is built for weekly, fortnightly and monthly earners who want practical guidance
-            before they spend. The app focuses on real cash flow, not complicated financial jargon.
-          </p>
+    <section class="cmp-section" id="how-it-works">
+      <div class="cmp-how">
+        <div class="cmp-sticky-panel cmp-reveal">
+          <div class="cmp-big-number">3</div>
         </div>
 
-        <div class="app-list">
-          <div class="app-list-item">
-            <span class="check-dot">✓</span>
+        <div class="cmp-steps">
+          <article class="cmp-step cmp-reveal">
+            <div class="cmp-step-number">1</div>
             <div>
-              <strong>Income planning</strong><br />
-              Track main payday income, extra income and one-off cash payments.
+              <h3>Set your payday</h3>
+              <p>
+                Choose whether you are paid weekly, fortnightly or monthly. Add
+                your income amount and the app builds your pay cycle plan.
+              </p>
             </div>
-          </div>
+          </article>
 
-          <div class="app-list-item">
-            <span class="check-dot">✓</span>
+          <article class="cmp-step cmp-reveal">
+            <div class="cmp-step-number">2</div>
             <div>
-              <strong>Bills and due dates</strong><br />
-              Organise recurring bills, mark them as paid and see what is still due.
+              <h3>Add bills, debts and savings</h3>
+              <p>
+                Enter what must be paid, what you want to save and which debts
+                you are clearing. ClearMoneyPath converts everything into the
+                current pay cycle.
+              </p>
             </div>
-          </div>
+          </article>
 
-          <div class="app-list-item">
-            <span class="check-dot">✓</span>
+          <article class="cmp-step cmp-reveal">
+            <div class="cmp-step-number">3</div>
             <div>
-              <strong>Debt payoff focus</strong><br />
-              Use snowball, avalanche or custom strategies to decide what to attack first.
+              <h3>Spend with clarity</h3>
+              <p>
+                Log spending during the cycle and watch your remaining safe-to-
+                spend balance update, so you know where you stand before payday.
+              </p>
             </div>
-          </div>
-
-          <div class="app-list-item">
-            <span class="check-dot">✓</span>
-            <div>
-              <strong>Safe-to-spend calculation</strong><br />
-              See the amount left after must-pay items, reserves, savings and logged spending.
-            </div>
-          </div>
+          </article>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>MVP features</h2>
+    <section class="cmp-section" id="features">
+      <div class="cmp-section-heading cmp-reveal">
+        <h2>Built for real paydays, not perfect spreadsheets.</h2>
         <p>
-          The current version focuses on the core experience: helping a user create a pay cycle plan,
-          track what has been paid, and keep their data backed up.
+          ClearMoneyPath brings together the core tools people actually need
+          when money is tight, bills are coming and debt needs attention.
         </p>
       </div>
 
-      <div class="overview-grid">
-        <article class="overview-card">
-          <div class="overview-icon">🏦</div>
-          <h3>Income</h3>
-          <p>Main payday income, extra income, cash income and one-off payments.</p>
+      <div class="cmp-feature-grid">
+        <article class="cmp-card cmp-reveal">
+          <div class="cmp-icon">💰</div>
+          <h3>Income planning</h3>
+          <p>
+            Track payday income, extra income and one-off payments in one simple
+            cycle view.
+          </p>
         </article>
 
-        <article class="overview-card">
-          <div class="overview-icon">📅</div>
-          <h3>Planner</h3>
-          <p>Upcoming bills, payday countdown, checklist and automatic pay cycle reset logic.</p>
+        <article class="cmp-card cmp-reveal" style="--delay: 0.06s">
+          <div class="cmp-icon">📅</div>
+          <h3>Bills tracker</h3>
+          <p>
+            Add due days, categories and paid status. See what is overdue, due
+            today and coming soon.
+          </p>
         </article>
 
-        <article class="overview-card">
-          <div class="overview-icon">💳</div>
-          <h3>Debts</h3>
-          <p>Debt balance tracking, regular payments, extra payments and payoff estimates.</p>
+        <article class="cmp-card cmp-reveal" style="--delay: 0.12s">
+          <div class="cmp-icon">🎯</div>
+          <h3>Debt focus</h3>
+          <p>
+            Choose snowball, avalanche or custom payoff order and track payments
+            cycle by cycle.
+          </p>
         </article>
 
-        <article class="overview-card">
-          <div class="overview-icon">☁️</div>
+        <article class="cmp-card cmp-reveal" style="--delay: 0.18s">
+          <div class="cmp-icon">🧠</div>
+          <h3>Safe-to-spend</h3>
+          <p>
+            See what is left after bills, debts, reserves, savings and logged
+            spending.
+          </p>
+        </article>
+
+        <article class="cmp-card cmp-reveal" style="--delay: 0.24s">
+          <div class="cmp-icon">🏦</div>
+          <h3>Sinking funds</h3>
+          <p>
+            Plan for yearly, quarterly or large future costs by saving a small
+            amount each pay cycle.
+          </p>
+        </article>
+
+        <article class="cmp-card cmp-reveal" style="--delay: 0.30s">
+          <div class="cmp-icon">☁️</div>
           <h3>Cloud backup</h3>
-          <p>Firebase Authentication and Firestore backup for user budget data.</p>
+          <p>
+            Login with email or Google and save your budget backup securely to
+            your private account.
+          </p>
         </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>Technology stack</h2>
+    <section class="cmp-section" id="pricing">
+      <div class="cmp-showcase cmp-reveal">
+        <h2>Start free. Upgrade when you need more power.</h2>
         <p>
-          ClearMoneyPath is being built as a real cross-platform mobile application using modern tools
-          for app development, authentication, cloud data and deployment.
-        </p>
-      </div>
-
-      <div class="story-card">
-        <h3>Built with practical mobile development tools</h3>
-        <p>
-          The app is developed with React Native and Expo, tested through Android Studio emulator and
-          Expo development builds, and connected to Firebase for authentication and cloud backup.
+          ClearMoneyPath is being designed with a simple free plan and a Premium
+          plan for users who want deeper history, automatic sync and advanced
+          planning tools.
         </p>
 
-        <div class="stack-grid">
-          <span class="stack-pill">React Native</span>
-          <span class="stack-pill">Expo</span>
-          <span class="stack-pill">JavaScript</span>
-          <span class="stack-pill">Firebase Authentication</span>
-          <span class="stack-pill">Cloud Firestore</span>
-          <span class="stack-pill">AsyncStorage</span>
-          <span class="stack-pill">EAS Build</span>
-          <span class="stack-pill">Android Studio</span>
-          <span class="stack-pill">GitHub</span>
-          <span class="stack-pill">VS Code</span>
+        <div class="cmp-price-cards">
+          <div class="cmp-price-card">
+            <h3>Free</h3>
+            <div class="cmp-price">$0</div>
+            <ul>
+              <li>Pay cycle planner</li>
+              <li>Income and bills tracking</li>
+              <li>Debt tracking</li>
+              <li>Spending tracker</li>
+              <li>Manual cloud backup</li>
+            </ul>
+          </div>
+
+          <div class="cmp-price-card highlight">
+            <h3>Premium</h3>
+            <div class="cmp-price">$3.99/mo</div>
+            <ul>
+              <li>Automatic cloud sync</li>
+              <li>Unlimited cycle history</li>
+              <li>Advanced debt simulations</li>
+              <li>Export reports</li>
+              <li>Shared household planning</li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>Commercial roadmap</h2>
+    <section class="cmp-section cmp-final-cta" id="download">
+      <div class="cmp-reveal">
+        <div class="cmp-eyebrow">
+          <span class="cmp-pulse"></span>
+          Launch in progress
+        </div>
+
+        <h2>
+          ClearMoneyPath is coming soon to
+          <span class="cmp-gradient-text">iOS and Android.</span>
+        </h2>
+
         <p>
-          ClearMoneyPath is being shaped as a commercial subscription app. The first priority is a reliable
-          MVP, then premium features, store release preparation and real user feedback.
-        </p>
-      </div>
-
-      <div class="roadmap-grid">
-        <article class="roadmap-card">
-          <div class="roadmap-step">1</div>
-          <h3>Android MVP</h3>
-          <p>
-            Stabilise the development build, authentication, cloud backup and core budgeting flow.
-          </p>
-        </article>
-
-        <article class="roadmap-card">
-          <div class="roadmap-step">2</div>
-          <h3>Google Login</h3>
-          <p>
-            Complete native Google Sign-In and confirm users are created correctly in Firebase.
-          </p>
-        </article>
-
-        <article class="roadmap-card">
-          <div class="roadmap-step">3</div>
-          <h3>Premium logic</h3>
-          <p>
-            Separate free and premium features, including automatic sync, exports and advanced simulations.
-          </p>
-        </article>
-
-        <article class="roadmap-card">
-          <div class="roadmap-step">4</div>
-          <h3>Store release</h3>
-          <p>
-            Prepare app icon, screenshots, privacy policy, terms, Google Play and App Store builds.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <h2>Why this project matters</h2>
-        <p>
-          This is not just a portfolio exercise. ClearMoneyPath combines product thinking, personal finance,
-          mobile development, cloud infrastructure and a real monetisation path.
-        </p>
-      </div>
-
-      <div class="cards-grid">
-        <article class="value-card">
-          <div class="value-number">01</div>
-          <h3>Real-world problem</h3>
-          <p>
-            The app is based on a genuine budgeting workflow and a common problem faced by people managing
-            pay cycles, debt and bills.
-          </p>
-        </article>
-
-        <article class="value-card">
-          <div class="value-number">02</div>
-          <h3>Full product mindset</h3>
-          <p>
-            It covers user experience, business model, platform strategy, data backup, authentication and
-            app store planning.
-          </p>
-        </article>
-
-        <article class="value-card">
-          <div class="value-number">03</div>
-          <h3>Career transition proof</h3>
-          <p>
-            It demonstrates practical development skills, problem solving and the ability to turn an idea
-            into a working application.
-          </p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="container">
-      <div class="app-cta">
-        <h2>ClearMoneyPath is moving from MVP to product.</h2>
-        <p>
-          The goal is to turn this budgeting planner into a polished mobile app for iOS and Android,
-          with cloud sync, premium features and a clean onboarding experience for everyday users.
+          The app is currently in MVP development and testing. The first release
+          will focus on pay cycle planning, safe-to-spend clarity, debt tracking
+          and secure cloud backup.
         </p>
 
-        <div class="hero-actions" style="justify-content: center; margin-bottom: 0;">
-          <a href="https://github.com/TechGnomo/ClearMoneyPath" class="btn btn-primary" target="_blank" rel="noopener">
-            View Repository
+        <div class="cmp-hero-actions" style="justify-content: center">
+          <a href="contact.html" class="cmp-button cmp-button-primary">
+            Contact TechGnomo
           </a>
-          <a href="project.html" class="btn btn-secondary">
-            View More Projects
-          </a>
-          <a href="contact.html" class="btn btn-secondary">
-            Get In Touch
+
+          <a href="https://github.com/TechGnomo/ClearMoneyPath" class="cmp-button cmp-button-secondary" target="_blank" rel="noopener">
+            View development repo
           </a>
         </div>
+
+        <div class="cmp-store-row" style="justify-content: center">
+          <span class="cmp-store-pill">iPhone & iPad planned</span>
+          <span class="cmp-store-pill">Android planned</span>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-</main>
+    <footer class="cmp-footer">
+      <div class="cmp-footer-inner">
+        <span>© 2026 TechGnomo. ClearMoneyPath is a budgeting planner, not financial advice.</span>
+        <span>
+          <a href="index.html">Portfolio</a> ·
+          <a href="project.html">Projects</a> ·
+          <a href="contact.html">Contact</a>
+        </span>
+      </div>
+    </footer>
+  </main>
 
-<footer>
-  <div class="container">
-    <p>© 2026 Fabio D'Anna · TechGnomo Portfolio</p>
-  </div>
-</footer>
+  <script>
+    const revealItems = document.querySelectorAll(".cmp-reveal");
 
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
+        });
+      },
+      {
+        threshold: 0.16,
+        rootMargin: "0px 0px -80px 0px",
+      }
+    );
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const phone = document.querySelector(".cmp-phone");
+
+    if (phone && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.addEventListener("mousemove", (event) => {
+        const x = (event.clientX / window.innerWidth - 0.5) * 10;
+        const y = (event.clientY / window.innerHeight - 0.5) * -8;
+
+        phone.style.transform = `rotateY(${x - 8}deg) rotateX(${y + 3}deg) translateY(-6px)`;
+      });
+
+      window.addEventListener("mouseleave", () => {
+        phone.style.transform = "";
+      });
+    }
+  </script>
 </body>
 </html>
