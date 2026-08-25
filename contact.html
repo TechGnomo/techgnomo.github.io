@@ -6,495 +6,538 @@
 
   <title>Contact | TechGnomo</title>
 
+  <meta
+    name="description"
+    content="Contact Fabio D'Anna, TechGnomo. Junior Developer portfolio, projects, GitHub and LinkedIn."
+  />
+
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
+
+  <style>
+    .contact-page {
+      min-height: calc(100vh - 92px);
+      padding: 96px 0 120px;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(16, 185, 129, 0.16), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.12), transparent 32%),
+        linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(2, 6, 23, 1));
+    }
+
+    .contact-shell {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #86efac;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(134, 239, 172, 0.22);
+      border-radius: 999px;
+      padding: 10px 16px;
+      font-size: 0.86rem;
+      font-weight: 900;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 26px;
+    }
+
+    .contact-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: #10b981;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: contactPulse 2s infinite;
+    }
+
+    .contact-title {
+      font-size: clamp(48px, 8vw, 92px);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      margin: 0 0 24px;
+      color: #ffffff;
+    }
+
+    .contact-title span {
+      background: linear-gradient(135deg, #10b981, #22d3ee, #8b5cf6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .contact-intro {
+      max-width: 760px;
+      margin: 0 auto 42px;
+      color: #cbd5e1;
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    .contact-toggle {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      width: min(520px, 100%);
+      min-height: 70px;
+      border: 0;
+      border-radius: 999px;
+      color: #001c31;
+      background: linear-gradient(135deg, #10b981, #22d3ee, #8b5cf6);
+      font-size: 1.18rem;
+      font-weight: 950;
+      letter-spacing: -0.03em;
+      cursor: pointer;
+      box-shadow:
+        0 26px 70px rgba(16, 185, 129, 0.22),
+        0 18px 48px rgba(139, 92, 246, 0.18);
+      overflow: hidden;
+      transition:
+        transform 0.28s ease,
+        box-shadow 0.28s ease,
+        filter 0.28s ease;
+    }
+
+    .contact-toggle:hover {
+      transform: translateY(-4px);
+      filter: brightness(1.06);
+      box-shadow:
+        0 34px 90px rgba(16, 185, 129, 0.28),
+        0 24px 62px rgba(139, 92, 246, 0.24);
+    }
+
+    .contact-toggle-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+      display: grid;
+      place-items: center;
+      transition: transform 0.32s ease;
+    }
+
+    .contact-toggle-icon::before,
+    .contact-toggle-icon::after {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 3px;
+      border-radius: 999px;
+      background: #001c31;
+      transition: transform 0.32s ease;
+    }
+
+    .contact-toggle-icon::after {
+      transform: rotate(90deg);
+    }
+
+    .contact-toggle.is-open .contact-toggle-icon {
+      transform: rotate(180deg);
+    }
+
+    .contact-toggle.is-open .contact-toggle-icon::after {
+      transform: rotate(0deg);
+    }
+
+    .contact-panel-wrap {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .contact-panel-wrap.is-open {
+      grid-template-rows: 1fr;
+    }
+
+    .contact-panel-overflow {
+      overflow: hidden;
+    }
+
+    .contact-panel {
+      margin-top: 34px;
+      opacity: 0;
+      transform: translateY(-24px) scale(0.97);
+      transition:
+        opacity 0.42s ease,
+        transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .contact-panel-wrap.is-open .contact-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      text-align: left;
+    }
+
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 190px;
+      padding: 30px;
+      border-radius: 32px;
+      background:
+        radial-gradient(circle at top left, rgba(16, 185, 129, 0.14), transparent 42%),
+        rgba(255, 255, 255, 0.075);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.22);
+      backdrop-filter: blur(18px);
+      transition:
+        transform 0.28s ease,
+        border-color 0.28s ease,
+        background 0.28s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(34, 211, 238, 0.34);
+      background:
+        radial-gradient(circle at top left, rgba(34, 211, 238, 0.16), transparent 42%),
+        rgba(255, 255, 255, 0.095);
+    }
+
+    .contact-card.full {
+      grid-column: 1 / -1;
+    }
+
+    .contact-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      background: rgba(16, 185, 129, 0.14);
+      color: #10b981;
+      font-size: 1.45rem;
+      margin-bottom: 22px;
+    }
+
+    .contact-card h2 {
+      color: #ffffff;
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+      margin: 0 0 12px;
+    }
+
+    .contact-card p {
+      color: #cbd5e1;
+      line-height: 1.65;
+      margin: 0 0 12px;
+      font-size: 1rem;
+    }
+
+    .contact-card a {
+      display: inline-flex;
+      color: #10b981;
+      font-weight: 950;
+      text-decoration: none;
+      word-break: break-word;
+      transition: color 0.22s ease, transform 0.22s ease;
+    }
+
+    .contact-card a:hover {
+      color: #22d3ee;
+      transform: translateX(4px);
+    }
+
+    .contact-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 12px;
+    }
+
+    .contact-action-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 20px;
+      border-radius: 999px;
+      color: #001c31 !important;
+      background: linear-gradient(135deg, #ffffff, #d1fae5);
+      font-weight: 950;
+      text-decoration: none;
+      box-shadow: 0 16px 40px rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-action-button.secondary {
+      color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .contact-back {
+      display: inline-flex;
+      margin-top: 36px;
+      color: #94a3b8;
+      text-decoration: none;
+      font-weight: 800;
+      transition: color 0.22s ease;
+    }
+
+    .contact-back:hover {
+      color: #ffffff;
+    }
+
+    @keyframes contactPulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      }
+
+      70% {
+        box-shadow: 0 0 0 13px rgba(16, 185, 129, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .contact-page {
+        padding: 72px 0 96px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-card {
+        min-height: auto;
+        padding: 24px;
+      }
+
+      .contact-toggle {
+        min-height: 64px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .contact-toggle,
+      .contact-toggle-icon,
+      .contact-toggle-icon::before,
+      .contact-toggle-icon::after,
+      .contact-panel-wrap,
+      .contact-panel,
+      .contact-card,
+      .contact-card a {
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
 
 <body>
+  <header class="tg-header">
+    <div class="tg-header-inner">
+      <a href="index.html" class="tg-logo-link" aria-label="TechGnomo home">
+        <img src="assets/logo2.png" alt="TechGnomo Logo" class="tg-header-logo">
+      </a>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TechGnomo Portfolio</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-</head>
+      <button class="tg-menu-toggle" id="tgMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-<body>
+      <nav class="tg-nav-menu" id="tgNavMenu" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="project.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+        <a href="clearmoneypath.html" class="tg-nav-featured">ClearMoneyPath</a>
+      </nav>
+    </div>
+  </header>
 
-<header>
-  <div class="container navbar">
-    <a href="index.html" class="site-logo">
-      <img src="assets/logo2.png" alt="TechGnomo Logo">
-    </a>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="index.html" >Home</a>
-      <a href="about.html">About</a>
-      <a href="skills.html">Skills</a>
-      <a href="project.html">Projects</a>
-      <a href="resume.html">Resume</a>
-      <a href="contact.html" class="nav-button active">Contact</a>
-    </nav>
-  </div>
-</header>
-
-  <main>
-
-    <!-- HERO -->
-    <section class="page-hero">
-      <div class="container">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Contact
-        </div>
-
-        <h1>
-          Let’s talk about
-          <span class="gradient-text">junior development, IT support and practical digital projects.</span>
-        </h1>
-
-        <p class="hero-description">
-          I am currently building my portfolio and preparing for opportunities in
-          <strong>web development</strong>, <strong>software development</strong> and
-          <strong>IT support</strong>. I am open to junior roles, entry-level opportunities,
-          project collaboration and professional networking.
-        </p>
+  <main class="contact-page">
+    <section class="contact-shell">
+      <div class="contact-eyebrow">
+        <span class="contact-dot"></span>
+        Let’s connect
       </div>
-    </section>
 
-    <!-- CONTACT MAIN -->
-    <section>
-      <div class="container">
-        <div class="contact-layout">
+      <h1 class="contact-title">
+        Contact <span>TechGnomo.</span>
+      </h1>
 
-          <!-- CONTACT INFO -->
-          <aside class="contact-info">
+      <p class="contact-intro">
+        For junior developer opportunities, project discussions, collaborations,
+        portfolio feedback or anything related to ClearMoneyPath, open the contact panel below.
+      </p>
 
-            <article class="contact-card">
-              <div class="contact-icon">✉</div>
-              <h3>Email</h3>
-              <p>
-                Best option for direct contact, job opportunities or project discussions.
-              </p>
-              <a href="mailto:gnomocode@gmail.com">gnomocode@gmail.com</a>
-            </article>
+      <button
+        class="contact-toggle"
+        id="contactToggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="contactPanel"
+      >
+        <span>Contact me</span>
+        <span class="contact-toggle-icon" aria-hidden="true"></span>
+      </button>
 
-            <article class="contact-card">
-              <div class="contact-icon">💼</div>
-              <h3>LinkedIn</h3>
-              <p>
-                Connect with me professionally and view my career background.
-              </p>
-              <a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/" target="_blank" rel="noopener">
-  linkedin.com/in/fabio-d-anna-5083b5378
-</a>
-            </article>
+      <div class="contact-panel-wrap" id="contactPanel">
+        <div class="contact-panel-overflow">
+          <div class="contact-panel">
+            <div class="contact-grid">
+              <article class="contact-card">
+                <div class="contact-icon">✉️</div>
+                <h2>Email</h2>
+                <p>Best option for direct contact, job opportunities or project discussions.</p>
+                <a href="mailto:gnomocode@gmail.com">gnomocode@gmail.com</a>
+              </article>
 
-            <article class="contact-card">
-              <div class="contact-icon">⌨</div>
-              <h3>GitHub</h3>
-              <p>
-                View my code, portfolio projects and development progress.
-              </p>
-              <a href="https://github.com/TechGnomo" target="_blank" rel="noopener">
-  github.com/TechGnomo
-</a>
-            </article>
+              <article class="contact-card">
+                <div class="contact-icon">💼</div>
+                <h2>LinkedIn</h2>
+                <p>Connect with me professionally and view my career background.</p>
+                <a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/" target="_blank" rel="noopener">
+                  linkedin.com/in/fabio-d-anna-5083b5378
+                </a>
+              </article>
 
-            <article class="contact-card">
-              <div class="contact-icon">📍</div>
-              <h3>Location</h3>
-              <p>
-                Based in Queensland, Australia. Open to local, hybrid and remote opportunities.
-              </p>
-              <a href="#">Queensland, Australia</a>
-            </article>
+              <article class="contact-card">
+                <div class="contact-icon">⌨️</div>
+                <h2>GitHub</h2>
+                <p>View my code, portfolio projects and development progress.</p>
+                <a href="https://github.com/TechGnomo" target="_blank" rel="noopener">
+                  github.com/TechGnomo
+                </a>
+              </article>
 
-          </aside>
+              <article class="contact-card">
+                <div class="contact-icon">📍</div>
+                <h2>Location</h2>
+                <p>Based in Queensland, Australia. Open to junior web, software and IT support opportunities.</p>
+                <a href="https://techgnomo.com" target="_blank" rel="noopener">techgnomo.com</a>
+              </article>
 
-          <!-- FORM -->
-          <div class="form-card">
-            <h2>Send me a message</h2>
-
-            <p>
-              For now, this form is a front-end demo. Once the portfolio is ready to publish,
-              it can be connected to a real form service.
-            </p>
-
-            <form id="contactForm">
-              <div class="form-grid">
-
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-
-                <div class="form-group full">
-                  <label for="subject">Subject</label>
-                  <select id="subject" name="subject" required>
-                    <option value="">Select a reason</option>
-                    <option value="junior-role">Junior role opportunity</option>
-                    <option value="it-support">IT support opportunity</option>
-                    <option value="web-project">Web project</option>
-                    <option value="networking">Professional networking</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div class="form-group full">
-                  <label for="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Write your message here..."
-                    required
-                  ></textarea>
-                </div>
-
-              </div>
-
-              <div class="submit-row">
-                <button type="submit" class="btn btn-primary">Send Message</button>
-
-                <p class="form-note">
-                  This demo form does not send emails yet. Use the email link until the form is connected.
+              <article class="contact-card full">
+                <div class="contact-icon">🚀</div>
+                <h2>Send me a message</h2>
+                <p>
+                  Want to discuss an opportunity, give feedback on ClearMoneyPath,
+                  or talk about a project? Send me an email or connect with me online.
                 </p>
-              </div>
 
-              <div id="formMessage" class="form-message">
-                Thank you. This is a front-end demo, so the message was not actually sent yet.
-              </div>
-            </form>
-          </div>
+                <div class="contact-actions">
+                  <a class="contact-action-button" href="mailto:gnomocode@gmail.com?subject=Contact%20from%20TechGnomo%20Portfolio">
+                    Send email
+                  </a>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- AVAILABILITY -->
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <h2>What I am open to</h2>
-          <p>
-            I am focused on realistic entry points into the tech industry where I can apply both my technical education
-            and my real-world work experience.
-          </p>
-        </div>
-
-        <div class="availability-grid">
-
-          <article class="availability-card">
-            <div class="availability-number">01</div>
-            <h3>Junior Web Development</h3>
-            <p>
-              Front-end roles, website builds, landing pages, responsive layouts and practical JavaScript projects.
-            </p>
-          </article>
-
-          <article class="availability-card">
-            <div class="availability-number">02</div>
-            <h3>Junior Software Development</h3>
-            <p>
-              Entry-level roles where I can keep strengthening programming fundamentals, logic and application building.
-            </p>
-          </article>
-
-          <article class="availability-card">
-            <div class="availability-number">03</div>
-            <h3>IT Support</h3>
-            <p>
-              Help desk, technical support, troubleshooting and IT operations roles connected to my IT and networking studies.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section>
-      <div class="container">
-        <div class="cta">
-          <h2>Want to see my work first?</h2>
-
-          <p>
-            My projects show the kind of practical tools I am building while transitioning into the tech industry.
-          </p>
-
-          <div class="cta-actions">
-            <a href="project.html" class="btn btn-primary">View Projects</a>
-            <a href="about.html" class="btn btn-secondary">Read About Me</a>
-            <a href="assets/documents/Fabio-DAnna-Resume.pdf" class="btn btn-primary" download>
-  Download PDF Resume
-</a>
+                  <a class="contact-action-button secondary" href="clearmoneypath.html">
+                    View ClearMoneyPath
+                  </a>
+                </div>
+              </article>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
+      <a href="index.html" class="contact-back">← Back to portfolio</a>
+    </section>
   </main>
 
-  <footer>
-    <div class="container footer-inner">
-      <p>© 2026 TechGnomo. All rights reserved.</p>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menuButton = document.getElementById("tgMenuToggle");
+      const navMenu = document.getElementById("tgNavMenu");
 
-      <div class="footer-links">
-        <a href="#">GitHub</a>
-        <a href="#">LinkedIn</a>
-        <a href="mailto:your.email@example.com">Email</a>
-      </div>
-    </div>
-  </footer>
+      if (menuButton && navMenu) {
+        function openMenu() {
+          document.body.classList.add("tg-menu-open");
+          menuButton.setAttribute("aria-expanded", "true");
+          menuButton.setAttribute("aria-label", "Close navigation menu");
+        }
 
-<script src="js/main.js"></script>
+        function closeMenu() {
+          document.body.classList.remove("tg-menu-open");
+          menuButton.setAttribute("aria-expanded", "false");
+          menuButton.setAttribute("aria-label", "Open navigation menu");
+        }
 
-</body>
-</html>
+        function toggleMenu() {
+          if (document.body.classList.contains("tg-menu-open")) {
+            closeMenu();
+          } else {
+            openMenu();
+          }
+        }
 
-  <main>
+        menuButton.addEventListener("click", function (event) {
+          event.stopPropagation();
+          toggleMenu();
+        });
 
-    <!-- HERO -->
-    <section class="page-hero">
-      <div class="container">
-        <div class="eyebrow">
-          <span class="eyebrow-dot"></span>
-          Contact
-        </div>
+        navMenu.addEventListener("click", function (event) {
+          if (event.target.tagName === "A") {
+            closeMenu();
+          }
+        });
 
-        <h1>
-          Let’s talk about
-          <span class="gradient-text">junior development, IT support and practical digital projects.</span>
-        </h1>
+        document.addEventListener("click", function (event) {
+          if (
+            document.body.classList.contains("tg-menu-open") &&
+            !navMenu.contains(event.target) &&
+            !menuButton.contains(event.target)
+          ) {
+            closeMenu();
+          }
+        });
 
-        <p class="hero-description">
-          I am currently building my portfolio and preparing for opportunities in
-          <strong>web development</strong>, <strong>software development</strong> and
-          <strong>IT support</strong>. I am open to junior roles, entry-level opportunities,
-          project collaboration and professional networking.
-        </p>
-      </div>
-    </section>
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeMenu();
+          }
+        });
+      }
 
-    <!-- CONTACT MAIN -->
-    <section>
-      <div class="container">
-        <div class="contact-layout">
+      const contactToggle = document.getElementById("contactToggle");
+      const contactPanel = document.getElementById("contactPanel");
 
-          <!-- CONTACT INFO -->
-          <aside class="contact-info">
+      if (contactToggle && contactPanel) {
+        function openContactPanel() {
+          contactPanel.classList.add("is-open");
+          contactToggle.classList.add("is-open");
+          contactToggle.setAttribute("aria-expanded", "true");
+        }
 
-            <article class="contact-card">
-              <div class="contact-icon">✉</div>
-              <h3>Email</h3>
-              <p>
-                Best option for direct contact, job opportunities or project discussions.
-              </p>
-              <a href="mailto:gnomocode@gmail.com">gnomocode@gmail.com</a>
-            </article>
+        function closeContactPanel() {
+          contactPanel.classList.remove("is-open");
+          contactToggle.classList.remove("is-open");
+          contactToggle.setAttribute("aria-expanded", "false");
+        }
 
-            <article class="contact-card">
-              <div class="contact-icon">💼</div>
-              <h3>LinkedIn</h3>
-              <p>
-                Connect with me professionally and view my career background.
-              </p>
-              <a href="#">Add LinkedIn link</a>
-            </article>
+        contactToggle.addEventListener("click", function () {
+          if (contactPanel.classList.contains("is-open")) {
+            closeContactPanel();
+          } else {
+            openContactPanel();
+          }
+        });
 
-            <article class="contact-card">
-              <div class="contact-icon">⌨</div>
-              <h3>GitHub</h3>
-              <p>
-                View my code, portfolio projects and development progress.
-              </p>
-              <a href="#">Add GitHub link</a>
-            </article>
-
-            <article class="contact-card">
-              <div class="contact-icon">📍</div>
-              <h3>Location</h3>
-              <p>
-                Based in Queensland, Australia. Open to local, hybrid and remote opportunities.
-              </p>
-              <a href="#">Queensland, Australia</a>
-            </article>
-
-          </aside>
-
-          <!-- FORM -->
-          <div class="form-card">
-            <h2>Send me a message</h2>
-
-            <p>
-              For now, this form is a front-end demo. Once the portfolio is ready to publish,
-              it can be connected to a real form service.
-            </p>
-
-            <form id="contactForm">
-              <div class="form-grid">
-
-                <div class="form-group">
-                  <label for="name">Name</label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Your name"
-                    required
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label for="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="your.email@example.com"
-                    required
-                  />
-                </div>
-
-                <div class="form-group full">
-                  <label for="subject">Subject</label>
-                  <select id="subject" name="subject" required>
-                    <option value="">Select a reason</option>
-                    <option value="junior-role">Junior role opportunity</option>
-                    <option value="it-support">IT support opportunity</option>
-                    <option value="web-project">Web project</option>
-                    <option value="networking">Professional networking</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-
-                <div class="form-group full">
-                  <label for="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    placeholder="Write your message here..."
-                    required
-                  ></textarea>
-                </div>
-
-              </div>
-
-              <div class="submit-row">
-                <button type="submit" class="btn btn-primary">Send Message</button>
-
-                <p class="form-note">
-                  This demo form does not send emails yet. Use the email link until the form is connected.
-                </p>
-              </div>
-
-              <div id="formMessage" class="form-message">
-                Thank you. This is a front-end demo, so the message was not actually sent yet.
-              </div>
-            </form>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- AVAILABILITY -->
-    <section>
-      <div class="container">
-        <div class="section-header">
-          <h2>What I am open to</h2>
-          <p>
-            I am focused on realistic entry points into the tech industry where I can apply both my technical education
-            and my real-world work experience.
-          </p>
-        </div>
-
-        <div class="availability-grid">
-
-          <article class="availability-card">
-            <div class="availability-number">01</div>
-            <h3>Junior Web Development</h3>
-            <p>
-              Front-end roles, website builds, landing pages, responsive layouts and practical JavaScript projects.
-            </p>
-          </article>
-
-          <article class="availability-card">
-            <div class="availability-number">02</div>
-            <h3>Junior Software Development</h3>
-            <p>
-              Entry-level roles where I can keep strengthening programming fundamentals, logic and application building.
-            </p>
-          </article>
-
-          <article class="availability-card">
-            <div class="availability-number">03</div>
-            <h3>IT Support</h3>
-            <p>
-              Help desk, technical support, troubleshooting and IT operations roles connected to my IT and networking studies.
-            </p>
-          </article>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section>
-      <div class="container">
-        <div class="cta">
-          <h2>Want to see my work first?</h2>
-
-          <p>
-            My projects show the kind of practical tools I am building while transitioning into the tech industry.
-          </p>
-
-          <div class="cta-actions">
-            <a href="project.html" class="btn btn-primary">View Projects</a>
-            <a href="about.html" class="btn btn-secondary">Read About Me</a>
-            <a href="assets/documents/Fabio-DAnna-Resume.pdf" class="btn btn-primary" download>
-  Download PDF Resume
-</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer>
-    <div class="container footer-inner">
-      <p>© 2026 TechGnomo. All rights reserved.</p>
-
-      <div class="footer-links">
-        <a href="#">GitHub</a>
-        <a href="#">LinkedIn</a>
-        <a href="mailto:your.email@example.com">Email</a>
-      </div>
-    </div>
-  </footer>
-
-<script src="js/main.js"></script>
-
+        document.addEventListener("keydown", function (event) {
+          if (event.key === "Escape") {
+            closeContactPanel();
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
