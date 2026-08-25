@@ -11,26 +11,24 @@
     content="ClearMoneyPath is a pay cycle budgeting app that helps you know what to pay, what to save and what is safe to spend every payday. Coming soon on iOS and Android."
   />
 
-  <link rel="stylesheet" href="css/style.css" />
-
   <style>
     :root {
-      --cmp-bg: #050816;
-      --cmp-bg-soft: #0b1224;
-      --cmp-card: rgba(255, 255, 255, 0.08);
-      --cmp-card-strong: rgba(255, 255, 255, 0.14);
-      --cmp-border: rgba(255, 255, 255, 0.16);
-      --cmp-text: #f8fafc;
-      --cmp-muted: #cbd5e1;
-      --cmp-soft: #94a3b8;
-      --cmp-green: #10b981;
-      --cmp-green-light: #86efac;
-      --cmp-cyan: #22d3ee;
-      --cmp-blue: #38bdf8;
-      --cmp-dark: #020617;
-      --cmp-danger: #fb7185;
-      --cmp-radius: 32px;
-      --cmp-shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
+      --bg: #020617;
+      --bg-soft: #07111f;
+      --card: rgba(255, 255, 255, 0.08);
+      --card-strong: rgba(255, 255, 255, 0.14);
+      --border: rgba(255, 255, 255, 0.16);
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --soft: #94a3b8;
+      --green: #10b981;
+      --green-light: #86efac;
+      --cyan: #22d3ee;
+      --blue: #38bdf8;
+      --danger: #fb7185;
+      --dark: #020617;
+      --radius: 32px;
+      --shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
     }
 
     * {
@@ -43,156 +41,203 @@
 
     body {
       margin: 0;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(16, 185, 129, 0.22), transparent 36%),
-        radial-gradient(circle at top right, rgba(34, 211, 238, 0.16), transparent 34%),
-        linear-gradient(180deg, #050816 0%, #020617 42%, #06111f 100%);
-      color: var(--cmp-text);
+        radial-gradient(circle at 15% 5%, rgba(16, 185, 129, 0.24), transparent 34%),
+        radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.18), transparent 35%),
+        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.12), transparent 35%),
+        linear-gradient(180deg, #050816 0%, #020617 52%, #07111f 100%);
       overflow-x: hidden;
     }
 
-    .cmp-page {
-      min-height: 100vh;
-      color: var(--cmp-text);
+    a {
+      color: inherit;
     }
 
-    .cmp-nav {
+    .page {
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .nav {
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(22px);
-      background: rgba(2, 6, 23, 0.72);
+      z-index: 100;
+      background: rgba(2, 6, 23, 0.74);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(22px);
     }
 
-    .cmp-nav-inner {
+    .nav-inner {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
-      min-height: 72px;
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 20px;
     }
 
-    .cmp-brand {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      color: #fff;
       text-decoration: none;
-      font-weight: 900;
-      letter-spacing: -0.03em;
+      font-size: 18px;
+      font-weight: 950;
+      letter-spacing: -0.04em;
     }
 
-    .cmp-brand-mark {
-      width: 38px;
-      height: 38px;
-      border-radius: 13px;
-      background:
-        linear-gradient(135deg, rgba(16, 185, 129, 1), rgba(34, 211, 238, 1));
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.96);
       display: grid;
       place-items: center;
-      box-shadow: 0 18px 36px rgba(16, 185, 129, 0.25);
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(16, 185, 129, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.4);
     }
 
-    .cmp-nav-links {
+    .brand-logo img {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+    }
+
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 24px;
       font-size: 14px;
       font-weight: 800;
+      color: var(--muted);
     }
 
-    .cmp-nav-links a {
-      color: var(--cmp-muted);
+    .nav-links a {
       text-decoration: none;
       transition: color 0.25s ease, transform 0.25s ease;
     }
 
-    .cmp-nav-links a:hover {
-      color: #fff;
+    .nav-links a:hover {
+      color: #ffffff;
       transform: translateY(-1px);
     }
 
-    .cmp-nav-cta {
+    .nav-cta {
       color: #001c31 !important;
-      background: #fff;
-      padding: 10px 16px;
+      background: #ffffff;
+      padding: 11px 17px;
       border-radius: 999px;
-      box-shadow: 0 14px 34px rgba(255, 255, 255, 0.12);
+      box-shadow: 0 14px 34px rgba(255, 255, 255, 0.14);
     }
 
-    .cmp-section {
+    .section {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
       padding: 96px 0;
     }
 
-    .cmp-hero {
+    .hero {
       position: relative;
-      overflow: hidden;
-      padding: 88px 0 64px;
+      padding: 88px 0 60px;
     }
 
-    .cmp-hero-inner {
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -120px -160px auto auto;
+      width: 520px;
+      height: 520px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.32), transparent 65%);
+      filter: blur(8px);
+      pointer-events: none;
+      animation: floatGlow 9s ease-in-out infinite;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1.1fr 0.9fr;
-      gap: 54px;
+      gap: 56px;
       align-items: center;
     }
 
-    .cmp-eyebrow {
+    .hero-logo-wrap {
+      width: 104px;
+      height: 104px;
+      border-radius: 30px;
+      background: rgba(255, 255, 255, 0.96);
+      display: grid;
+      place-items: center;
+      margin-bottom: 24px;
+      box-shadow:
+        0 26px 76px rgba(16, 185, 129, 0.28),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.55);
+      animation: floatSoft 7s ease-in-out infinite;
+    }
+
+    .hero-logo {
+      width: 86px;
+      height: 86px;
+      object-fit: contain;
+    }
+
+    .eyebrow {
       display: inline-flex;
       align-items: center;
       gap: 10px;
-      color: var(--cmp-green-light);
+      color: var(--green-light);
       background: rgba(16, 185, 129, 0.1);
       border: 1px solid rgba(134, 239, 172, 0.22);
       border-radius: 999px;
       padding: 9px 14px;
       font-size: 13px;
-      font-weight: 900;
+      font-weight: 950;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       margin-bottom: 24px;
     }
 
-    .cmp-pulse {
+    .pulse {
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: var(--cmp-green-light);
-      box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.6);
-      animation: cmpPulse 2s infinite;
+      background: var(--green-light);
+      box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.7);
+      animation: pulse 2s infinite;
     }
 
-    .cmp-hero h1 {
+    .hero h1 {
       font-size: clamp(48px, 8vw, 92px);
       line-height: 0.92;
       letter-spacing: -0.075em;
       margin: 0 0 26px;
-      max-width: 820px;
+      max-width: 850px;
     }
 
-    .cmp-gradient-text {
-      background: linear-gradient(135deg, #fff 0%, #d1fae5 38%, #67e8f9 100%);
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #d1fae5 40%, #67e8f9 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .cmp-hero-copy {
+    .hero-copy {
       font-size: clamp(18px, 2vw, 23px);
       line-height: 1.55;
-      color: var(--cmp-muted);
-      max-width: 700px;
+      color: var(--muted);
+      max-width: 720px;
       margin: 0 0 34px;
     }
 
-    .cmp-hero-actions {
+    .hero-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
@@ -200,42 +245,41 @@
       margin-bottom: 32px;
     }
 
-    .cmp-button {
+    .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 52px;
-      padding: 0 22px;
+      min-height: 54px;
+      padding: 0 24px;
       border-radius: 999px;
-      font-weight: 900;
+      font-weight: 950;
       text-decoration: none;
       transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
 
-    .cmp-button:hover {
+    .button:hover {
       transform: translateY(-3px);
     }
 
-    .cmp-button-primary {
+    .button-primary {
       color: #001c31;
-      background: linear-gradient(135deg, #fff, #d1fae5);
+      background: linear-gradient(135deg, #ffffff, #d1fae5);
       box-shadow: 0 22px 48px rgba(134, 239, 172, 0.22);
     }
 
-    .cmp-button-secondary {
-      color: #fff;
-      border: 1px solid var(--cmp-border);
+    .button-secondary {
+      color: #ffffff;
+      border: 1px solid var(--border);
       background: rgba(255, 255, 255, 0.08);
     }
 
-    .cmp-store-row {
+    .store-row {
       display: flex;
       flex-wrap: wrap;
       gap: 12px;
     }
 
-    .cmp-store-pill {
+    .store-pill {
       display: inline-flex;
       align-items: center;
       gap: 10px;
@@ -245,46 +289,46 @@
       padding: 11px 14px;
       border-radius: 999px;
       font-size: 14px;
-      font-weight: 800;
+      font-weight: 850;
     }
 
-    .cmp-device-stage {
+    .device-stage {
       position: relative;
-      min-height: 640px;
+      min-height: 650px;
       display: grid;
       place-items: center;
-      perspective: 1100px;
+      perspective: 1200px;
     }
 
-    .cmp-glow-orb {
+    .glow-orb {
       position: absolute;
-      width: 420px;
-      height: 420px;
+      width: 460px;
+      height: 460px;
       border-radius: 50%;
       background:
         radial-gradient(circle, rgba(16, 185, 129, 0.42), transparent 64%);
-      filter: blur(12px);
-      animation: cmpFloat 7s ease-in-out infinite;
+      filter: blur(14px);
+      animation: floatGlow 8s ease-in-out infinite;
     }
 
-    .cmp-phone {
+    .phone {
       position: relative;
       width: min(340px, 86vw);
       min-height: 640px;
-      border-radius: 48px;
+      border-radius: 50px;
       padding: 14px;
       background:
         linear-gradient(145deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.06));
       box-shadow:
-        0 50px 120px rgba(0, 0, 0, 0.55),
+        0 55px 130px rgba(0, 0, 0, 0.58),
         inset 0 0 0 1px rgba(255, 255, 255, 0.24);
       transform: rotateY(-10deg) rotateX(3deg);
-      animation: cmpPhoneFloat 8s ease-in-out infinite;
+      animation: phoneFloat 8s ease-in-out infinite;
     }
 
-    .cmp-phone-screen {
+    .phone-screen {
       min-height: 612px;
-      border-radius: 38px;
+      border-radius: 40px;
       overflow: hidden;
       padding: 22px;
       background:
@@ -293,7 +337,7 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
-    .cmp-phone-top {
+    .phone-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -303,8 +347,22 @@
       font-weight: 900;
     }
 
-    .cmp-phone-card {
-      background: rgba(255, 255, 255, 0.95);
+    .phone-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .phone-brand img {
+      width: 24px;
+      height: 24px;
+      border-radius: 8px;
+      background: #ffffff;
+      object-fit: contain;
+    }
+
+    .phone-card {
+      background: rgba(255, 255, 255, 0.96);
       color: #0f172a;
       border-radius: 26px;
       padding: 20px;
@@ -312,16 +370,16 @@
       box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
     }
 
-    .cmp-phone-label {
+    .phone-label {
       color: #64748b;
       font-size: 12px;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      font-weight: 900;
+      font-weight: 950;
       margin-bottom: 8px;
     }
 
-    .cmp-phone-amount {
+    .phone-amount {
       font-size: 40px;
       font-weight: 950;
       letter-spacing: -0.06em;
@@ -329,28 +387,28 @@
       margin-bottom: 6px;
     }
 
-    .cmp-phone-small {
+    .phone-small {
       color: #64748b;
       font-size: 13px;
       line-height: 1.4;
       font-weight: 700;
     }
 
-    .cmp-mini-grid {
+    .mini-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 18px;
     }
 
-    .cmp-mini-card {
+    .mini-card {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 20px;
       padding: 14px;
     }
 
-    .cmp-mini-card span {
+    .mini-card span {
       display: block;
       color: #94a3b8;
       font-size: 12px;
@@ -358,104 +416,110 @@
       margin-bottom: 6px;
     }
 
-    .cmp-mini-card strong {
-      color: #fff;
+    .mini-card strong {
+      color: #ffffff;
       font-size: 17px;
-      font-weight: 900;
+      font-weight: 950;
     }
 
-    .cmp-floating-tag {
+    .floating-tag {
       position: absolute;
       padding: 14px 16px;
       border-radius: 20px;
       background: rgba(255, 255, 255, 0.14);
       border: 1px solid rgba(255, 255, 255, 0.18);
       backdrop-filter: blur(18px);
-      color: #fff;
-      font-weight: 900;
-      box-shadow: var(--cmp-shadow);
-      animation: cmpFloat 6s ease-in-out infinite;
+      color: #ffffff;
+      font-weight: 950;
+      box-shadow: var(--shadow);
+      animation: floatSoft 6s ease-in-out infinite;
     }
 
-    .cmp-floating-tag.one {
-      top: 120px;
+    .floating-tag.one {
+      top: 118px;
       left: 0;
     }
 
-    .cmp-floating-tag.two {
+    .floating-tag.two {
       right: 0;
       bottom: 160px;
       animation-delay: -2s;
     }
 
-    .cmp-kpis {
+    .kpis {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 16px;
-      margin-top: 44px;
+      margin-top: 48px;
     }
 
-    .cmp-kpi {
-      background: var(--cmp-card);
-      border: 1px solid var(--cmp-border);
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 24px;
       padding: 22px;
       backdrop-filter: blur(18px);
     }
 
-    .cmp-kpi strong {
+    .kpi strong {
       display: block;
       font-size: 28px;
       letter-spacing: -0.04em;
       margin-bottom: 6px;
     }
 
-    .cmp-kpi span {
-      color: var(--cmp-soft);
+    .kpi span {
+      color: var(--soft);
       font-size: 14px;
       font-weight: 700;
       line-height: 1.45;
     }
 
-    .cmp-section-heading {
+    .section-heading {
       text-align: center;
-      max-width: 820px;
+      max-width: 840px;
       margin: 0 auto 54px;
     }
 
-    .cmp-section-heading h2 {
+    .section-heading h2 {
       font-size: clamp(38px, 6vw, 72px);
       line-height: 0.98;
       letter-spacing: -0.065em;
       margin: 0 0 18px;
     }
 
-    .cmp-section-heading p {
-      color: var(--cmp-muted);
+    .section-heading p {
+      color: var(--muted);
       font-size: 19px;
       line-height: 1.6;
       margin: 0;
     }
 
-    .cmp-problem-grid,
-    .cmp-feature-grid {
+    .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
-    .cmp-card {
+    .card {
       position: relative;
       overflow: hidden;
-      background: var(--cmp-card);
-      border: 1px solid var(--cmp-border);
-      border-radius: var(--cmp-radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
       padding: 30px;
       backdrop-filter: blur(18px);
       box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
+      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
     }
 
-    .cmp-card::before {
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(134, 239, 172, 0.36);
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .card::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -464,54 +528,54 @@
       transition: opacity 0.35s ease;
     }
 
-    .cmp-card:hover::before {
+    .card:hover::before {
       opacity: 1;
     }
 
-    .cmp-card > * {
+    .card > * {
       position: relative;
       z-index: 1;
     }
 
-    .cmp-icon {
+    .icon {
       width: 48px;
       height: 48px;
       border-radius: 17px;
       display: grid;
       place-items: center;
       background: rgba(16, 185, 129, 0.14);
-      color: var(--cmp-green-light);
+      color: var(--green-light);
       font-size: 22px;
       margin-bottom: 20px;
     }
 
-    .cmp-card h3 {
+    .card h3 {
       font-size: 24px;
       letter-spacing: -0.035em;
       margin: 0 0 12px;
     }
 
-    .cmp-card p {
-      color: var(--cmp-muted);
+    .card p {
+      color: var(--muted);
       line-height: 1.65;
       margin: 0;
       font-size: 16px;
     }
 
-    .cmp-how {
+    .how {
       display: grid;
       grid-template-columns: 0.85fr 1.15fr;
       gap: 24px;
       align-items: stretch;
     }
 
-    .cmp-sticky-panel {
+    .sticky-panel {
       min-height: 560px;
       border-radius: 42px;
       background:
         radial-gradient(circle at top, rgba(34, 211, 238, 0.25), transparent 40%),
         linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
-      border: 1px solid var(--cmp-border);
+      border: 1px solid var(--border);
       display: grid;
       place-items: center;
       padding: 26px;
@@ -520,7 +584,7 @@
       top: 110px;
     }
 
-    .cmp-big-number {
+    .big-number {
       font-size: clamp(120px, 16vw, 220px);
       line-height: 0.8;
       font-weight: 950;
@@ -530,27 +594,33 @@
       text-shadow: 0 0 80px rgba(16, 185, 129, 0.35);
     }
 
-    .cmp-steps {
+    .steps {
       display: grid;
       gap: 18px;
     }
 
-    .cmp-step {
+    .step {
       display: grid;
       grid-template-columns: 70px 1fr;
       gap: 22px;
       padding: 28px;
       border-radius: 32px;
       background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--cmp-border);
+      border: 1px solid var(--border);
       backdrop-filter: blur(18px);
+      transition: transform 0.3s ease, background 0.3s ease;
     }
 
-    .cmp-step-number {
+    .step:hover {
+      transform: translateY(-6px);
+      background: rgba(255, 255, 255, 0.11);
+    }
+
+    .step-number {
       width: 58px;
       height: 58px;
       border-radius: 22px;
-      background: #fff;
+      background: #ffffff;
       color: #001c31;
       display: grid;
       place-items: center;
@@ -558,33 +628,33 @@
       font-size: 20px;
     }
 
-    .cmp-step h3 {
+    .step h3 {
       margin: 0 0 8px;
       font-size: 25px;
       letter-spacing: -0.04em;
     }
 
-    .cmp-step p {
+    .step p {
       margin: 0;
-      color: var(--cmp-muted);
+      color: var(--muted);
       line-height: 1.65;
     }
 
-    .cmp-showcase {
+    .showcase {
       border-radius: 46px;
       padding: 54px;
       background:
         radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.26), transparent 32%),
         radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.2), transparent 34%),
         linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
-      border: 1px solid var(--cmp-border);
-      box-shadow: var(--cmp-shadow);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow);
       text-align: center;
       overflow: hidden;
       position: relative;
     }
 
-    .cmp-showcase h2 {
+    .showcase h2 {
       font-size: clamp(40px, 6vw, 76px);
       line-height: 0.98;
       letter-spacing: -0.07em;
@@ -592,15 +662,15 @@
       max-width: 860px;
     }
 
-    .cmp-showcase p {
-      color: var(--cmp-muted);
+    .showcase p {
+      color: var(--muted);
       font-size: 19px;
       line-height: 1.6;
       max-width: 760px;
       margin: 0 auto 30px;
     }
 
-    .cmp-price-cards {
+    .price-cards {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 18px;
@@ -608,54 +678,54 @@
       margin: 38px auto 0;
     }
 
-    .cmp-price-card {
+    .price-card {
       text-align: left;
       padding: 30px;
       border-radius: 32px;
       background: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--cmp-border);
+      border: 1px solid var(--border);
     }
 
-    .cmp-price-card.highlight {
+    .price-card.highlight {
       background: rgba(16, 185, 129, 0.14);
       border-color: rgba(134, 239, 172, 0.36);
     }
 
-    .cmp-price-card h3 {
+    .price-card h3 {
       font-size: 26px;
       margin: 0 0 10px;
     }
 
-    .cmp-price {
+    .price {
       font-size: 34px;
       font-weight: 950;
       letter-spacing: -0.06em;
       margin-bottom: 16px;
     }
 
-    .cmp-price-card ul {
+    .price-card ul {
       margin: 0;
       padding: 0;
       list-style: none;
       display: grid;
       gap: 10px;
-      color: var(--cmp-muted);
+      color: var(--muted);
       font-weight: 700;
     }
 
-    .cmp-price-card li::before {
+    .price-card li::before {
       content: "✓";
-      color: var(--cmp-green-light);
+      color: var(--green-light);
       font-weight: 950;
       margin-right: 8px;
     }
 
-    .cmp-final-cta {
+    .final-cta {
       text-align: center;
       padding-bottom: 120px;
     }
 
-    .cmp-final-cta h2 {
+    .final-cta h2 {
       font-size: clamp(44px, 7vw, 88px);
       line-height: 0.94;
       letter-spacing: -0.075em;
@@ -663,22 +733,22 @@
       max-width: 900px;
     }
 
-    .cmp-final-cta p {
-      color: var(--cmp-muted);
+    .final-cta p {
+      color: var(--muted);
       font-size: 20px;
       line-height: 1.6;
       max-width: 720px;
       margin: 0 auto 32px;
     }
 
-    .cmp-footer {
+    .footer {
       border-top: 1px solid rgba(255, 255, 255, 0.1);
       padding: 34px 0;
-      color: var(--cmp-soft);
+      color: var(--soft);
       font-size: 14px;
     }
 
-    .cmp-footer-inner {
+    .footer-inner {
       width: min(1180px, calc(100% - 32px));
       margin: 0 auto;
       display: flex;
@@ -687,13 +757,13 @@
       flex-wrap: wrap;
     }
 
-    .cmp-footer a {
+    .footer a {
       color: #e2e8f0;
       text-decoration: none;
       font-weight: 800;
     }
 
-    .cmp-reveal {
+    .reveal {
       opacity: 0;
       transform: translateY(34px) scale(0.985);
       transition:
@@ -702,14 +772,14 @@
       transition-delay: var(--delay, 0s);
     }
 
-    .cmp-reveal.is-visible {
+    .reveal.is-visible {
       opacity: 1;
       transform: translateY(0) scale(1);
     }
 
-    @keyframes cmpPulse {
+    @keyframes pulse {
       0% {
-        box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.6);
+        box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.7);
       }
 
       70% {
@@ -721,7 +791,7 @@
       }
     }
 
-    @keyframes cmpFloat {
+    @keyframes floatSoft {
       0%, 100% {
         transform: translate3d(0, 0, 0);
       }
@@ -731,7 +801,17 @@
       }
     }
 
-    @keyframes cmpPhoneFloat {
+    @keyframes floatGlow {
+      0%, 100% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate3d(0, -20px, 0) scale(1.05);
+      }
+    }
+
+    @keyframes phoneFloat {
       0%, 100% {
         transform: rotateY(-10deg) rotateX(3deg) translateY(0);
       }
@@ -742,22 +822,21 @@
     }
 
     @media (max-width: 980px) {
-      .cmp-hero-inner,
-      .cmp-how {
+      .hero-inner,
+      .how {
         grid-template-columns: 1fr;
       }
 
-      .cmp-device-stage {
+      .device-stage {
         min-height: 580px;
       }
 
-      .cmp-kpis,
-      .cmp-problem-grid,
-      .cmp-feature-grid {
+      .kpis,
+      .grid-3 {
         grid-template-columns: repeat(2, 1fr);
       }
 
-      .cmp-sticky-panel {
+      .sticky-panel {
         position: relative;
         top: auto;
         min-height: 260px;
@@ -765,59 +844,61 @@
     }
 
     @media (max-width: 720px) {
-      .cmp-nav-inner {
+      .nav-inner {
         min-height: auto;
         padding: 14px 0;
-        align-items: flex-start;
       }
 
-      .cmp-nav-links {
+      .nav-links {
         display: none;
       }
 
-      .cmp-section {
+      .section {
         padding: 72px 0;
       }
 
-      .cmp-hero {
+      .hero {
         padding-top: 58px;
       }
 
-      .cmp-hero h1 {
+      .hero h1 {
         font-size: 54px;
       }
 
-      .cmp-hero-copy {
+      .hero-copy {
         font-size: 18px;
       }
 
-      .cmp-kpis,
-      .cmp-problem-grid,
-      .cmp-feature-grid,
-      .cmp-price-cards {
+      .kpis,
+      .grid-3,
+      .price-cards {
         grid-template-columns: 1fr;
       }
 
-      .cmp-device-stage {
+      .device-stage {
         min-height: 560px;
       }
 
-      .cmp-phone {
+      .phone {
         transform: none;
-        animation: cmpFloat 8s ease-in-out infinite;
+        animation: floatSoft 8s ease-in-out infinite;
       }
 
-      .cmp-floating-tag {
+      .floating-tag {
         display: none;
       }
 
-      .cmp-showcase {
+      .showcase {
         padding: 34px 20px;
         border-radius: 34px;
       }
 
-      .cmp-step {
+      .step {
         grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        flex-direction: column;
       }
     }
 
@@ -831,7 +912,7 @@
         transition-duration: 0.001ms !important;
       }
 
-      .cmp-reveal {
+      .reveal {
         opacity: 1;
         transform: none;
       }
@@ -840,108 +921,121 @@
 </head>
 
 <body>
-  <main class="cmp-page">
-    <nav class="cmp-nav">
-      <div class="cmp-nav-inner">
-        <a href="index.html" class="cmp-brand">
-          <span class="cmp-brand-mark">💸</span>
+  <main class="page">
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="index.html" class="brand">
+          <span class="brand-logo">
+            <img src="assets/clearmoneypath-logo.png" alt="ClearMoneyPath logo" />
+          </span>
           <span>ClearMoneyPath</span>
         </a>
 
-        <div class="cmp-nav-links">
+        <div class="nav-links">
           <a href="#how-it-works">How it works</a>
           <a href="#features">Features</a>
           <a href="#pricing">Plans</a>
           <a href="project.html">Projects</a>
-          <a href="#download" class="cmp-nav-cta">Coming soon</a>
+          <a href="#download" class="nav-cta">Coming soon</a>
         </div>
       </div>
     </nav>
 
-    <section class="cmp-hero">
-      <div class="cmp-hero-inner">
-        <div class="cmp-reveal">
-          <div class="cmp-eyebrow">
-            <span class="cmp-pulse"></span>
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="reveal">
+          <div class="hero-logo-wrap">
+            <img
+              src="assets/clearmoneypath-logo.png"
+              alt="ClearMoneyPath app logo"
+              class="hero-logo"
+            />
+          </div>
+
+          <div class="eyebrow">
+            <span class="pulse"></span>
             Coming soon on iOS & Android
           </div>
 
           <h1>
             Budget around your
-            <span class="cmp-gradient-text">real payday.</span>
+            <span class="gradient-text">real payday.</span>
           </h1>
 
-          <p class="cmp-hero-copy">
+          <p class="hero-copy">
             ClearMoneyPath is a pay cycle budgeting app that shows you exactly
             what to pay, what to save, what debt to focus on and what is truly
             safe to spend before the next payday.
           </p>
 
-          <div class="cmp-hero-actions">
-            <a href="#download" class="cmp-button cmp-button-primary">
+          <div class="hero-actions">
+            <a href="#download" class="button button-primary">
               Join the launch list
             </a>
 
-            <a href="#how-it-works" class="cmp-button cmp-button-secondary">
+            <a href="#how-it-works" class="button button-secondary">
               See how it works
             </a>
           </div>
 
-          <div class="cmp-store-row">
-            <span class="cmp-store-pill"> iOS app coming soon</span>
-            <span class="cmp-store-pill">▶ Android app coming soon</span>
+          <div class="store-row">
+            <span class="store-pill">iOS app coming soon</span>
+            <span class="store-pill">Android app coming soon</span>
           </div>
         </div>
 
-        <div class="cmp-device-stage cmp-reveal" style="--delay: 0.16s">
-          <div class="cmp-glow-orb"></div>
+        <div class="device-stage reveal" style="--delay: 0.16s">
+          <div class="glow-orb"></div>
 
-          <div class="cmp-floating-tag one">Next bill: Rent</div>
-          <div class="cmp-floating-tag two">Safe to spend: $286</div>
+          <div class="floating-tag one">Next bill: Rent</div>
+          <div class="floating-tag two">Safe to spend: $286</div>
 
-          <div class="cmp-phone">
-            <div class="cmp-phone-screen">
-              <div class="cmp-phone-top">
-                <span>ClearMoneyPath</span>
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="phone-top">
+                <span class="phone-brand">
+                  <img src="assets/clearmoneypath-logo.png" alt="" />
+                  ClearMoneyPath
+                </span>
                 <span>Payday</span>
               </div>
 
-              <div class="cmp-phone-card">
-                <div class="cmp-phone-label">Remaining safe to spend</div>
-                <div class="cmp-phone-amount">$286.40</div>
-                <div class="cmp-phone-small">
+              <div class="phone-card">
+                <div class="phone-label">Remaining safe to spend</div>
+                <div class="phone-amount">$286.40</div>
+                <div class="phone-small">
                   After bills, debts, savings and spending.
                 </div>
               </div>
 
-              <div class="cmp-mini-grid">
-                <div class="cmp-mini-card">
+              <div class="mini-grid">
+                <div class="mini-card">
                   <span>Income</span>
                   <strong>$1,092</strong>
                 </div>
 
-                <div class="cmp-mini-card">
+                <div class="mini-card">
                   <span>Bills</span>
                   <strong>$420</strong>
                 </div>
 
-                <div class="cmp-mini-card">
+                <div class="mini-card">
                   <span>Debt</span>
                   <strong>$180</strong>
                 </div>
 
-                <div class="cmp-mini-card">
+                <div class="mini-card">
                   <span>Savings</span>
                   <strong>$200</strong>
                 </div>
               </div>
 
-              <div class="cmp-phone-card" style="margin-top: 16px">
-                <div class="cmp-phone-label">Focus debt</div>
+              <div class="phone-card" style="margin-top: 16px">
+                <div class="phone-label">Focus debt</div>
                 <div style="font-size: 22px; font-weight: 950; margin-bottom: 8px">
                   Credit Card
                 </div>
-                <div class="cmp-phone-small">
+                <div class="phone-small">
                   Snowball strategy · 31 pay cycles remaining
                 </div>
               </div>
@@ -950,24 +1044,24 @@
         </div>
       </div>
 
-      <div class="cmp-section">
-        <div class="cmp-kpis">
-          <div class="cmp-kpi cmp-reveal">
+      <div class="section">
+        <div class="kpis">
+          <div class="kpi reveal">
             <strong>Pay cycle</strong>
             <span>Plan weekly, fortnightly or monthly income.</span>
           </div>
 
-          <div class="cmp-kpi cmp-reveal" style="--delay: 0.08s">
+          <div class="kpi reveal" style="--delay: 0.08s">
             <strong>Safe spend</strong>
             <span>Know what is actually available to use.</span>
           </div>
 
-          <div class="cmp-kpi cmp-reveal" style="--delay: 0.16s">
+          <div class="kpi reveal" style="--delay: 0.16s">
             <strong>Debt plan</strong>
             <span>Track payoff progress and focus debt.</span>
           </div>
 
-          <div class="cmp-kpi cmp-reveal" style="--delay: 0.24s">
+          <div class="kpi reveal" style="--delay: 0.24s">
             <strong>Cloud backup</strong>
             <span>Securely save and restore your budget.</span>
           </div>
@@ -975,8 +1069,8 @@
       </div>
     </section>
 
-    <section class="cmp-section" id="problem">
-      <div class="cmp-section-heading cmp-reveal">
+    <section class="section" id="problem">
+      <div class="section-heading reveal">
         <h2>Monthly budgets do not work for everyone.</h2>
         <p>
           If you get paid weekly or fortnightly, a monthly spreadsheet can feel
@@ -985,9 +1079,9 @@
         </p>
       </div>
 
-      <div class="cmp-problem-grid">
-        <article class="cmp-card cmp-reveal">
-          <div class="cmp-icon">🧾</div>
+      <div class="grid-3">
+        <article class="card reveal">
+          <div class="icon">🧾</div>
           <h3>Bills arrive unevenly</h3>
           <p>
             Rent, fuel, loans, insurance, cards and subscriptions rarely line up
@@ -995,8 +1089,8 @@
           </p>
         </article>
 
-        <article class="cmp-card cmp-reveal" style="--delay: 0.08s">
-          <div class="cmp-icon">💳</div>
+        <article class="card reveal" style="--delay: 0.08s">
+          <div class="icon">💳</div>
           <h3>Debt needs a plan</h3>
           <p>
             See which debt to focus on and track your progress every pay cycle
@@ -1004,8 +1098,8 @@
           </p>
         </article>
 
-        <article class="cmp-card cmp-reveal" style="--delay: 0.16s">
-          <div class="cmp-icon">🛟</div>
+        <article class="card reveal" style="--delay: 0.16s">
+          <div class="icon">🛟</div>
           <h3>Safe spending matters</h3>
           <p>
             The app separates money you can spend from money already needed for
@@ -1015,26 +1109,26 @@
       </div>
     </section>
 
-    <section class="cmp-section" id="how-it-works">
-      <div class="cmp-how">
-        <div class="cmp-sticky-panel cmp-reveal">
-          <div class="cmp-big-number">3</div>
+    <section class="section" id="how-it-works">
+      <div class="how">
+        <div class="sticky-panel reveal">
+          <div class="big-number">3</div>
         </div>
 
-        <div class="cmp-steps">
-          <article class="cmp-step cmp-reveal">
-            <div class="cmp-step-number">1</div>
+        <div class="steps">
+          <article class="step reveal">
+            <div class="step-number">1</div>
             <div>
               <h3>Set your payday</h3>
               <p>
-                Choose whether you are paid weekly, fortnightly or monthly. Add
-                your income amount and the app builds your pay cycle plan.
+                Choose whether you are paid weekly, fortnightly or monthly.
+                Add your income amount and the app builds your pay cycle plan.
               </p>
             </div>
           </article>
 
-          <article class="cmp-step cmp-reveal">
-            <div class="cmp-step-number">2</div>
+          <article class="step reveal">
+            <div class="step-number">2</div>
             <div>
               <h3>Add bills, debts and savings</h3>
               <p>
@@ -1045,13 +1139,14 @@
             </div>
           </article>
 
-          <article class="cmp-step cmp-reveal">
-            <div class="cmp-step-number">3</div>
+          <article class="step reveal">
+            <div class="step-number">3</div>
             <div>
               <h3>Spend with clarity</h3>
               <p>
-                Log spending during the cycle and watch your remaining safe-to-
-                spend balance update, so you know where you stand before payday.
+                Log spending during the cycle and watch your remaining
+                safe-to-spend balance update, so you know where you stand before
+                payday.
               </p>
             </div>
           </article>
@@ -1059,18 +1154,18 @@
       </div>
     </section>
 
-    <section class="cmp-section" id="features">
-      <div class="cmp-section-heading cmp-reveal">
+    <section class="section" id="features">
+      <div class="section-heading reveal">
         <h2>Built for real paydays, not perfect spreadsheets.</h2>
         <p>
-          ClearMoneyPath brings together the core tools people actually need
-          when money is tight, bills are coming and debt needs attention.
+          ClearMoneyPath brings together the tools people actually need when
+          money is tight, bills are coming and debt needs attention.
         </p>
       </div>
 
-      <div class="cmp-feature-grid">
-        <article class="cmp-card cmp-reveal">
-          <div class="cmp-icon">💰</div>
+      <div class="grid-3">
+        <article class="card reveal">
+          <div class="icon">💰</div>
           <h3>Income planning</h3>
           <p>
             Track payday income, extra income and one-off payments in one simple
@@ -1078,8 +1173,8 @@
           </p>
         </article>
 
-        <article class="cmp-card cmp-reveal" style="--delay: 0.06s">
-          <div class="cmp-icon">📅</div>
+        <article class="card reveal" style="--delay: 0.06s">
+          <div class="icon">📅</div>
           <h3>Bills tracker</h3>
           <p>
             Add due days, categories and paid status. See what is overdue, due
@@ -1087,8 +1182,8 @@
           </p>
         </article>
 
-        <article class="cmp-card cmp-reveal" style="--delay: 0.12s">
-          <div class="cmp-icon">🎯</div>
+        <article class="card reveal" style="--delay: 0.12s">
+          <div class="icon">🎯</div>
           <h3>Debt focus</h3>
           <p>
             Choose snowball, avalanche or custom payoff order and track payments
@@ -1096,8 +1191,8 @@
           </p>
         </article>
 
-        <article class="cmp-card cmp-reveal" style="--delay: 0.18s">
-          <div class="cmp-icon">🧠</div>
+        <article class="card reveal" style="--delay: 0.18s">
+          <div class="icon">🧠</div>
           <h3>Safe-to-spend</h3>
           <p>
             See what is left after bills, debts, reserves, savings and logged
@@ -1105,8 +1200,8 @@
           </p>
         </article>
 
-        <article class="cmp-card cmp-reveal" style="--delay: 0.24s">
-          <div class="cmp-icon">🏦</div>
+        <article class="card reveal" style="--delay: 0.24s">
+          <div class="icon">🏦</div>
           <h3>Sinking funds</h3>
           <p>
             Plan for yearly, quarterly or large future costs by saving a small
@@ -1114,8 +1209,8 @@
           </p>
         </article>
 
-        <article class="cmp-card cmp-reveal" style="--delay: 0.30s">
-          <div class="cmp-icon">☁️</div>
+        <article class="card reveal" style="--delay: 0.30s">
+          <div class="icon">☁️</div>
           <h3>Cloud backup</h3>
           <p>
             Login with email or Google and save your budget backup securely to
@@ -1125,8 +1220,8 @@
       </div>
     </section>
 
-    <section class="cmp-section" id="pricing">
-      <div class="cmp-showcase cmp-reveal">
+    <section class="section" id="pricing">
+      <div class="showcase reveal">
         <h2>Start free. Upgrade when you need more power.</h2>
         <p>
           ClearMoneyPath is being designed with a simple free plan and a Premium
@@ -1134,10 +1229,10 @@
           planning tools.
         </p>
 
-        <div class="cmp-price-cards">
-          <div class="cmp-price-card">
+        <div class="price-cards">
+          <div class="price-card">
             <h3>Free</h3>
-            <div class="cmp-price">$0</div>
+            <div class="price">$0</div>
             <ul>
               <li>Pay cycle planner</li>
               <li>Income and bills tracking</li>
@@ -1147,9 +1242,9 @@
             </ul>
           </div>
 
-          <div class="cmp-price-card highlight">
+          <div class="price-card highlight">
             <h3>Premium</h3>
-            <div class="cmp-price">$3.99/mo</div>
+            <div class="price">$3.99/mo</div>
             <ul>
               <li>Automatic cloud sync</li>
               <li>Unlimited cycle history</li>
@@ -1162,16 +1257,24 @@
       </div>
     </section>
 
-    <section class="cmp-section cmp-final-cta" id="download">
-      <div class="cmp-reveal">
-        <div class="cmp-eyebrow">
-          <span class="cmp-pulse"></span>
+    <section class="section final-cta" id="download">
+      <div class="reveal">
+        <div class="hero-logo-wrap" style="margin-left: auto; margin-right: auto;">
+          <img
+            src="assets/clearmoneypath-logo.png"
+            alt="ClearMoneyPath app logo"
+            class="hero-logo"
+          />
+        </div>
+
+        <div class="eyebrow">
+          <span class="pulse"></span>
           Launch in progress
         </div>
 
         <h2>
           ClearMoneyPath is coming soon to
-          <span class="cmp-gradient-text">iOS and Android.</span>
+          <span class="gradient-text">iOS and Android.</span>
         </h2>
 
         <p>
@@ -1180,26 +1283,34 @@
           and secure cloud backup.
         </p>
 
-        <div class="cmp-hero-actions" style="justify-content: center">
-          <a href="contact.html" class="cmp-button cmp-button-primary">
+        <div class="hero-actions" style="justify-content: center">
+          <a href="contact.html" class="button button-primary">
             Contact TechGnomo
           </a>
 
-          <a href="https://github.com/TechGnomo/ClearMoneyPath" class="cmp-button cmp-button-secondary" target="_blank" rel="noopener">
+          <a
+            href="https://github.com/TechGnomo/ClearMoneyPath"
+            class="button button-secondary"
+            target="_blank"
+            rel="noopener"
+          >
             View development repo
           </a>
         </div>
 
-        <div class="cmp-store-row" style="justify-content: center">
-          <span class="cmp-store-pill">iPhone & iPad planned</span>
-          <span class="cmp-store-pill">Android planned</span>
+        <div class="store-row" style="justify-content: center">
+          <span class="store-pill">iPhone & iPad planned</span>
+          <span class="store-pill">Android planned</span>
         </div>
       </div>
     </section>
 
-    <footer class="cmp-footer">
-      <div class="cmp-footer-inner">
-        <span>© 2026 TechGnomo. ClearMoneyPath is a budgeting planner, not financial advice.</span>
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>
+          © 2026 TechGnomo. ClearMoneyPath is a budgeting planner, not financial advice.
+        </span>
+
         <span>
           <a href="index.html">Portfolio</a> ·
           <a href="project.html">Projects</a> ·
@@ -1210,7 +1321,7 @@
   </main>
 
   <script>
-    const revealItems = document.querySelectorAll(".cmp-reveal");
+    const revealItems = document.querySelectorAll(".reveal");
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -1228,14 +1339,15 @@
 
     revealItems.forEach((item) => revealObserver.observe(item));
 
-    const phone = document.querySelector(".cmp-phone");
+    const phone = document.querySelector(".phone");
 
     if (phone && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       window.addEventListener("mousemove", (event) => {
         const x = (event.clientX / window.innerWidth - 0.5) * 10;
         const y = (event.clientY / window.innerHeight - 0.5) * -8;
 
-        phone.style.transform = `rotateY(${x - 8}deg) rotateX(${y + 3}deg) translateY(-6px)`;
+        phone.style.transform =
+          "rotateY(" + (x - 8) + "deg) rotateX(" + (y + 3) + "deg) translateY(-6px)";
       });
 
       window.addEventListener("mouseleave", () => {
