@@ -11,23 +11,29 @@
 
 <body>
 
-<header>
-  <div class="container navbar">
-    <a href="index.html" class="site-logo">
-      <img src="assets/logo2.png" alt="TechGnomo Logo">
-    </a>
+<header class="tg-header">
+    <div class="tg-header-inner">
+      <a href="index.html" class="tg-logo-link" aria-label="TechGnomo home">
+        <img src="assets/logo2.png" alt="TechGnomo Logo" class="tg-header-logo">
+      </a>
 
-<nav class="nav-links" id="navLinks">
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="skills.html">Skills</a>
-  <a href="project.html" class="nav-button active">Projects</a>
-  <a href="resume.html">Resume</a>
-  <a href="contact.html">Contact</a>
-</nav>
-    </nav>
-  </div>
-</header>
+      <button class="tg-menu-toggle" id="tgMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="tg-nav-menu" id="tgNavMenu" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="skills.html">Skills</a>
+        <a href="project.html">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="contact.html">Contact</a>
+        <a href="clearmoneypath.html" class="tg-nav-featured">ClearMoneyPath</a>
+      </nav>
+    </div>
+  </header>
 
   <main>
 
@@ -408,4 +414,5 @@
 
 </body>
 </html>
+
 
