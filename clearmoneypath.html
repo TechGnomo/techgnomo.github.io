@@ -921,7 +921,7 @@
   <link rel="icon" type="image/png" href="assets/favicon.png" />
 </head>
 
-<body>
+<body id="top">
   <main class="page">
     <nav class="nav">
       <div class="nav-inner">
@@ -1356,5 +1356,14 @@
       });
     }
   </script>
+
+  <script id="clearMoneyPathForceTop">
+    window.addEventListener("load", function () {
+      if (window.location.hash === "#top" || window.location.hash === "") {
+        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+      }
+    });
+  </script>
 </body>
 </html>
+

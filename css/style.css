@@ -1608,3 +1608,22 @@ body.tg-menu-open {
   }
 }
 
+
+/* ClearMoneyPath logo inside project card */
+.project-logo-icon {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border-radius: 28px !important;
+  width: 96px !important;
+  height: 96px !important;
+  display: grid !important;
+  place-items: center !important;
+  box-shadow: 0 22px 60px rgba(16, 185, 129, 0.22) !important;
+}
+
+.project-logo-icon img {
+  width: 78px !important;
+  height: 78px !important;
+  object-fit: contain !important;
+  display: block !important;
+}
+
