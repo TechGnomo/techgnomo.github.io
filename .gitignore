@@ -1,0 +1,7 @@
+ClearMoneyPath-V1/
+ClearMoneyPath/
+node_modules/
+.expo/
+android/
+ios/
+.gradle/
