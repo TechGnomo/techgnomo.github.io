@@ -1,1369 +1,194 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>ClearMoneyPath | Pay Cycle Budget Planner</title>
-
-  <meta
-    name="description"
-    content="ClearMoneyPath is a pay cycle budgeting app that helps you know what to pay, what to save and what is safe to spend every payday. Coming soon on iOS and Android."
-  />
-
-  <style>
-    :root {
-      --bg: #020617;
-      --bg-soft: #07111f;
-      --card: rgba(255, 255, 255, 0.08);
-      --card-strong: rgba(255, 255, 255, 0.14);
-      --border: rgba(255, 255, 255, 0.16);
-      --text: #f8fafc;
-      --muted: #cbd5e1;
-      --soft: #94a3b8;
-      --green: #10b981;
-      --green-light: #86efac;
-      --cyan: #22d3ee;
-      --blue: #38bdf8;
-      --danger: #fb7185;
-      --dark: #020617;
-      --radius: 32px;
-      --shadow: 0 30px 90px rgba(0, 0, 0, 0.45);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at 15% 5%, rgba(16, 185, 129, 0.24), transparent 34%),
-        radial-gradient(circle at 90% 10%, rgba(34, 211, 238, 0.18), transparent 35%),
-        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.12), transparent 35%),
-        linear-gradient(180deg, #050816 0%, #020617 52%, #07111f 100%);
-      overflow-x: hidden;
-    }
-
-    a {
-      color: inherit;
-    }
-
-    .page {
-      min-height: 100vh;
-      overflow: hidden;
-    }
-
-    .nav {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(2, 6, 23, 0.74);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(22px);
-    }
-
-    .nav-inner {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      min-height: 74px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      font-size: 18px;
-      font-weight: 950;
-      letter-spacing: -0.04em;
-    }
-
-    .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.96);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      box-shadow: 0 18px 40px rgba(16, 185, 129, 0.28);
-      border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-
-    .brand-logo img {
-      width: 36px;
-      height: 36px;
-      object-fit: contain;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-      font-size: 14px;
-      font-weight: 800;
-      color: var(--muted);
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      transition: color 0.25s ease, transform 0.25s ease;
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-      transform: translateY(-1px);
-    }
-
-    .nav-cta {
-      color: #001c31 !important;
-      background: #ffffff;
-      padding: 11px 17px;
-      border-radius: 999px;
-      box-shadow: 0 14px 34px rgba(255, 255, 255, 0.14);
-    }
-
-    .section {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: 96px 0;
-    }
-
-    .hero {
-      position: relative;
-      padding: 88px 0 60px;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: -120px -160px auto auto;
-      width: 520px;
-      height: 520px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(16, 185, 129, 0.32), transparent 65%);
-      filter: blur(8px);
-      pointer-events: none;
-      animation: floatGlow 9s ease-in-out infinite;
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 1;
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 56px;
-      align-items: center;
-    }
-
-    .hero-logo-wrap {
-      width: 104px;
-      height: 104px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.96);
-      display: grid;
-      place-items: center;
-      margin-bottom: 24px;
-      box-shadow:
-        0 26px 76px rgba(16, 185, 129, 0.28),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.55);
-      animation: floatSoft 7s ease-in-out infinite;
-    }
-
-    .hero-logo {
-      width: 86px;
-      height: 86px;
-      object-fit: contain;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--green-light);
-      background: rgba(16, 185, 129, 0.1);
-      border: 1px solid rgba(134, 239, 172, 0.22);
-      border-radius: 999px;
-      padding: 9px 14px;
-      font-size: 13px;
-      font-weight: 950;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    .pulse {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green-light);
-      box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.7);
-      animation: pulse 2s infinite;
-    }
-
-    .hero h1 {
-      font-size: clamp(48px, 8vw, 92px);
-      line-height: 0.92;
-      letter-spacing: -0.075em;
-      margin: 0 0 26px;
-      max-width: 850px;
-    }
-
-    .gradient-text {
-      background: linear-gradient(135deg, #ffffff 0%, #d1fae5 40%, #67e8f9 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .hero-copy {
-      font-size: clamp(18px, 2vw, 23px);
-      line-height: 1.55;
-      color: var(--muted);
-      max-width: 720px;
-      margin: 0 0 34px;
-    }
-
-    .hero-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-      align-items: center;
-      margin-bottom: 32px;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 54px;
-      padding: 0 24px;
-      border-radius: 999px;
-      font-weight: 950;
-      text-decoration: none;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-3px);
-    }
-
-    .button-primary {
-      color: #001c31;
-      background: linear-gradient(135deg, #ffffff, #d1fae5);
-      box-shadow: 0 22px 48px rgba(134, 239, 172, 0.22);
-    }
-
-    .button-secondary {
-      color: #ffffff;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .store-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .store-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 11px 14px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 850;
-    }
-
-    .device-stage {
-      position: relative;
-      min-height: 650px;
-      display: grid;
-      place-items: center;
-      perspective: 1200px;
-    }
-
-    .glow-orb {
-      position: absolute;
-      width: 460px;
-      height: 460px;
-      border-radius: 50%;
-      background:
-        radial-gradient(circle, rgba(16, 185, 129, 0.42), transparent 64%);
-      filter: blur(14px);
-      animation: floatGlow 8s ease-in-out infinite;
-    }
-
-    .phone {
-      position: relative;
-      width: min(340px, 86vw);
-      min-height: 640px;
-      border-radius: 50px;
-      padding: 14px;
-      background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.32), rgba(255, 255, 255, 0.06));
-      box-shadow:
-        0 55px 130px rgba(0, 0, 0, 0.58),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.24);
-      transform: rotateY(-10deg) rotateX(3deg);
-      animation: phoneFloat 8s ease-in-out infinite;
-    }
-
-    .phone-screen {
-      min-height: 612px;
-      border-radius: 40px;
-      overflow: hidden;
-      padding: 22px;
-      background:
-        radial-gradient(circle at top left, rgba(16, 185, 129, 0.42), transparent 38%),
-        linear-gradient(180deg, #0f172a 0%, #020617 100%);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .phone-top {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 28px;
-      color: #e2e8f0;
-      font-size: 12px;
-      font-weight: 900;
-    }
-
-    .phone-brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .phone-brand img {
-      width: 24px;
-      height: 24px;
-      border-radius: 8px;
-      background: #ffffff;
-      object-fit: contain;
-    }
-
-    .phone-card {
-      background: rgba(255, 255, 255, 0.96);
-      color: #0f172a;
-      border-radius: 26px;
-      padding: 20px;
-      margin-bottom: 14px;
-      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.22);
-    }
-
-    .phone-label {
-      color: #64748b;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-weight: 950;
-      margin-bottom: 8px;
-    }
-
-    .phone-amount {
-      font-size: 40px;
-      font-weight: 950;
-      letter-spacing: -0.06em;
-      color: #059669;
-      margin-bottom: 6px;
-    }
-
-    .phone-small {
-      color: #64748b;
-      font-size: 13px;
-      line-height: 1.4;
-      font-weight: 700;
-    }
-
-    .mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 18px;
-    }
-
-    .mini-card {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 20px;
-      padding: 14px;
-    }
-
-    .mini-card span {
-      display: block;
-      color: #94a3b8;
-      font-size: 12px;
-      font-weight: 800;
-      margin-bottom: 6px;
-    }
-
-    .mini-card strong {
-      color: #ffffff;
-      font-size: 17px;
-      font-weight: 950;
-    }
-
-    .floating-tag {
-      position: absolute;
-      padding: 14px 16px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.14);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      backdrop-filter: blur(18px);
-      color: #ffffff;
-      font-weight: 950;
-      box-shadow: var(--shadow);
-      animation: floatSoft 6s ease-in-out infinite;
-    }
-
-    .floating-tag.one {
-      top: 118px;
-      left: 0;
-    }
-
-    .floating-tag.two {
-      right: 0;
-      bottom: 160px;
-      animation-delay: -2s;
-    }
-
-    .kpis {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 48px;
-    }
-
-    .kpi {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 22px;
-      backdrop-filter: blur(18px);
-    }
-
-    .kpi strong {
-      display: block;
-      font-size: 28px;
-      letter-spacing: -0.04em;
-      margin-bottom: 6px;
-    }
-
-    .kpi span {
-      color: var(--soft);
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.45;
-    }
-
-    .section-heading {
-      text-align: center;
-      max-width: 840px;
-      margin: 0 auto 54px;
-    }
-
-    .section-heading h2 {
-      font-size: clamp(38px, 6vw, 72px);
-      line-height: 0.98;
-      letter-spacing: -0.065em;
-      margin: 0 0 18px;
-    }
-
-    .section-heading p {
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      position: relative;
-      overflow: hidden;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 30px;
-      backdrop-filter: blur(18px);
-      box-shadow: 0 22px 70px rgba(0, 0, 0, 0.22);
-      transition: transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(134, 239, 172, 0.36);
-      background: rgba(255, 255, 255, 0.11);
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at top left, rgba(16, 185, 129, 0.18), transparent 42%);
-      opacity: 0;
-      transition: opacity 0.35s ease;
-    }
-
-    .card:hover::before {
-      opacity: 1;
-    }
-
-    .card > * {
-      position: relative;
-      z-index: 1;
-    }
-
-    .icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 17px;
-      display: grid;
-      place-items: center;
-      background: rgba(16, 185, 129, 0.14);
-      color: var(--green-light);
-      font-size: 22px;
-      margin-bottom: 20px;
-    }
-
-    .card h3 {
-      font-size: 24px;
-      letter-spacing: -0.035em;
-      margin: 0 0 12px;
-    }
-
-    .card p {
-      color: var(--muted);
-      line-height: 1.65;
-      margin: 0;
-      font-size: 16px;
-    }
-
-    .how {
-      display: grid;
-      grid-template-columns: 0.85fr 1.15fr;
-      gap: 24px;
-      align-items: stretch;
-    }
-
-    .sticky-panel {
-      min-height: 560px;
-      border-radius: 42px;
-      background:
-        radial-gradient(circle at top, rgba(34, 211, 238, 0.25), transparent 40%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.13), rgba(255, 255, 255, 0.05));
-      border: 1px solid var(--border);
-      display: grid;
-      place-items: center;
-      padding: 26px;
-      overflow: hidden;
-      position: sticky;
-      top: 110px;
-    }
-
-    .big-number {
-      font-size: clamp(120px, 16vw, 220px);
-      line-height: 0.8;
-      font-weight: 950;
-      letter-spacing: -0.11em;
-      color: transparent;
-      -webkit-text-stroke: 2px rgba(255, 255, 255, 0.18);
-      text-shadow: 0 0 80px rgba(16, 185, 129, 0.35);
-    }
-
-    .steps {
-      display: grid;
-      gap: 18px;
-    }
-
-    .step {
-      display: grid;
-      grid-template-columns: 70px 1fr;
-      gap: 22px;
-      padding: 28px;
-      border-radius: 32px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid var(--border);
-      backdrop-filter: blur(18px);
-      transition: transform 0.3s ease, background 0.3s ease;
-    }
-
-    .step:hover {
-      transform: translateY(-6px);
-      background: rgba(255, 255, 255, 0.11);
-    }
-
-    .step-number {
-      width: 58px;
-      height: 58px;
-      border-radius: 22px;
-      background: #ffffff;
-      color: #001c31;
-      display: grid;
-      place-items: center;
-      font-weight: 950;
-      font-size: 20px;
-    }
-
-    .step h3 {
-      margin: 0 0 8px;
-      font-size: 25px;
-      letter-spacing: -0.04em;
-    }
-
-    .step p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    .showcase {
-      border-radius: 46px;
-      padding: 54px;
-      background:
-        radial-gradient(circle at 20% 20%, rgba(16, 185, 129, 0.26), transparent 32%),
-        radial-gradient(circle at 80% 20%, rgba(34, 211, 238, 0.2), transparent 34%),
-        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      text-align: center;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .showcase h2 {
-      font-size: clamp(40px, 6vw, 76px);
-      line-height: 0.98;
-      letter-spacing: -0.07em;
-      margin: 0 auto 18px;
-      max-width: 860px;
-    }
-
-    .showcase p {
-      color: var(--muted);
-      font-size: 19px;
-      line-height: 1.6;
-      max-width: 760px;
-      margin: 0 auto 30px;
-    }
-
-    .price-cards {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      max-width: 900px;
-      margin: 38px auto 0;
-    }
-
-    .price-card {
-      text-align: left;
-      padding: 30px;
-      border-radius: 32px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid var(--border);
-    }
-
-    .price-card.highlight {
-      background: rgba(16, 185, 129, 0.14);
-      border-color: rgba(134, 239, 172, 0.36);
-    }
-
-    .price-card h3 {
-      font-size: 26px;
-      margin: 0 0 10px;
-    }
-
-    .price {
-      font-size: 34px;
-      font-weight: 950;
-      letter-spacing: -0.06em;
-      margin-bottom: 16px;
-    }
-
-    .price-card ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      display: grid;
-      gap: 10px;
-      color: var(--muted);
-      font-weight: 700;
-    }
-
-    .price-card li::before {
-      content: "✓";
-      color: var(--green-light);
-      font-weight: 950;
-      margin-right: 8px;
-    }
-
-    .final-cta {
-      text-align: center;
-      padding-bottom: 120px;
-    }
-
-    .final-cta h2 {
-      font-size: clamp(44px, 7vw, 88px);
-      line-height: 0.94;
-      letter-spacing: -0.075em;
-      margin: 0 auto 22px;
-      max-width: 900px;
-    }
-
-    .final-cta p {
-      color: var(--muted);
-      font-size: 20px;
-      line-height: 1.6;
-      max-width: 720px;
-      margin: 0 auto 32px;
-    }
-
-    .footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 34px 0;
-      color: var(--soft);
-      font-size: 14px;
-    }
-
-    .footer-inner {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .footer a {
-      color: #e2e8f0;
-      text-decoration: none;
-      font-weight: 800;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(34px) scale(0.985);
-      transition:
-        opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-        transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-      transition-delay: var(--delay, 0s);
-    }
-
-    .reveal.is-visible {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 0 0 0 rgba(134, 239, 172, 0.7);
-      }
-
-      70% {
-        box-shadow: 0 0 0 12px rgba(134, 239, 172, 0);
-      }
-
-      100% {
-        box-shadow: 0 0 0 0 rgba(134, 239, 172, 0);
-      }
-    }
-
-    @keyframes floatSoft {
-      0%, 100% {
-        transform: translate3d(0, 0, 0);
-      }
-
-      50% {
-        transform: translate3d(0, -18px, 0);
-      }
-    }
-
-    @keyframes floatGlow {
-      0%, 100% {
-        transform: translate3d(0, 0, 0) scale(1);
-      }
-
-      50% {
-        transform: translate3d(0, -20px, 0) scale(1.05);
-      }
-    }
-
-    @keyframes phoneFloat {
-      0%, 100% {
-        transform: rotateY(-10deg) rotateX(3deg) translateY(0);
-      }
-
-      50% {
-        transform: rotateY(-5deg) rotateX(2deg) translateY(-18px);
-      }
-    }
-
-    @media (max-width: 980px) {
-      .hero-inner,
-      .how {
-        grid-template-columns: 1fr;
-      }
-
-      .device-stage {
-        min-height: 580px;
-      }
-
-      .kpis,
-      .grid-3 {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .sticky-panel {
-        position: relative;
-        top: auto;
-        min-height: 260px;
-      }
-    }
-
-    @media (max-width: 720px) {
-      .nav-inner {
-        min-height: auto;
-        padding: 14px 0;
-      }
-
-      .nav-links {
-        display: none;
-      }
-
-      .section {
-        padding: 72px 0;
-      }
-
-      .hero {
-        padding-top: 58px;
-      }
-
-      .hero h1 {
-        font-size: 54px;
-      }
-
-      .hero-copy {
-        font-size: 18px;
-      }
-
-      .kpis,
-      .grid-3,
-      .price-cards {
-        grid-template-columns: 1fr;
-      }
-
-      .device-stage {
-        min-height: 560px;
-      }
-
-      .phone {
-        transform: none;
-        animation: floatSoft 8s ease-in-out infinite;
-      }
-
-      .floating-tag {
-        display: none;
-      }
-
-      .showcase {
-        padding: 34px 20px;
-        border-radius: 34px;
-      }
-
-      .step {
-        grid-template-columns: 1fr;
-      }
-
-      .footer-inner {
-        flex-direction: column;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.001ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.001ms !important;
-      }
-
-      .reveal {
-        opacity: 1;
-        transform: none;
-      }
-    }
-  </style>
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-</head>
-
-<body id="top">
-  <main class="page">
-    <nav class="nav">
-      <div class="nav-inner">
-        <a href="index.html" class="brand">
-          <span class="brand-logo">
-            <img src="assets/clearmoneypath-logo.png" alt="ClearMoneyPath logo" />
-          </span>
-          <span>ClearMoneyPath</span>
-        </a>
-
-        <div class="nav-links">
-          <a href="#how-it-works">How it works</a>
-          <a href="#features">Features</a>
-          <a href="#pricing">Plans</a>
-          <a href="project.html">Projects</a>
-          <a href="#download" class="nav-cta">Coming soon</a>
-        </div>
-      </div>
-    </nav>
-
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="reveal">
-          <div class="hero-logo-wrap">
-            <img
-              src="assets/clearmoneypath-logo.png"
-              alt="ClearMoneyPath app logo"
-              class="hero-logo"
-            />
-          </div>
-
-          <div class="eyebrow">
-            <span class="pulse"></span>
-            Coming soon on iOS & Android
-          </div>
-
-          <h1>
-            Budget around your
-            <span class="gradient-text">real payday.</span>
-          </h1>
-
-          <p class="hero-copy">
-            ClearMoneyPath is a pay cycle budgeting app that shows you exactly
-            what to pay, what to save, what debt to focus on and what is truly
-            safe to spend before the next payday.
-          </p>
-
-          <div class="hero-actions">
-            <a href="#download" class="button button-primary">
-              Join the launch list
-            </a>
-
-            <a href="#how-it-works" class="button button-secondary">
-              See how it works
-            </a>
-          </div>
-
-          <div class="store-row">
-            <span class="store-pill">iOS app coming soon</span>
-            <span class="store-pill">Android app coming soon</span>
-          </div>
-        </div>
-
-        <div class="device-stage reveal" style="--delay: 0.16s">
-          <div class="glow-orb"></div>
-
-          <div class="floating-tag one">Next bill: Rent</div>
-          <div class="floating-tag two">Safe to spend: $286</div>
-
-          <div class="phone">
-            <div class="phone-screen">
-              <div class="phone-top">
-                <span class="phone-brand">
-                  <img src="assets/clearmoneypath-logo.png" alt="" />
-                  ClearMoneyPath
-                </span>
-                <span>Payday</span>
-              </div>
-
-              <div class="phone-card">
-                <div class="phone-label">Remaining safe to spend</div>
-                <div class="phone-amount">$286.40</div>
-                <div class="phone-small">
-                  After bills, debts, savings and spending.
-                </div>
-              </div>
-
-              <div class="mini-grid">
-                <div class="mini-card">
-                  <span>Income</span>
-                  <strong>$1,092</strong>
-                </div>
-
-                <div class="mini-card">
-                  <span>Bills</span>
-                  <strong>$420</strong>
-                </div>
-
-                <div class="mini-card">
-                  <span>Debt</span>
-                  <strong>$180</strong>
-                </div>
-
-                <div class="mini-card">
-                  <span>Savings</span>
-                  <strong>$200</strong>
-                </div>
-              </div>
-
-              <div class="phone-card" style="margin-top: 16px">
-                <div class="phone-label">Focus debt</div>
-                <div style="font-size: 22px; font-weight: 950; margin-bottom: 8px">
-                  Credit Card
-                </div>
-                <div class="phone-small">
-                  Snowball strategy · 31 pay cycles remaining
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="kpis">
-          <div class="kpi reveal">
-            <strong>Pay cycle</strong>
-            <span>Plan weekly, fortnightly or monthly income.</span>
-          </div>
-
-          <div class="kpi reveal" style="--delay: 0.08s">
-            <strong>Safe spend</strong>
-            <span>Know what is actually available to use.</span>
-          </div>
-
-          <div class="kpi reveal" style="--delay: 0.16s">
-            <strong>Debt plan</strong>
-            <span>Track payoff progress and focus debt.</span>
-          </div>
-
-          <div class="kpi reveal" style="--delay: 0.24s">
-            <strong>Cloud backup</strong>
-            <span>Securely save and restore your budget.</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="problem">
-      <div class="section-heading reveal">
-        <h2>Monthly budgets do not work for everyone.</h2>
-        <p>
-          If you get paid weekly or fortnightly, a monthly spreadsheet can feel
-          disconnected from real life. ClearMoneyPath is built around the money
-          that actually lands in your account on payday.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card reveal">
-          <div class="icon">🧾</div>
-          <h3>Bills arrive unevenly</h3>
-          <p>
-            Rent, fuel, loans, insurance, cards and subscriptions rarely line up
-            nicely. ClearMoneyPath helps you prepare before they hit.
-          </p>
-        </article>
-
-        <article class="card reveal" style="--delay: 0.08s">
-          <div class="icon">💳</div>
-          <h3>Debt needs a plan</h3>
-          <p>
-            See which debt to focus on and track your progress every pay cycle
-            using snowball, avalanche or custom strategies.
-          </p>
-        </article>
-
-        <article class="card reveal" style="--delay: 0.16s">
-          <div class="icon">🛟</div>
-          <h3>Safe spending matters</h3>
-          <p>
-            The app separates money you can spend from money already needed for
-            bills, debt payments, savings and future expenses.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="how-it-works">
-      <div class="how">
-        <div class="sticky-panel reveal">
-          <div class="big-number">3</div>
-        </div>
-
-        <div class="steps">
-          <article class="step reveal">
-            <div class="step-number">1</div>
-            <div>
-              <h3>Set your payday</h3>
-              <p>
-                Choose whether you are paid weekly, fortnightly or monthly.
-                Add your income amount and the app builds your pay cycle plan.
-              </p>
-            </div>
-          </article>
-
-          <article class="step reveal">
-            <div class="step-number">2</div>
-            <div>
-              <h3>Add bills, debts and savings</h3>
-              <p>
-                Enter what must be paid, what you want to save and which debts
-                you are clearing. ClearMoneyPath converts everything into the
-                current pay cycle.
-              </p>
-            </div>
-          </article>
-
-          <article class="step reveal">
-            <div class="step-number">3</div>
-            <div>
-              <h3>Spend with clarity</h3>
-              <p>
-                Log spending during the cycle and watch your remaining
-                safe-to-spend balance update, so you know where you stand before
-                payday.
-              </p>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="features">
-      <div class="section-heading reveal">
-        <h2>Built for real paydays, not perfect spreadsheets.</h2>
-        <p>
-          ClearMoneyPath brings together the tools people actually need when
-          money is tight, bills are coming and debt needs attention.
-        </p>
-      </div>
-
-      <div class="grid-3">
-        <article class="card reveal">
-          <div class="icon">💰</div>
-          <h3>Income planning</h3>
-          <p>
-            Track payday income, extra income and one-off payments in one simple
-            cycle view.
-          </p>
-        </article>
-
-        <article class="card reveal" style="--delay: 0.06s">
-          <div class="icon">📅</div>
-          <h3>Bills tracker</h3>
-          <p>
-            Add due days, categories and paid status. See what is overdue, due
-            today and coming soon.
-          </p>
-        </article>
-
-        <article class="card reveal" style="--delay: 0.12s">
-          <div class="icon">🎯</div>
-          <h3>Debt focus</h3>
-          <p>
-            Choose snowball, avalanche or custom payoff order and track payments
-            cycle by cycle.
-          </p>
-        </article>
-
-        <article class="card reveal" style="--delay: 0.18s">
-          <div class="icon">🧠</div>
-          <h3>Safe-to-spend</h3>
-          <p>
-            See what is left after bills, debts, reserves, savings and logged
-            spending.
-          </p>
-        </article>
-
-        <article class="card reveal" style="--delay: 0.24s">
-          <div class="icon">🏦</div>
-          <h3>Sinking funds</h3>
-          <p>
-            Plan for yearly, quarterly or large future costs by saving a small
-            amount each pay cycle.
-          </p>
-        </article>
-
-        <article class="card reveal" style="--delay: 0.30s">
-          <div class="icon">☁️</div>
-          <h3>Cloud backup</h3>
-          <p>
-            Login with email or Google and save your budget backup securely to
-            your private account.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="pricing">
-      <div class="showcase reveal">
-        <h2>Start free. Upgrade when you need more power.</h2>
-        <p>
-          ClearMoneyPath is being designed with a simple free plan and a Premium
-          plan for users who want deeper history, automatic sync and advanced
-          planning tools.
-        </p>
-
-        <div class="price-cards">
-          <div class="price-card">
-            <h3>Free</h3>
-            <div class="price">$0</div>
-            <ul>
-              <li>Pay cycle planner</li>
-              <li>Income and bills tracking</li>
-              <li>Debt tracking</li>
-              <li>Spending tracker</li>
-              <li>Manual cloud backup</li>
-            </ul>
-          </div>
-
-          <div class="price-card highlight">
-            <h3>Premium</h3>
-            <div class="price">$3.99/mo</div>
-            <ul>
-              <li>Automatic cloud sync</li>
-              <li>Unlimited cycle history</li>
-              <li>Advanced debt simulations</li>
-              <li>Export reports</li>
-              <li>Shared household planning</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section final-cta" id="download">
-      <div class="reveal">
-        <div class="hero-logo-wrap" style="margin-left: auto; margin-right: auto;">
-          <img
-            src="assets/clearmoneypath-logo.png"
-            alt="ClearMoneyPath app logo"
-            class="hero-logo"
-          />
-        </div>
-
-        <div class="eyebrow">
-          <span class="pulse"></span>
-          Launch in progress
-        </div>
-
-        <h2>
-          ClearMoneyPath is coming soon to
-          <span class="gradient-text">iOS and Android.</span>
-        </h2>
-
-        <p>
-          The app is currently in MVP development and testing. The first release
-          will focus on pay cycle planning, safe-to-spend clarity, debt tracking
-          and secure cloud backup.
-        </p>
-
-        <div class="hero-actions" style="justify-content: center">
-          <a href="contact.html" class="button button-primary">
-            Contact TechGnomo
-          </a>
-
-          <a
-            href="https://github.com/TechGnomo/ClearMoneyPath"
-            class="button button-secondary"
-            target="_blank"
-            rel="noopener"
-          >
-            View development repo
-          </a>
-        </div>
-
-        <div class="store-row" style="justify-content: center">
-          <span class="store-pill">iPhone & iPad planned</span>
-          <span class="store-pill">Android planned</span>
-        </div>
-      </div>
-    </section>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        <span>
-          © 2026 TechGnomo. ClearMoneyPath is a budgeting planner, not financial advice.
-        </span>
-
-        <span>
-          <a href="index.html">Portfolio</a> ·
-          <a href="project.html">Projects</a> ·
-          <a href="contact.html">Contact</a>
-        </span>
-      </div>
-    </footer>
-  </main>
-
-  <script>
-    const revealItems = document.querySelectorAll(".reveal");
-
-    const revealObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
-        });
-      },
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>ClearMoneyPath | Pay-Cycle Budget Planner by TechGnomo</title>
+    <meta
+      name="description"
+      content="ClearMoneyPath is a mobile budgeting app in development that organises bills, debts and savings around each payday to show what is genuinely safe to spend."
+    />
+    <meta name="author" content="Fabio D'Anna" />
+    <meta name="theme-color" content="#07080c" />
+    <meta name="robots" content="index, follow, max-snippet:-1" />
+    <link rel="canonical" href="https://techgnomo.com/clearmoneypath.html" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="product.css" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="TechGnomo" />
+    <meta property="og:title" content="ClearMoneyPath | Know what is safe to spend" />
+    <meta
+      property="og:description"
+      content="A mobile-first pay-cycle planner for bills, debts, savings and the money left between paydays."
+    />
+    <meta property="og:url" content="https://techgnomo.com/clearmoneypath.html" />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json">
       {
-        threshold: 0.16,
-        rootMargin: "0px 0px -80px 0px",
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "ClearMoneyPath",
+        "url": "https://techgnomo.com/clearmoneypath.html",
+        "description": "A pay-cycle budgeting app that organises bills, debts and savings to calculate what is safe to spend until the next payday.",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "iOS, Android",
+        "softwareVersion": "MVP in development",
+        "creator": {
+          "@type": "Organization",
+          "name": "TechGnomo",
+          "url": "https://techgnomo.com/"
+        }
       }
-    );
+    </script>
+  </head>
 
-    revealItems.forEach((item) => revealObserver.observe(item));
+  <body class="cmp-page">
+    <a class="skip-link" href="#product-content">Skip to content</a>
 
-    const phone = document.querySelector(".phone");
+    <header class="product-header">
+      <a class="product-brand" href="index.html" aria-label="Back to TechGnomo">
+        <span class="product-brand-mark" aria-hidden="true">TG</span>
+        <span>TechGnomo <small>/ Product 01</small></span>
+      </a>
+      <nav class="product-nav" aria-label="ClearMoneyPath navigation">
+        <a href="#problem">Problem</a>
+        <a href="#system">System</a>
+        <a href="#status">Build status</a>
+        <a class="product-nav-cta" href="mailto:gnomocode@gmail.com?subject=ClearMoneyPath%20launch%20updates" data-event="cmp_updates">Launch updates</a>
+      </nav>
+    </header>
 
-    if (phone && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      window.addEventListener("mousemove", (event) => {
-        const x = (event.clientX / window.innerWidth - 0.5) * 10;
-        const y = (event.clientY / window.innerHeight - 0.5) * -8;
+    <main class="product-main" id="product-content">
+      <section class="product-container product-hero">
+        <div>
+          <p class="product-kicker">Fintech · Mobile budgeting</p>
+          <h1>Know what is <em>safe to spend.</em></h1>
+          <p class="product-lede">
+            ClearMoneyPath organises bills, debts and savings around the way people are actually paid, then makes the
+            money left until the next payday visible.
+          </p>
+          <div class="product-actions">
+            <a class="product-button product-button-primary" href="mailto:gnomocode@gmail.com?subject=ClearMoneyPath%20launch%20updates" data-event="cmp_hero_updates">Get launch updates ↗</a>
+            <a class="product-button" href="#system" data-event="cmp_explore_system">Explore the system ↓</a>
+          </div>
+          <dl class="product-meta">
+            <div><dt>Platforms</dt><dd>iOS + Android</dd></div>
+            <div><dt>Build</dt><dd>React Native + Firebase</dd></div>
+            <div><dt>Status</dt><dd>MVP in development</dd></div>
+          </dl>
+        </div>
 
-        phone.style.transform =
-          "rotateY(" + (x - 8) + "deg) rotateX(" + (y + 3) + "deg) translateY(-6px)";
-      });
+        <div class="product-stage" aria-label="ClearMoneyPath safe-to-spend interface concept">
+          <div class="stage-top"><span>CLEARMONEYPATH / PAY CYCLE</span><span>SYNCED</span></div>
+          <div class="cmp-screen">
+            <div class="cmp-screen-inner">
+              <div class="cmp-screen-top"><span>THIS PAY CYCLE</span><span>12 DAYS LEFT</span></div>
+              <div class="cmp-balance"><span>Safe to spend</span><strong>$486</strong></div>
+              <div class="cmp-bar" aria-label="Pay-cycle allocation progress"></div>
+              <div class="cmp-row"><span>Bills reserved</span><b>$1,240</b></div>
+              <div class="cmp-row"><span>Debt payments</span><b>$310</b></div>
+              <div class="cmp-row"><span>Savings protected</span><b>$150</b></div>
+              <div class="cmp-row"><span>Daily guide</span><b>$40.50</b></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      window.addEventListener("mouseleave", () => {
-        phone.style.transform = "";
-      });
-    }
-  </script>
+      <section class="product-section" id="problem">
+        <div class="product-container product-split">
+          <div>
+            <p class="product-kicker">The problem</p>
+            <h2>A bank balance is not a <em>spending plan.</em></h2>
+          </div>
+          <div class="product-split-copy">
+            <p>
+              People get paid, cover immediate bills and try to remember everything else coming before the next
+              payday. The account balance looks available even when much of it already has a job.
+            </p>
+            <p>
+              Traditional monthly budgets can make that harder for weekly and fortnightly income. ClearMoneyPath
+              treats each pay cycle as the planning unit and protects future obligations before calculating what is
+              genuinely free.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  <script id="clearMoneyPathForceTop">
-    window.addEventListener("load", function () {
-      if (window.location.hash === "#top" || window.location.hash === "") {
-        window.scrollTo({ top: 0, left: 0, behavior: "instant" });
-      }
-    });
-  </script>
-</body>
+      <section class="product-section" id="system">
+        <div class="product-container">
+          <header class="product-heading">
+            <p class="product-kicker">The planning system</p>
+            <h2>Every dollar gets a job before the <em>leftover.</em></h2>
+            <p>
+              Income, bills, debts and savings are organised into one pay-cycle view so the user can make everyday
+              decisions without rebuilding the budget in their head.
+            </p>
+          </header>
+
+          <ol class="workflow-list">
+            <li><span>01</span><h3>Start at payday</h3><p>Choose a weekly, fortnightly or monthly cycle and set the income available for that period.</p></li>
+            <li><span>02</span><h3>Reserve obligations</h3><p>Protect upcoming bills, required debt payments and the savings target before treating money as available.</p></li>
+            <li><span>03</span><h3>See the safe number</h3><p>Calculate what remains for flexible spending across the days left in the current pay cycle.</p></li>
+            <li><span>04</span><h3>Track the longer path</h3><p>Keep debts, progress and future goals visible without losing the immediate payday decision.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="product-container">
+          <header class="product-heading">
+            <p class="product-kicker">Core experience</p>
+            <h2>Less spreadsheet anxiety. More <em>visibility.</em></h2>
+            <p>The MVP concentrates on the information needed to make a confident decision today.</p>
+          </header>
+
+          <div class="feature-grid">
+            <article class="feature-card"><span>01 / PLAN</span><h3>Pay-cycle budget</h3><p>Build around the next payday instead of forcing every user into a calendar-month model.</p></article>
+            <article class="feature-card"><span>02 / PROTECT</span><h3>Bills and savings</h3><p>Reserve upcoming obligations and chosen savings before calculating flexible money.</p></article>
+            <article class="feature-card"><span>03 / PROGRESS</span><h3>Debt tracking</h3><p>Keep balances and payoff progress connected to the same plan used each payday.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section" id="status">
+        <div class="product-container">
+          <header class="product-heading">
+            <p class="product-kicker">Working MVP</p>
+            <h2>Built beyond the <em>concept.</em></h2>
+            <p>These are implemented foundations in the current application—not a speculative feature list.</p>
+          </header>
+
+          <div class="status-grid">
+            <article class="status-card"><span>ACCESS / WORKING</span><h3>Secure accounts</h3><p>Email and Google sign-in are connected through Firebase Authentication.</p></article>
+            <article class="status-card"><span>DATA / WORKING</span><h3>Cloud backup</h3><p>User data can be backed up to Firestore and restored across supported sessions.</p></article>
+            <article class="status-card"><span>BUDGET / WORKING</span><h3>Budget planner</h3><p>The core planning flow supports the user’s income and spending structure.</p></article>
+            <article class="status-card"><span>BILLS / WORKING</span><h3>Bill tracking</h3><p>Upcoming commitments remain visible inside the budgeting experience.</p></article>
+            <article class="status-card"><span>DEBT / WORKING</span><h3>Debt tracking</h3><p>Balances and repayment progress connect short-term actions to the longer goal.</p></article>
+            <article class="status-card"><span>NEXT / ACTIVE</span><h3>Product validation</h3><p>Onboarding, usability, subscription value and launch readiness remain active work.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="product-container product-final">
+          <div>
+            <p class="product-kicker">Follow the build</p>
+            <h2>Clearer money decisions, one payday at a <em>time.</em></h2>
+            <p>Email TechGnomo to ask about the product or be included in future launch updates.</p>
+          </div>
+          <a class="product-button product-button-primary" href="mailto:gnomocode@gmail.com?subject=ClearMoneyPath%20launch%20updates" data-event="cmp_final_updates">Request updates ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="product-container product-footer">
+      <p>© <span id="currentYear">2026</span> TechGnomo / ClearMoneyPath</p>
+      <div><a href="index.html#work">All products</a><a href="index.html#contact">Contact</a></div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
 </html>
-

@@ -1,0 +1,9 @@
+{
+  "name": "TechGnomo",
+  "short_name": "TechGnomo",
+  "description": "Websites, app MVPs and practical AI automations.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#07080c",
+  "theme_color": "#07080c"
+}

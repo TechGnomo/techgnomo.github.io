@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Free MVP Scope Checker | Reduce App Features Before Building</title>
+    <meta
+      name="description"
+      content="Use TechGnomo's free MVP Scope Checker to reduce an app idea to a testable first version, separate later features and create a clear product brief. No sign-up required."
+    />
+    <meta name="author" content="Fabio D'Anna" />
+    <meta name="theme-color" content="#07080c" />
+    <meta name="robots" content="index, follow, max-snippet:-1" />
+    <link rel="canonical" href="https://techgnomo.com/mvp-scope-checker.html" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="product.css" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="TechGnomo" />
+    <meta property="og:title" content="Free MVP Scope Checker | TechGnomo" />
+    <meta
+      property="og:description"
+      content="Turn a crowded app idea into a smaller first test and a product brief you can use."
+    />
+    <meta property="og:url" content="https://techgnomo.com/mvp-scope-checker.html" />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "MVP Scope Checker",
+        "url": "https://techgnomo.com/mvp-scope-checker.html",
+        "description": "A free browser-based tool that helps app creators reduce an idea to a testable MVP and prepare a concise product brief.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Any web browser",
+        "isAccessibleForFree": true,
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "AUD"
+        },
+        "creator": {
+          "@type": "Organization",
+          "name": "TechGnomo",
+          "url": "https://techgnomo.com/"
+        }
+      }
+    </script>
+  </head>
+
+  <body class="scope-page">
+    <a class="skip-link" href="#scope-workspace">Skip to tool</a>
+
+    <header class="product-header">
+      <a class="product-brand" href="index.html" aria-label="Back to TechGnomo">
+        <span class="product-brand-mark" aria-hidden="true">TG</span>
+        <span>TechGnomo <small>/ Free tool 01</small></span>
+      </a>
+      <nav class="product-nav" aria-label="MVP Scope Checker navigation">
+        <a href="#how-it-works">How it works</a>
+        <a href="appstart.html">AppStart</a>
+        <a class="product-nav-cta" href="index.html#contact" data-event="scope_contact">Discuss your MVP</a>
+      </nav>
+    </header>
+
+    <main class="product-main">
+      <section class="product-container tool-hero">
+        <div class="tool-heading">
+          <p class="product-kicker">Free tool · No sign-up</p>
+          <h1>Make your first version <em>smaller.</em></h1>
+        </div>
+        <div class="tool-copy">
+          <p>
+            Describe the problem, target user and proposed features. The checker will separate a testable first scope
+            from later ideas and prepare a brief you can copy or email.
+          </p>
+          <p class="privacy-note">Runs in your browser · Nothing is uploaded or stored</p>
+        </div>
+      </section>
+
+      <section class="product-container scope-workspace" id="scope-workspace" aria-label="MVP Scope Checker">
+        <form class="scope-form" id="scopeForm">
+          <div class="tool-panel-top"><span>INPUT / PRODUCT IDEA</span><span>STEP 01</span></div>
+
+          <label>
+            <span>Working product name</span>
+            <input type="text" name="productName" autocomplete="off" maxlength="80" required placeholder="e.g. ShiftMate" />
+          </label>
+
+          <label>
+            <span>Who is the first specific user?</span>
+            <input type="text" name="targetUser" autocomplete="off" maxlength="160" required placeholder="e.g. Independent restaurant managers" />
+          </label>
+
+          <label>
+            <span>What recurring problem do they have?</span>
+            <textarea name="problem" rows="4" maxlength="600" required placeholder="Describe what happens now, not the app you want to build."></textarea>
+          </label>
+
+          <label>
+            <span>What single outcome should improve?</span>
+            <input type="text" name="outcome" autocomplete="off" maxlength="220" required placeholder="e.g. Fill an uncovered shift in under 10 minutes" />
+          </label>
+
+          <label>
+            <span>Proposed features — one per line</span>
+            <textarea name="features" rows="7" maxlength="1400" required placeholder="Create a shift&#10;Notify available staff&#10;Let one person accept&#10;Manager confirms"></textarea>
+          </label>
+          <p class="scope-help">List behaviours, not broad labels such as “dashboard” or “AI”. The first three will be treated as your proposed core.</p>
+
+          <fieldset class="scope-fieldset">
+            <legend>Does version one require any of these?</legend>
+            <div class="scope-checks">
+              <label><input type="checkbox" name="complexity" value="User accounts and authentication" /> User accounts and authentication</label>
+              <label><input type="checkbox" name="complexity" value="Payments or subscriptions" /> Payments or subscriptions</label>
+              <label><input type="checkbox" name="complexity" value="Real-time chat or live updates" /> Real-time chat or live updates</label>
+              <label><input type="checkbox" name="complexity" value="Sensitive personal or financial data" /> Sensitive personal or financial data</label>
+              <label><input type="checkbox" name="complexity" value="Multiple roles or admin permissions" /> Multiple roles or admin permissions</label>
+              <label><input type="checkbox" name="complexity" value="AI-generated decisions or content" /> AI-generated decisions or content</label>
+            </div>
+          </fieldset>
+
+          <label>
+            <span>Best available first test</span>
+            <select name="validationMethod" aria-label="Best available first test" required>
+              <option value="">Choose one</option>
+              <option value="interviews">User interviews</option>
+              <option value="prototype">Clickable prototype</option>
+              <option value="manual">Manual or concierge test</option>
+              <option value="waitlist">Landing page or waitlist</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </label>
+
+          <button class="product-button product-button-primary" type="submit" data-event="scope_generate">Generate my MVP brief ↗</button>
+        </form>
+
+        <section class="scope-result" aria-labelledby="result-title" aria-live="polite">
+          <div class="tool-panel-top"><span>OUTPUT / FIRST TEST</span><span id="resultState">WAITING</span></div>
+
+          <div class="scope-result-empty" id="scopeEmpty">
+            <div><strong>00</strong><p>Your focused scope, risks and next test will appear here.</p></div>
+          </div>
+
+          <div class="scope-result-content" id="scopeContent" hidden>
+            <div class="scope-score">
+              <strong id="scopeScore">--</strong>
+              <div><span>Scope signal / 100</span><h2 id="result-title">Ready to calculate</h2></div>
+            </div>
+
+            <div class="scope-output-section">
+              <h3>Core assumption</h3>
+              <p id="coreAssumption"></p>
+            </div>
+
+            <div class="scope-output-section">
+              <h3>Keep in the first test</h3>
+              <ol id="keepFeatures"></ol>
+            </div>
+
+            <div class="scope-output-section">
+              <h3>Move to later</h3>
+              <ul id="laterFeatures"></ul>
+            </div>
+
+            <div class="scope-output-section">
+              <h3>Complexity to prove necessary</h3>
+              <ul id="riskFlags"></ul>
+            </div>
+
+            <div class="scope-output-section">
+              <h3>Recommended next test</h3>
+              <p id="nextTest"></p>
+            </div>
+
+            <div class="scope-result-actions">
+              <button class="product-button product-button-primary" type="button" id="copyBrief" data-event="scope_copy">Copy brief</button>
+              <button class="product-button" type="button" id="emailBrief" data-event="scope_email">Email TechGnomo</button>
+              <p class="scope-status" id="scopeStatus" aria-live="polite"></p>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <section class="product-section" id="how-it-works">
+        <div class="product-container">
+          <header class="product-heading">
+            <p class="product-kicker">How to use the result</p>
+            <h2>An MVP is a test, not a small version of <em>everything.</em></h2>
+            <p>
+              The score is a simple planning signal, not market validation. Its job is to expose scope and risk before
+              those decisions become expensive.
+            </p>
+          </header>
+
+          <div class="educational-grid">
+            <article><h3>Start with one user</h3><p>A specific first user makes the problem, workflow and distribution easier to test. “Everyone” cannot give you useful product evidence.</p></article>
+            <article><h3>Keep one outcome</h3><p>The first version should prove that one meaningful outcome improves—not demonstrate every direction the product could eventually take.</p></article>
+            <article><h3>Earn complexity</h3><p>Accounts, payments, live data and AI can be necessary, but each should enter version one because the test requires it, not because mature apps have it.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="product-container product-final">
+          <div>
+            <p class="product-kicker">Need a second pair of eyes?</p>
+            <h2>Turn the brief into a realistic <em>build plan.</em></h2>
+            <p>Send the result to TechGnomo and start with the constraints, risks and next test—not a sales pitch.</p>
+          </div>
+          <a class="product-button product-button-primary" href="index.html#contact" data-event="scope_final_contact">Discuss the project ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="product-container product-footer">
+      <p>© <span id="currentYear">2026</span> TechGnomo / MVP Scope Checker</p>
+      <div><a href="appstart.html">AppStart</a><a href="index.html#contact">Contact</a></div>
+    </footer>
+
+    <script src="script.js" defer></script>
+    <script src="scope-checker.js" defer></script>
+  </body>
+</html>

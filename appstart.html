@@ -1,242 +1,188 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, shrink-to-fit=no" />
-  <title>AppStart | AI App Planning Coach by TechGnomo</title>
-  <meta name="description" content="AppStart is a beginner-friendly GPT by TechGnomo that turns rough app ideas into realistic MVP plans, technology decisions and launch roadmaps." />
-  <link rel="icon" type="image/png" href="assets/favicon.png" />
-  <link rel="stylesheet" href="css/style.css?v=20260826-mobile-fix-2" />
-</head>
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>AppStart | AI App Planning Coach by TechGnomo</title>
+    <meta
+      name="description"
+      content="See how TechGnomo designed AppStart, a beginner-friendly AI app planning coach that turns rough ideas into realistic MVP scopes, technology choices and launch plans."
+    />
+    <meta name="author" content="Fabio D'Anna" />
+    <meta name="theme-color" content="#07080c" />
+    <meta name="robots" content="index, follow, max-snippet:-1" />
+    <link rel="canonical" href="https://techgnomo.com/appstart.html" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="product.css" />
 
-<body class="appstart-page" id="top">
-  <header class="tg-header">
-    <div class="tg-header-inner">
-      <a href="index.html" class="tg-logo-link" aria-label="TechGnomo home">
-        <img src="assets/logo2.png" alt="TechGnomo Logo" class="tg-header-logo">
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="TechGnomo" />
+    <meta property="og:title" content="AppStart | Clarity before code" />
+    <meta
+      property="og:description"
+      content="A case study in building an honest AI product-planning coach for first-time app creators."
+    />
+    <meta property="og:url" content="https://techgnomo.com/appstart.html" />
+    <meta name="twitter:card" content="summary" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "AppStart",
+        "url": "https://techgnomo.com/appstart.html",
+        "description": "A beginner-friendly AI app planning coach that turns rough ideas into realistic MVP scopes, technology decisions and launch roadmaps.",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "ChatGPT",
+        "inLanguage": ["en", "it"],
+        "creator": {
+          "@type": "Organization",
+          "name": "TechGnomo",
+          "url": "https://techgnomo.com/"
+        }
+      }
+    </script>
+  </head>
+
+  <body class="appstart-page">
+    <a class="skip-link" href="#product-content">Skip to content</a>
+
+    <header class="product-header">
+      <a class="product-brand" href="index.html" aria-label="Back to TechGnomo">
+        <span class="product-brand-mark" aria-hidden="true">TG</span>
+        <span>TechGnomo <small>/ Product 02</small></span>
       </a>
-
-      <button class="tg-menu-toggle" id="tgMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <nav class="tg-nav-menu" id="tgNavMenu" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="skills.html">Skills</a>
-        <a href="project.html">Projects</a>
-        <a href="resume.html">Resume</a>
-        <a href="contact.html">Contact</a>
-        <a href="clearmoneypath.html" class="tg-nav-featured">ClearMoneyPath</a>
+      <nav class="product-nav" aria-label="AppStart navigation">
+        <a href="#problem">Problem</a>
+        <a href="#build">Build</a>
+        <a href="#evaluation">Evaluation</a>
+        <a class="product-nav-cta" href="index.html#contact" data-event="appstart_contact">Start a project</a>
       </nav>
-    </div>
-  </header>
+    </header>
 
-  <main>
-    <section class="appstart-hero">
-      <div class="container appstart-hero-grid">
-        <div class="appstart-hero-copy">
-          <div class="appstart-kicker">
-            <span></span>
-            TechGnomo AI Product · App Planning
-          </div>
-
-          <h1>From a rough idea to a <em>realistic app plan.</em></h1>
-
-          <p>
-            AppStart helps first-time app creators validate the problem, focus the MVP,
-            choose appropriate technology and build a practical launch roadmap—without
-            requiring previous development experience.
-          </p>
-
-          <div class="appstart-actions">
-            <span class="appstart-button appstart-button-pending">ChatGPT launch pending</span>
-            <a href="#process" class="appstart-button appstart-button-secondary">Explore the build process</a>
-          </div>
-
-          <div class="appstart-meta" aria-label="AppStart product details">
-            <div><span>Product</span><strong>Custom GPT</strong></div>
-            <div><span>Audience</span><strong>First-time builders</strong></div>
-            <div><span>Status</span><strong>Launch-ready</strong></div>
-          </div>
-        </div>
-
-        <div class="appstart-hero-art" aria-label="AppStart product icon">
-          <div class="appstart-orbit appstart-orbit-one"></div>
-          <div class="appstart-orbit appstart-orbit-two"></div>
-          <div class="appstart-icon-shell">
-            <img src="assets/appstart-icon.png" alt="AppStart technology gnome launching from a mobile app" />
-          </div>
-          <div class="appstart-float-card appstart-float-card-one">
-            <span>01</span>
-            Validate
-          </div>
-          <div class="appstart-float-card appstart-float-card-two">
-            <span>02</span>
-            Build the MVP
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="appstart-section appstart-problem-section">
-      <div class="container appstart-split">
+    <main class="product-main" id="product-content">
+      <section class="product-container product-hero">
         <div>
-          <div class="appstart-section-label">The problem</div>
-          <h2>Ideas are easy. Choosing the right first version is not.</h2>
-        </div>
-        <div class="appstart-problem-copy">
-          <p>
-            First-time founders often begin with too many features, choose tools before
-            understanding the problem, underestimate costs and skip validation entirely.
+          <p class="product-kicker">AI product · App planning</p>
+          <h1>Clarity before <em>code.</em></h1>
+          <p class="product-lede">
+            AppStart helps first-time app creators turn a rough idea into a realistic first version—without pretending
+            every idea is brilliant, every feature is essential or every deadline is possible.
           </p>
-          <p>
-            Generic AI assistants can make that worse by producing impressive-looking plans
-            without challenging weak assumptions. AppStart was designed to be useful before
-            it is agreeable.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="appstart-section" id="process">
-      <div class="container">
-        <div class="appstart-section-heading">
-          <div class="appstart-section-label">The approach</div>
-          <h2>Clarity before code.</h2>
-          <p>Every conversation moves through a deliberate product workflow.</p>
-        </div>
-
-        <div class="appstart-process-grid">
-          <article>
-            <span>01</span>
-            <h3>Understand</h3>
-            <p>Define the user, problem, current alternative, budget, skills and timeline.</p>
-          </article>
-          <article>
-            <span>02</span>
-            <h3>Validate</h3>
-            <p>Challenge demand, frequency, willingness to pay, distribution and feasibility.</p>
-          </article>
-          <article>
-            <span>03</span>
-            <h3>Focus</h3>
-            <p>Separate the essential MVP from useful later features and unnecessary scope.</p>
-          </article>
-          <article>
-            <span>04</span>
-            <h3>Plan</h3>
-            <p>Recommend the technology, monetisation model, roadmap and immediate next action.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="appstart-section appstart-output-section">
-      <div class="container appstart-output-grid">
-        <div class="appstart-output-intro">
-          <div class="appstart-section-label">What it delivers</div>
-          <h2>A plan a beginner can actually use.</h2>
-          <p>
-            AppStart explains the decisions instead of hiding them behind technical language.
-            Its output stays proportional to the idea and always ends with a concrete next step.
-          </p>
-        </div>
-
-        <div class="appstart-output-list">
-          <div><span>01</span><p>Honest idea evaluation</p></div>
-          <div><span>02</span><p>Prioritised MVP scope</p></div>
-          <div><span>03</span><p>User journey and screen list</p></div>
-          <div><span>04</span><p>Technology choice with trade-offs</p></div>
-          <div><span>05</span><p>Monetisation grounded in user value</p></div>
-          <div><span>06</span><p>Risks, assumptions and validation criteria</p></div>
-          <div><span>07</span><p>Phased build and launch roadmap</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="appstart-section">
-      <div class="container">
-        <div class="appstart-section-heading">
-          <div class="appstart-section-label">Product principles</div>
-          <h2>Designed to resist AI hype.</h2>
-        </div>
-
-        <div class="appstart-principles-grid">
-          <article>
-            <div>⌁</div>
-            <h3>Small enough to test</h3>
-            <p>The first version validates the central product assumption instead of imitating a mature competitor.</p>
-          </article>
-          <article>
-            <div>◇</div>
-            <h3>Honesty over hype</h3>
-            <p>No guaranteed profit, delivery date, app-store approval or invented market evidence.</p>
-          </article>
-          <article>
-            <div>↗</div>
-            <h3>Teach while building</h3>
-            <p>Every recommendation includes enough context for the user to make an informed decision.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="appstart-section appstart-testing-section">
-      <div class="container appstart-testing-grid">
-        <div>
-          <div class="appstart-section-label">Evaluation</div>
-          <h2>Eight scenarios before launch.</h2>
-          <p>
-            The first test suite checks whether AppStart stays useful when the idea is vague,
-            the scope is unrealistic, the budget is zero or the product touches sensitive data.
-          </p>
-        </div>
-
-        <div class="appstart-test-panel">
-          <div class="appstart-test-top">
-            <span>APPSTART / ACCEPTANCE SUITE</span>
-            <strong>8 / 8 defined</strong>
+          <div class="product-actions">
+            <span class="product-button product-button-disabled" aria-label="ChatGPT launch link coming soon">Launch link coming soon</span>
+            <a class="product-button" href="#build" data-event="appstart_explore_build">Explore the build process ↓</a>
           </div>
-          <ul>
-            <li><span></span>Vague idea intake</li>
-            <li><span></span>Unrealistic scope reduction</li>
-            <li><span></span>Zero-budget beginner path</li>
-            <li><span></span>Revenue expectation handling</li>
-            <li><span></span>Technology selection</li>
-            <li><span></span>Sensitive-data boundaries</li>
-            <li><span></span>Coding milestone handoff</li>
-            <li><span></span>Italian and English behaviour</li>
-          </ul>
+          <dl class="product-meta">
+            <div><dt>Format</dt><dd>Custom GPT</dd></div>
+            <div><dt>Audience</dt><dd>First-time builders</dd></div>
+            <div><dt>Status</dt><dd>Launch-ready</dd></div>
+          </dl>
         </div>
-      </div>
-    </section>
 
-    <section class="appstart-final-section">
-      <div class="container appstart-final-card">
-        <img src="assets/appstart-icon.png" alt="" aria-hidden="true" />
-        <div>
-          <div class="appstart-section-label">AppStart — by TechGnomo</div>
-          <h2>Have an app idea but no clear starting point?</h2>
-          <p>The public ChatGPT link will be added here as soon as publishing becomes available.</p>
+        <div class="product-stage" aria-label="AppStart planning workflow">
+          <div class="stage-top"><span>APPSTART / DECISION ENGINE</span><span>4 STAGES</span></div>
+          <div class="appstart-flow">
+            <article><span>01</span><div><h2>Understand</h2><p>User, problem, constraints and current workaround.</p></div></article>
+            <article><span>02</span><div><h2>Validate</h2><p>Demand, alternatives, feasibility and willingness to pay.</p></div></article>
+            <article><span>03</span><div><h2>Focus</h2><p>The smallest feature set that can test the core assumption.</p></div></article>
+            <article><span>04</span><div><h2>Plan</h2><p>Technology, milestones, risks and the immediate next action.</p></div></article>
+          </div>
         </div>
-        <a href="project.html" class="appstart-button appstart-button-secondary">Back to projects</a>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <footer>
-    <div class="container footer-inner">
-      <p>© 2026 TechGnomo. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="https://github.com/TechGnomo" target="_blank" rel="noopener">GitHub</a>
-        <a href="contact.html">Contact</a>
-      </div>
-    </div>
-  </footer>
+      <section class="product-section" id="problem">
+        <div class="product-container product-split">
+          <div>
+            <p class="product-kicker">The problem</p>
+            <h2>Ideas expand faster than <em>evidence.</em></h2>
+          </div>
+          <div class="product-split-copy">
+            <p>
+              New founders often begin with too many features, choose technology before understanding the problem,
+              underestimate costs and mistake encouragement for validation.
+            </p>
+            <p>
+              Generic AI can amplify that mistake by producing impressive-looking plans without challenging weak
+              assumptions. AppStart was designed to be useful before it is agreeable.
+            </p>
+          </div>
+        </div>
+      </section>
 
-  <script src="js/main.js?v=20260826-mobile-fix-2"></script>
-</body>
+      <section class="product-section" id="build">
+        <div class="product-container">
+          <header class="product-heading">
+            <p class="product-kicker">The product system</p>
+            <h2>A plan a beginner can <em>use.</em></h2>
+            <p>
+              The conversation stays proportional to the idea, explains every trade-off in plain language and ends
+              with an action that can be completed now.
+            </p>
+          </header>
+
+          <ol class="workflow-list">
+            <li><span>01</span><h3>Structured intake</h3><p>Collect only the information that materially changes the recommendation: user, problem, alternative, budget, skill and timeline.</p></li>
+            <li><span>02</span><h3>Reality check</h3><p>Challenge demand, distribution, privacy, technical complexity and revenue assumptions before suggesting a build.</p></li>
+            <li><span>03</span><h3>MVP separation</h3><p>Separate essential features from useful-later ideas and attractive distractions, with a reason for every decision.</p></li>
+            <li><span>04</span><h3>Actionable handoff</h3><p>Produce a screen list, user journey, technology choice, phased roadmap, risks and the next concrete milestone.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="product-container">
+          <header class="product-heading">
+            <p class="product-kicker">What it delivers</p>
+            <h2>Useful output, minus the <em>hype.</em></h2>
+            <p>Every output is designed to help someone decide, test or build—not merely feel productive.</p>
+          </header>
+
+          <div class="feature-grid">
+            <article class="feature-card"><span>01 / SCOPE</span><h3>Focused MVP</h3><p>A prioritised first version tied directly to the product’s central assumption.</p></article>
+            <article class="feature-card"><span>02 / SYSTEM</span><h3>Build roadmap</h3><p>Technology, screens and milestones explained with their real trade-offs.</p></article>
+            <article class="feature-card"><span>03 / EVIDENCE</span><h3>Validation plan</h3><p>Risks, assumptions and specific signals that would justify the next investment.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section" id="evaluation">
+        <div class="product-container">
+          <header class="product-heading">
+            <p class="product-kicker">Acceptance testing</p>
+            <h2>Designed to resist predictable AI <em>failure.</em></h2>
+            <p>The initial evaluation suite targets the scenarios most likely to produce confident but useless advice.</p>
+          </header>
+
+          <div class="status-grid">
+            <article class="status-card"><span>INTAKE / TESTED</span><h3>Vague ideas</h3><p>Clarifies the problem without inventing users, demand or product requirements.</p></article>
+            <article class="status-card"><span>SCOPE / TESTED</span><h3>Impossible plans</h3><p>Reduces unrealistic scope and explains why the smaller version is more useful.</p></article>
+            <article class="status-card"><span>SAFETY / TESTED</span><h3>Sensitive data</h3><p>Surfaces privacy and security boundaries instead of treating them as later details.</p></article>
+            <article class="status-card"><span>BUDGET / TESTED</span><h3>Zero-budget paths</h3><p>Recommends validation and manual tests before suggesting paid infrastructure.</p></article>
+            <article class="status-card"><span>REVENUE / TESTED</span><h3>Profit expectations</h3><p>Avoids guarantees and ties monetisation to real user value and distribution.</p></article>
+            <article class="status-card"><span>LANGUAGE / TESTED</span><h3>English + Italian</h3><p>Preserves the product process and direct communication style across both languages.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="product-section">
+        <div class="product-container product-final">
+          <div>
+            <p class="product-kicker">Have an app idea?</p>
+            <h2>Test the scope before you build the <em>wrong thing.</em></h2>
+            <p>Use TechGnomo’s free browser-based scope checker now. No account, upload or payment required.</p>
+          </div>
+          <a class="product-button product-button-primary" href="mvp-scope-checker.html" data-event="appstart_scope_checker">Open the free tool ↗</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="product-container product-footer">
+      <p>© <span id="currentYear">2026</span> TechGnomo / AppStart case study</p>
+      <div><a href="index.html#work">All products</a><a href="index.html#contact">Contact</a></div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
 </html>
