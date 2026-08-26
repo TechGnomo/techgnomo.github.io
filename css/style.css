@@ -597,6 +597,45 @@ section {
   color: var(--blue);
 }
 
+.status-launch {
+  color: #c9ff24;
+}
+
+.appstart-project-card {
+  border-color: rgba(0, 217, 255, 0.22);
+}
+
+.appstart-project-visual {
+  background:
+    radial-gradient(circle at 70% 18%, rgba(201, 255, 36, 0.2), transparent 24%),
+    radial-gradient(circle at 20% 88%, rgba(0, 217, 255, 0.28), transparent 36%),
+    linear-gradient(135deg, #07133f 0%, #172b88 46%, #651bc6 100%);
+}
+
+.appstart-card-icon {
+  position: absolute;
+  left: 1.25rem;
+  bottom: 1.05rem;
+  width: 108px !important;
+  height: 108px !important;
+  padding: 0 !important;
+  overflow: hidden;
+  background: #07133f !important;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 22px 60px rgba(0, 217, 255, 0.22) !important;
+}
+
+.appstart-card-icon img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.project-link-disabled {
+  cursor: default;
+  opacity: 0.58;
+}
+
 .project-icon {
   position: absolute;
   left: 1.4rem;
@@ -1627,3 +1666,572 @@ body.tg-menu-open {
   display: block !important;
 }
 
+/* APPSTART CASE STUDY */
+
+.appstart-page {
+  --appstart-navy: #07133f;
+  --appstart-cyan: #00d9ff;
+  --appstart-blue: #176bff;
+  --appstart-violet: #8c32ff;
+  --appstart-lime: #c9ff24;
+  --appstart-cloud: #f4f7ff;
+  background:
+    radial-gradient(circle at 10% 2%, rgba(0, 217, 255, 0.14), transparent 30%),
+    radial-gradient(circle at 92% 14%, rgba(140, 50, 255, 0.16), transparent 32%),
+    #04091e;
+}
+
+.appstart-page .tg-header {
+  background: rgba(4, 9, 30, 0.8);
+}
+
+.appstart-hero {
+  position: relative;
+  min-height: calc(100vh - 96px);
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  padding: 84px 0 96px;
+}
+
+.appstart-hero::before {
+  content: "";
+  position: absolute;
+  width: 620px;
+  height: 620px;
+  right: -230px;
+  top: -230px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 217, 255, 0.12);
+  box-shadow: 0 0 160px rgba(23, 107, 255, 0.18);
+}
+
+.appstart-hero-grid {
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: clamp(50px, 7vw, 100px);
+  align-items: center;
+}
+
+.appstart-kicker,
+.appstart-section-label {
+  color: var(--appstart-cyan);
+  font-size: 0.76rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.appstart-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 28px;
+  padding: 10px 14px;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  border-radius: 999px;
+  background: rgba(0, 217, 255, 0.06);
+}
+
+.appstart-kicker span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--appstart-lime);
+  box-shadow: 0 0 18px rgba(201, 255, 36, 0.8);
+}
+
+.appstart-hero h1 {
+  max-width: 760px;
+  margin: 0 0 28px;
+  font-size: clamp(3.4rem, 7vw, 6.7rem);
+  line-height: 0.91;
+  letter-spacing: -0.075em;
+}
+
+.appstart-hero h1 em {
+  display: block;
+  font-style: normal;
+  background: linear-gradient(110deg, var(--appstart-cyan), var(--appstart-blue) 48%, #c45cff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.appstart-hero-copy > p {
+  max-width: 680px;
+  color: #b9c5e4;
+  font-size: clamp(1.04rem, 1.8vw, 1.25rem);
+  line-height: 1.7;
+}
+
+.appstart-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 34px 0 42px;
+}
+
+.appstart-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0 22px;
+  border-radius: 999px;
+  font-weight: 900;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.appstart-button-secondary {
+  color: var(--appstart-cloud);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+a.appstart-button:hover {
+  transform: translateY(-3px);
+  border-color: var(--appstart-cyan);
+}
+
+.appstart-button-pending {
+  color: #182200;
+  background: var(--appstart-lime);
+  cursor: default;
+}
+
+.appstart-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.appstart-meta div {
+  min-width: 130px;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.appstart-meta span,
+.appstart-meta strong {
+  display: block;
+}
+
+.appstart-meta span {
+  color: #7181a9;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.appstart-meta strong {
+  color: var(--appstart-cloud);
+  margin-top: 3px;
+}
+
+.appstart-hero-art {
+  position: relative;
+  min-height: 590px;
+  display: grid;
+  place-items: center;
+}
+
+.appstart-icon-shell {
+  position: relative;
+  z-index: 2;
+  width: min(410px, 82vw);
+  aspect-ratio: 1;
+  border-radius: 38%;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 60px 120px rgba(0, 0, 0, 0.5),
+    0 0 80px rgba(0, 217, 255, 0.16),
+    0 0 120px rgba(140, 50, 255, 0.12);
+  transform: rotate(2deg);
+}
+
+.appstart-icon-shell img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.appstart-orbit {
+  position: absolute;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  border-radius: 50%;
+}
+
+.appstart-orbit-one {
+  width: 520px;
+  height: 520px;
+}
+
+.appstart-orbit-two {
+  width: 610px;
+  height: 380px;
+  transform: rotate(-28deg);
+  border-color: rgba(140, 50, 255, 0.2);
+}
+
+.appstart-float-card {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 17px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  background: rgba(6, 15, 53, 0.82);
+  backdrop-filter: blur(18px);
+  color: var(--appstart-cloud);
+  font-weight: 850;
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.28);
+}
+
+.appstart-float-card span {
+  color: var(--appstart-lime);
+  font-size: 0.72rem;
+}
+
+.appstart-float-card-one {
+  left: 0;
+  top: 20%;
+}
+
+.appstart-float-card-two {
+  right: -4%;
+  bottom: 18%;
+}
+
+.appstart-section {
+  padding: 110px 0;
+}
+
+.appstart-section h2,
+.appstart-final-card h2 {
+  color: var(--appstart-cloud);
+  font-size: clamp(2.4rem, 5vw, 4.8rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  margin-top: 14px;
+}
+
+.appstart-split {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: clamp(48px, 8vw, 120px);
+  align-items: start;
+}
+
+.appstart-problem-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.appstart-problem-copy p,
+.appstart-output-intro > p,
+.appstart-testing-grid > div:first-child > p {
+  color: #a9b5d5;
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.appstart-problem-copy p + p {
+  margin-top: 22px;
+}
+
+.appstart-section-heading {
+  max-width: 760px;
+  margin-bottom: 46px;
+}
+
+.appstart-section-heading > p {
+  margin-top: 18px;
+  color: #8d9abd;
+  font-size: 1.08rem;
+}
+
+.appstart-process-grid,
+.appstart-principles-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.appstart-process-grid article,
+.appstart-principles-grid article {
+  min-height: 250px;
+  padding: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+}
+
+.appstart-process-grid article > span {
+  color: var(--appstart-lime);
+  font-size: 0.75rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+.appstart-process-grid h3,
+.appstart-principles-grid h3 {
+  color: var(--appstart-cloud);
+  font-size: 1.35rem;
+  margin: 70px 0 12px;
+}
+
+.appstart-process-grid p,
+.appstart-principles-grid p {
+  color: #8f9dbf;
+  font-size: 0.94rem;
+}
+
+.appstart-output-section {
+  background:
+    radial-gradient(circle at 0 50%, rgba(0, 217, 255, 0.1), transparent 33%),
+    rgba(7, 19, 63, 0.52);
+}
+
+.appstart-output-grid,
+.appstart-testing-grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(54px, 8vw, 120px);
+  align-items: center;
+}
+
+.appstart-output-intro > p,
+.appstart-testing-grid > div:first-child > p {
+  margin-top: 24px;
+}
+
+.appstart-output-list {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.appstart-output-list div {
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 18px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.appstart-output-list span {
+  color: var(--appstart-cyan);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.appstart-output-list p {
+  color: var(--appstart-cloud);
+  font-weight: 800;
+}
+
+.appstart-principles-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.appstart-principles-grid article > div {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  border-radius: 17px;
+  color: var(--appstart-lime);
+  background: rgba(201, 255, 36, 0.08);
+  border: 1px solid rgba(201, 255, 36, 0.16);
+  font-size: 1.55rem;
+}
+
+.appstart-principles-grid h3 {
+  margin-top: 52px;
+}
+
+.appstart-testing-section {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.appstart-test-panel {
+  overflow: hidden;
+  border: 1px solid rgba(0, 217, 255, 0.2);
+  border-radius: 26px;
+  background: #07133f;
+  box-shadow: 0 36px 90px rgba(0, 0, 0, 0.3);
+}
+
+.appstart-test-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  color: #8391b4;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.appstart-test-top strong {
+  color: var(--appstart-lime);
+}
+
+.appstart-test-panel ul {
+  list-style: none;
+  padding: 10px 22px 18px;
+}
+
+.appstart-test-panel li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 0;
+  color: #d9e1f6;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.appstart-test-panel li:last-child {
+  border: 0;
+}
+
+.appstart-test-panel li span {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--appstart-cyan);
+  box-shadow: 0 0 13px rgba(0, 217, 255, 0.6);
+}
+
+.appstart-final-section {
+  padding: 20px 0 120px;
+}
+
+.appstart-final-card {
+  display: grid;
+  grid-template-columns: 118px 1fr auto;
+  gap: 30px;
+  align-items: center;
+  padding: clamp(26px, 5vw, 54px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 90% 10%, rgba(140, 50, 255, 0.22), transparent 32%),
+    linear-gradient(135deg, rgba(0, 217, 255, 0.08), rgba(255, 255, 255, 0.035));
+}
+
+.appstart-final-card > img {
+  width: 118px;
+  height: 118px;
+  object-fit: cover;
+  border-radius: 32px;
+}
+
+.appstart-final-card h2 {
+  font-size: clamp(2rem, 4vw, 3.4rem);
+}
+
+.appstart-final-card p {
+  color: #93a1c3;
+  margin-top: 12px;
+}
+
+@media (max-width: 980px) {
+  .appstart-hero-grid,
+  .appstart-split,
+  .appstart-output-grid,
+  .appstart-testing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .appstart-hero-art {
+    min-height: 520px;
+  }
+
+  .appstart-process-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .appstart-final-card {
+    grid-template-columns: 100px 1fr;
+  }
+
+  .appstart-final-card .appstart-button {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .appstart-hero {
+    padding-top: 58px;
+  }
+
+  .appstart-hero h1 {
+    font-size: clamp(3rem, 16vw, 4.9rem);
+  }
+
+  .appstart-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .appstart-hero-art {
+    min-height: 390px;
+  }
+
+  .appstart-orbit-one {
+    width: 360px;
+    height: 360px;
+  }
+
+  .appstart-orbit-two {
+    width: 400px;
+    height: 250px;
+  }
+
+  .appstart-float-card {
+    font-size: 0.78rem;
+    padding: 10px 12px;
+  }
+
+  .appstart-float-card-one {
+    left: -2%;
+    top: 14%;
+  }
+
+  .appstart-float-card-two {
+    right: -2%;
+    bottom: 12%;
+  }
+
+  .appstart-section {
+    padding: 78px 0;
+  }
+
+  .appstart-process-grid,
+  .appstart-principles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .appstart-process-grid article,
+  .appstart-principles-grid article {
+    min-height: 220px;
+  }
+
+  .appstart-final-card {
+    grid-template-columns: 1fr;
+  }
+
+  .appstart-final-card > img {
+    width: 86px;
+    height: 86px;
+    border-radius: 24px;
+  }
+}
