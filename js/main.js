@@ -1,3 +1,14 @@
+// Some iOS in-app browsers expose a desktop-sized layout viewport even on a
+// phone. Add a targeted fallback class without affecting normal mobile Safari.
+const deviceWidth = window.screen?.width || 0;
+const isIPhoneWebView = /iPhone|iPod/i.test(navigator.userAgent);
+const hasCompactScreen = deviceWidth > 0 && deviceWidth <= 600;
+const hasDesktopViewportOnPhone = window.innerWidth >= 700 && (isIPhoneWebView || hasCompactScreen);
+
+if (hasDesktopViewportOnPhone) {
+  document.documentElement.classList.add("tg-mobile-viewport-fallback");
+}
+
 // Project filters
 const filterButtons = document.querySelectorAll(".filter-btn");
 const projectCards = document.querySelectorAll(".project-card");
