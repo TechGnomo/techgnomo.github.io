@@ -2235,3 +2235,293 @@ a.appstart-button:hover {
     border-radius: 24px;
   }
 }
+
+/* iOS in-app browser fallback
+   Some embedded browsers report a ~980px layout viewport on a phone and then
+   shrink the entire page. These rules deliberately scale and stack AppStart
+   for that specific runtime; normal mobile browsers use the media rules above. */
+
+html.tg-mobile-viewport-fallback,
+html.tg-mobile-viewport-fallback body {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.tg-mobile-viewport-fallback .container,
+html.tg-mobile-viewport-fallback .tg-header-inner {
+  width: 92%;
+  max-width: none;
+}
+
+html.tg-mobile-viewport-fallback .tg-header-inner {
+  min-height: 190px;
+}
+
+html.tg-mobile-viewport-fallback .tg-logo-link {
+  width: 164px;
+  height: 164px;
+}
+
+html.tg-mobile-viewport-fallback .tg-header-logo {
+  width: 148px;
+  height: 148px;
+}
+
+html.tg-mobile-viewport-fallback .tg-menu-toggle {
+  width: 122px;
+  height: 112px;
+  border-radius: 30px;
+}
+
+html.tg-mobile-viewport-fallback .tg-menu-toggle span {
+  left: 26px;
+  width: 70px;
+  height: 6px;
+}
+
+html.tg-mobile-viewport-fallback .tg-menu-toggle span:nth-child(1) {
+  top: 33px;
+}
+
+html.tg-mobile-viewport-fallback .tg-menu-toggle span:nth-child(2) {
+  top: 53px;
+}
+
+html.tg-mobile-viewport-fallback .tg-menu-toggle span:nth-child(3) {
+  top: 73px;
+}
+
+html.tg-mobile-viewport-fallback body.tg-menu-open .tg-menu-toggle {
+  top: 48px;
+  right: 40px;
+}
+
+html.tg-mobile-viewport-fallback body.tg-menu-open .tg-menu-toggle span:nth-child(1),
+html.tg-mobile-viewport-fallback body.tg-menu-open .tg-menu-toggle span:nth-child(3) {
+  top: 53px;
+}
+
+html.tg-mobile-viewport-fallback .tg-nav-menu {
+  padding: 230px 60px 150px;
+  gap: 34px;
+}
+
+html.tg-mobile-viewport-fallback .tg-nav-menu a {
+  font-size: 92px;
+}
+
+html.tg-mobile-viewport-fallback .tg-nav-menu .tg-nav-featured {
+  font-size: 74px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-hero {
+  min-height: auto;
+  padding: 120px 0 160px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-hero-grid,
+html.tg-mobile-viewport-fallback .appstart-split,
+html.tg-mobile-viewport-fallback .appstart-output-grid,
+html.tg-mobile-viewport-fallback .appstart-testing-grid {
+  grid-template-columns: 1fr;
+  gap: 110px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-kicker,
+html.tg-mobile-viewport-fallback .appstart-section-label {
+  font-size: 24px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-kicker {
+  gap: 20px;
+  padding: 22px 28px;
+  margin-bottom: 52px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-kicker span {
+  width: 18px;
+  height: 18px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-hero h1 {
+  max-width: 900px;
+  font-size: 116px;
+  line-height: 0.94;
+  letter-spacing: -7px;
+  margin-bottom: 48px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-hero-copy > p,
+html.tg-mobile-viewport-fallback .appstart-problem-copy p,
+html.tg-mobile-viewport-fallback .appstart-output-intro > p,
+html.tg-mobile-viewport-fallback .appstart-testing-grid > div:first-child > p,
+html.tg-mobile-viewport-fallback .appstart-final-card p {
+  font-size: 34px;
+  line-height: 1.65;
+}
+
+html.tg-mobile-viewport-fallback .appstart-actions {
+  gap: 24px;
+  margin: 62px 0 72px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-button {
+  min-height: 108px;
+  padding: 0 42px;
+  font-size: 30px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-meta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-meta div {
+  min-width: 0;
+  padding-left: 28px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-meta span {
+  font-size: 22px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-meta strong {
+  font-size: 30px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-hero-art {
+  min-height: 930px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-icon-shell {
+  width: 720px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-orbit-one {
+  width: 860px;
+  height: 860px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-orbit-two {
+  width: 900px;
+  height: 570px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-float-card {
+  gap: 20px;
+  padding: 24px 30px;
+  border-radius: 28px;
+  font-size: 28px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-float-card span {
+  font-size: 22px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-section {
+  padding: 180px 0;
+}
+
+html.tg-mobile-viewport-fallback .appstart-section h2,
+html.tg-mobile-viewport-fallback .appstart-final-card h2 {
+  font-size: 82px;
+  line-height: 1;
+}
+
+html.tg-mobile-viewport-fallback .appstart-section-heading {
+  max-width: 900px;
+  margin-bottom: 80px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-section-heading > p {
+  font-size: 32px;
+  margin-top: 34px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-process-grid,
+html.tg-mobile-viewport-fallback .appstart-principles-grid {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-process-grid article,
+html.tg-mobile-viewport-fallback .appstart-principles-grid article {
+  min-height: 480px;
+  padding: 54px;
+  border-radius: 42px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-process-grid article > span {
+  font-size: 24px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-process-grid h3,
+html.tg-mobile-viewport-fallback .appstart-principles-grid h3 {
+  margin-top: 130px;
+  font-size: 50px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-process-grid p,
+html.tg-mobile-viewport-fallback .appstart-principles-grid p {
+  font-size: 31px;
+  line-height: 1.55;
+}
+
+html.tg-mobile-viewport-fallback .appstart-output-list div {
+  grid-template-columns: 82px 1fr;
+  gap: 26px;
+  padding: 34px 8px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-output-list span {
+  font-size: 22px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-output-list p,
+html.tg-mobile-viewport-fallback .appstart-test-panel li {
+  font-size: 31px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-principles-grid article > div {
+  width: 104px;
+  height: 104px;
+  border-radius: 30px;
+  font-size: 48px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-test-top {
+  padding: 32px 38px;
+  font-size: 22px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-test-panel ul {
+  padding: 18px 38px 34px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-test-panel li {
+  gap: 22px;
+  padding: 22px 0;
+}
+
+html.tg-mobile-viewport-fallback .appstart-test-panel li span {
+  width: 18px;
+  height: 18px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-final-section {
+  padding: 30px 0 190px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-final-card {
+  grid-template-columns: 1fr;
+  gap: 46px;
+  padding: 60px;
+  border-radius: 52px;
+}
+
+html.tg-mobile-viewport-fallback .appstart-final-card > img {
+  width: 180px;
+  height: 180px;
+  border-radius: 46px;
+}
