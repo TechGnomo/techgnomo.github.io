@@ -27,7 +27,9 @@ Do not add a lime, a purple, or a pure black. Do not put type on brass. One acce
 
 Two families.
 
-**Fraunces** (`--font-display`) is the voice: names, titles, the one sentence that matters, and any numeral that should feel set rather than widget-like. It is a variable font with optical size (`opsz` 9–144) and weight (`wght` 100–900). Leave `SOFT` and `WONK` at 0 — softness and wonk turn the mark of the workshop into a costume. Use optical size on purpose: `opsz` 144 for a wordmark, around 36–72 for a sentence or a large figure, lower for small roman. Italic is for a single line, not for labels.
+**Fraunces** (`--font-display`) is the voice: names, titles, the one sentence that matters, and any numeral that should feel set rather than widget-like. It is a variable font with optical size (`opsz` 9–144) and weight (`wght` 100–900). Leave `SOFT` and `WONK` at 0 — softness and wonk turn the mark of the workshop into a costume. Italic is for a single line, not for labels.
+
+Do not set `opsz` to 144 for a word that is under about 120px. At that optical size the H crossbar is a hairline and "TECHGNOMO" reads as "TECIIGNOMO". The door uses `opsz` 12 and weight 650 at phone size, and `opsz` 32 and weight 560 on a large screen, with `font-optical-sizing: none` so the browser does not push the axis back up. This cut of Fraunces has no `lnum` or `tnum` glyphs (figures are proportional and sit on the baseline). Where digits must not shift as they tick, put each digit in a fixed `1ch` cell. Source Sans 3 does have real tabular lining figures for UI.
 
 **Source Sans 3** (`--font-text`) is the apparatus: navigation, labels, footer, forms, body copy on V1. Weight 400 for reading, 500–600 for a label that must hold. It has tabular figures when a UI number must not jitter.
 
@@ -39,17 +41,17 @@ Two families.
 | `--text-lg` | 1.35rem | A short lead. |
 | `--text-xl` | 1.75rem | A section title. |
 | `--text-2xl` | 2.5rem | A page title inside the site. |
-| `--text-display` | clamp(2.15rem, 5.5vw, 4.65rem) | The door wordmark only. |
+| `--text-display` | clamp(2.85rem, 8vw, 7.15rem) | The door wordmark only. |
 
-Leading: `--leading-tight` 0.96 for the wordmark, `--leading-snug` 1.25 for a short line, `--leading-body` 1.5 for paragraphs. Wordmark tracking is `--tracking-wordmark` (0.105em). Do not track body text out into letter-spaced capitals.
+Leading: `--leading-tight` 0.96 for the wordmark, `--leading-snug` 1.25 for a short line, `--leading-body` 1.5 for paragraphs. Wordmark tracking is `--tracking-wordmark` (0.05em). Wider tracking plus a hairline H is what made the name unreadable. Do not track body text out into letter-spaced capitals.
 
-The door sets the name in Fraunces roman, uppercase, optical size 144. The sentence under it is Fraunces italic. Countdown figures are Fraunces lining tabular (`lnum`, `tnum`). Labels and the footer are Source Sans 3.
+The door sets the name in Fraunces roman, uppercase, at the optical sizes above. The sentence under it is Fraunces italic. Countdown figures are Fraunces, one digit per `1ch` cell, with a hairline between units. Labels and the footer are Source Sans 3.
 
 ## Spacing
 
 A 4px base, named `--space-1` through `--space-10`: 4, 8, 12, 16, 24, 32, 48, 72, 104, 128 px (as rem). `--space-page` is the page inset, `clamp(1.5rem, 8vw, 7.5rem)`.
 
-The door aligns the mark, the wordmark, and the footer to `--space-page`. That shared edge is the system. Prefer fewer, larger gaps over even padding. The empty paper is doing work.
+Prefer fewer, larger gaps over even padding. The door is a centred stage: the name is large, the mark sits above it, and the paper around it is the quiet. A soft warm light sits behind the type. It is not a left-hand column on a blank page.
 
 ## Radii
 
@@ -65,9 +67,9 @@ Motion is a small arrival or a state change, then stillness. The door: the plate
 
 `/assets/brand/mark.svg` is a filled gnome silhouette: hat, brim, beard. It is a stamp, not an illustration.
 
-Recolor it with a CSS mask (the door does this, in `--color-seal`) or inline the paths and use `currentColor`. Do not redraw it with a face, eyes, or a scenery. Keep it small — about 1.75rem on the door. Clear space around it of at least its own height. It does not sit in a circle, a badge, or a neon tile, and it is not a mascot repeated through the page.
+Recolor it by inlining the paths with `currentColor`, which stays crisp, or with a CSS mask. Do not redraw it with a face, eyes, or scenery. On the door it is about 3.25rem, large enough to read as a stamp, not a bullet. Clear space around it of at least half its height. It does not sit in a circle, a badge, or a neon tile, and it is not a mascot repeated through the page.
 
-On the door it is alone, above the name, on the same left edge. V1 can repeat that placement on the front page. Inside pages can use it once, in the margin or the footer, or not at all.
+V1 can place it once above a title, or once in the margin or footer.
 
 ## The door, specifically
 

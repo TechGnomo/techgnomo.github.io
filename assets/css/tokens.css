@@ -46,13 +46,13 @@
   --text-lg: 1.35rem;
   --text-xl: 1.75rem;
   --text-2xl: 2.5rem;
-  --text-display: clamp(2.15rem, 5.5vw, 4.65rem);
+  --text-display: clamp(2.6rem, 8vw, 7.15rem);
 
   --leading-tight: 0.96;
   --leading-snug: 1.25;
   --leading-body: 1.5;
 
-  --tracking-wordmark: 0.105em;
+  --tracking-wordmark: 0.05em;
   --tracking-calm: 0.01em;
 
   --space-1: 0.25rem;

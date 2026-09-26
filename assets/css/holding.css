@@ -19,11 +19,12 @@ body {
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  background: var(--color-paper);
+  background:
+    radial-gradient(ellipse 68% 52% at 50% 42%, #f8f3ea 0%, rgba(241, 234, 220, 0) 68%),
+    var(--color-paper);
   color: var(--color-ink);
   font-family: var(--font-display);
   font-optical-sizing: auto;
-  text-rendering: optimizeLegibility;
 }
 
 ::selection {
@@ -51,38 +52,45 @@ body {
 
 .plate {
   flex: 1 0 auto;
-  width: min(46rem, 100%);
-  padding: clamp(6.25rem, 18vh, 10.5rem) var(--space-page) var(--space-7);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-8) var(--space-5) var(--space-6);
 }
 
 .mark-slot {
-  margin: 0 0 clamp(2.25rem, 5vh, 3.25rem);
+  margin: 0 0 clamp(1.5rem, 3vh, 2.25rem);
 }
 
 .mark {
   display: block;
-  width: 1.75rem;
-  height: 1.75rem;
-  background: var(--color-seal);
-  -webkit-mask: url("/assets/brand/mark.svg") center / contain no-repeat;
-  mask: url("/assets/brand/mark.svg") center / contain no-repeat;
+  width: clamp(2.85rem, 4.2vw, 3.5rem);
+  height: clamp(2.85rem, 4.2vw, 3.5rem);
+  color: var(--color-seal);
+  shape-rendering: geometricPrecision;
   animation: rise var(--duration-slow) var(--ease-out) both;
 }
 
 .wordmark {
   margin: 0;
-  font-weight: 500;
+  max-width: 100%;
+  font-optical-sizing: none;
+  font-weight: 650;
   font-size: var(--text-display);
-  font-variation-settings: "opsz" 144, "wght" 500;
+  font-variation-settings: "opsz" 12, "wght" 650;
   line-height: var(--leading-tight);
-  letter-spacing: var(--tracking-wordmark);
+  letter-spacing: 0.04em;
   text-transform: uppercase;
+  text-rendering: geometricPrecision;
   animation: rise var(--duration-slow) var(--ease-out) 80ms both;
 }
 
 .line {
   margin: var(--space-6) 0 0;
-  max-width: 18em;
+  max-width: 16em;
   color: var(--color-ink-soft);
   font-weight: 450;
   font-style: italic;
@@ -102,8 +110,20 @@ body {
   letter-spacing: -0.015em;
 }
 
+.rule {
+  width: 2.75rem;
+  height: 1px;
+  margin: clamp(1.75rem, 4vh, 2.5rem) 0 0;
+  border: 0;
+  background: var(--color-brass);
+  animation: reveal var(--duration-slow) var(--ease-out) both;
+}
+
 .when {
-  margin-top: clamp(4rem, 10vh, 6.25rem);
+  margin-top: clamp(1.75rem, 4vh, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   animation: rise var(--duration-slow) var(--ease-out) 240ms both;
 }
 
@@ -117,26 +137,49 @@ body {
 }
 
 .clock {
-  display: grid;
-  grid-template-columns: repeat(4, max(2ch, 3.15rem));
-  column-gap: clamp(1.15rem, 3.6vw, 3.15rem);
-  row-gap: 0.55rem;
-  width: max-content;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(0.55rem, 1.6vw, 1.15rem);
   max-width: 100%;
-  font-size: clamp(2.3rem, 4.1vw, 3.35rem);
-  font-weight: 460;
-  font-variation-settings: "opsz" 72, "wght" 460;
+  font-optical-sizing: none;
+  font-size: clamp(2.15rem, 4.4vw, 3.5rem);
+  font-weight: 520;
+  font-variation-settings: "opsz" 24, "wght" 520;
   line-height: 1;
 }
 
-.clock b {
-  font-weight: inherit;
-  font-variant-numeric: lining-nums tabular-nums;
-  font-feature-settings: "lnum" 1, "tnum" 1;
-  letter-spacing: -0.03em;
+.unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
 }
 
-.clock span {
+.fig {
+  display: inline-flex;
+  font-weight: inherit;
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: "lnum" 1, "tnum" 1, "liga" 0;
+  letter-spacing: 0;
+}
+
+.digit {
+  display: inline-block;
+  width: 1ch;
+  text-align: center;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.sep {
+  width: 1px;
+  height: 0.72em;
+  margin-top: 0.14em;
+  background: var(--color-line);
+  flex: none;
+}
+
+.label {
   font-family: var(--font-text);
   font-size: var(--text-sm);
   font-weight: 400;
@@ -172,11 +215,12 @@ body {
 
 .foot {
   margin-top: auto;
-  padding: var(--space-4) var(--space-page) var(--space-5);
+  padding: var(--space-4) var(--space-5) var(--space-5);
   font-family: var(--font-text);
   font-size: var(--text-sm);
   font-weight: 400;
   letter-spacing: var(--tracking-calm);
+  text-align: center;
   color: var(--color-ink-faint);
 }
 
@@ -242,14 +286,11 @@ body {
   }
 }
 
-@media (max-width: 420px) {
+@media (min-width: 800px) {
   .wordmark {
-    letter-spacing: 0.07em;
-  }
-
-  .clock {
-    column-gap: 0.85rem;
-    grid-template-columns: repeat(4, max(2ch, 2.7rem));
+    font-weight: 560;
+    font-variation-settings: "opsz" 32, "wght" 560;
+    letter-spacing: var(--tracking-wordmark);
   }
 }
 

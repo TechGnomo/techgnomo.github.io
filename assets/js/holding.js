@@ -22,9 +22,12 @@
 
   function paint(el, value) {
     var next = pad(value);
-    if (el.textContent === next) return;
+    if (el.getAttribute("data-value") === next) return;
     var seen = el.getAttribute("data-seen") === "1";
-    el.textContent = next;
+    var cells = el.querySelectorAll(".digit");
+    cells[0].textContent = next.charAt(0);
+    cells[1].textContent = next.charAt(1);
+    el.setAttribute("data-value", next);
     el.setAttribute("data-seen", "1");
     if (!seen || reduced) return;
     el.classList.remove("is-tick");
