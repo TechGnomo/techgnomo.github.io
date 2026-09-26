@@ -4,17 +4,98 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
-    <meta name="theme-color" content="#07080c" />
-    <title>Page Not Found | TechGnomo</title>
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="style.css" />
+    <title>TechGnomo</title>
+    <meta
+      name="description"
+      content="Something new is taking shape. Opens Monday 28 September 2026, 9:00 AM Brisbane time."
+    />
+    <link rel="canonical" href="https://techgnomo.com/" />
+    <meta name="theme-color" content="#f1eadc" />
+    <meta name="color-scheme" content="light" />
+    <meta property="og:title" content="TechGnomo" />
+    <meta
+      property="og:description"
+      content="Something new is taking shape. Opens Monday 28 September 2026, 9:00 AM Brisbane time."
+    />
+    <meta property="og:url" content="https://techgnomo.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_AU" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="TechGnomo" />
+    <meta
+      name="twitter:description"
+      content="Something new is taking shape. Opens Monday 28 September 2026, 9:00 AM Brisbane time."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link
+      rel="preload"
+      href="/assets/fonts/fraunces-latin-opsz-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/assets/fonts/fraunces-latin-opsz-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/css/holding.css" />
   </head>
   <body>
-    <main class="error-page">
-      <p class="kicker"><span></span> ERROR / 404</p>
-      <h1>Signal <em>lost.</em></h1>
-      <p>The address does not lead to a live TechGnomo page.</p>
-      <a class="button button-primary" href="/"><span>Return home</span><b aria-hidden="true">↗</b></a>
+    <a class="skip" href="#plate">Skip to content</a>
+    <main id="plate" class="plate">
+      <p class="mark-slot">
+        <svg class="mark" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M24 2.2c-.7 6.4-4.6 11.8-11.6 15.2-.6.3-.3 1.2.4 1.2h22.4c.7 0 1-.9.4-1.2C28.6 14 24.7 8.6 24 2.2z"/>
+          <path fill="currentColor" d="M7.2 18.2h33.6c-.8 3.4-6.4 5.9-16.8 5.9S8 21.6 7.2 18.2z"/>
+          <path fill="currentColor" d="M17.2 23.4c1 1.7 3.3 2.8 6.8 2.8s5.8-1.1 6.8-2.8c-.45 5.2-1.7 9.6-3.5 12.6-1.15 1.9-2.4 2.7-3.3 2.7s-2.15-.8-3.3-2.7c-1.8-3-3.05-7.4-3.5-12.6z"/>
+        </svg>
+      </p>
+      <h1 class="wordmark">TechGnomo</h1>
+      <p class="line" id="line">Something new is taking shape.</p>
+      <hr class="rule" />
+      <section class="when" aria-labelledby="launch">
+        <p class="opens" id="opens">
+          <time id="launch" datetime="2026-09-27T23:00:00Z">Opens Monday, 9:00 AM</time>
+        </p>
+        <p class="sr" id="sr" aria-live="polite">
+          Counting down to Monday 28 September 2026, 9:00 AM Brisbane time.
+        </p>
+        <div class="clock" id="clock" aria-hidden="true">
+          <div class="unit">
+            <b id="days" class="fig"><span class="digit">–</span><span class="digit">–</span></b>
+            <span class="label">days</span>
+          </div>
+          <span class="sep" aria-hidden="true"></span>
+          <div class="unit">
+            <b id="hours" class="fig"><span class="digit">–</span><span class="digit">–</span></b>
+            <span class="label">hours</span>
+          </div>
+          <span class="sep" aria-hidden="true"></span>
+          <div class="unit">
+            <b id="mins" class="fig"><span class="digit">–</span><span class="digit">–</span></b>
+            <span class="label">min</span>
+          </div>
+          <span class="sep" aria-hidden="true"></span>
+          <div class="unit">
+            <b id="secs" class="fig"><span class="digit">–</span><span class="digit">–</span></b>
+            <span class="label">sec</span>
+          </div>
+        </div>
+        <p class="hint" id="hint" hidden>
+          <button type="button" id="reload">Refresh the page</button>
+        </p>
+        <noscript>
+          <p class="noscript">Opens Monday, 9:00 AM Brisbane. The countdown needs JavaScript.</p>
+        </noscript>
+      </section>
     </main>
+    <footer class="foot">© TechGnomo · Brisbane</footer>
+    <div class="sill" aria-hidden="true"></div>
+    <script src="/assets/js/holding.js"></script>
   </body>
 </html>

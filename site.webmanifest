@@ -1,9 +1,17 @@
 {
   "name": "TechGnomo",
   "short_name": "TechGnomo",
-  "description": "Websites, app MVPs and practical AI automations.",
+  "description": "Something new is taking shape.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07080c",
-  "theme_color": "#07080c"
+  "background_color": "#f1eadc",
+  "theme_color": "#f1eadc",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
 }
