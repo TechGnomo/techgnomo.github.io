@@ -1,194 +1,181 @@
 <!doctype html>
-<html lang="en-AU">
+<html lang="en-AU" class="no-js">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>ClearMoneyPath | Pay-Cycle Budget Planner by TechGnomo</title>
-    <meta
-      name="description"
-      content="ClearMoneyPath is a mobile budgeting app in development that organises bills, debts and savings around each payday to show what is genuinely safe to spend."
-    />
-    <meta name="author" content="Fabio D'Anna" />
-    <meta name="theme-color" content="#07080c" />
-    <meta name="robots" content="index, follow, max-snippet:-1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ClearMoneyPath, beta | TechGnomo</title>
+    <meta name="description" content="ClearMoneyPath is a pay-cycle planner: safe to spend until payday, with bills, debts and savings. Android beta, not publicly released. Screens use sample data." />
+    <meta name="author" content="Fabio D’Anna" />
+    <meta name="theme-color" content="#f4efe4" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
     <link rel="canonical" href="https://techgnomo.com/clearmoneypath.html" />
-    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="product.css" />
-
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/assets/fonts/fraunces-600.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/atkinson-400.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/site.css" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_AU" />
     <meta property="og:site_name" content="TechGnomo" />
-    <meta property="og:title" content="ClearMoneyPath | Know what is safe to spend" />
-    <meta
-      property="og:description"
-      content="A mobile-first pay-cycle planner for bills, debts, savings and the money left between paydays."
-    />
+    <meta property="og:title" content="ClearMoneyPath, beta | TechGnomo" />
+    <meta property="og:description" content="ClearMoneyPath is a pay-cycle planner: safe to spend until payday, with bills, debts and savings. Android beta, not publicly released. Screens use sample data." />
     <meta property="og:url" content="https://techgnomo.com/clearmoneypath.html" />
-    <meta name="twitter:card" content="summary" />
-
+    <meta property="og:image" content="https://techgnomo.com/assets/img/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ClearMoneyPath, beta | TechGnomo" />
+    <meta name="twitter:description" content="ClearMoneyPath is a pay-cycle planner: safe to spend until payday, with bills, debts and savings. Android beta, not publicly released. Screens use sample data." />
+    <meta name="twitter:image" content="https://techgnomo.com/assets/img/og.png" />
+    <script>document.documentElement.classList.replace("no-js","js");</script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "ClearMoneyPath",
-        "url": "https://techgnomo.com/clearmoneypath.html",
-        "description": "A pay-cycle budgeting app that organises bills, debts and savings to calculate what is safe to spend until the next payday.",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "iOS, Android",
-        "softwareVersion": "MVP in development",
-        "creator": {
-          "@type": "Organization",
-          "name": "TechGnomo",
-          "url": "https://techgnomo.com/"
-        }
-      }
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "ClearMoneyPath, beta | TechGnomo",
+  "description": "ClearMoneyPath is a pay-cycle planner: safe to spend until payday, with bills, debts and savings. Android beta, not publicly released. Screens use sample data.",
+  "url": "https://techgnomo.com/clearmoneypath.html",
+  "inLanguage": "en-AU",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "TechGnomo",
+    "url": "https://techgnomo.com/"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Fabio D’Anna",
+    "alternateName": "TechGnomo",
+    "url": "https://techgnomo.com/",
+    "email": "gnomocode@gmail.com"
+  }
+}
     </script>
   </head>
-
-  <body class="cmp-page">
-    <a class="skip-link" href="#product-content">Skip to content</a>
-
-    <header class="product-header">
-      <a class="product-brand" href="index.html" aria-label="Back to TechGnomo">
-        <span class="product-brand-mark" aria-hidden="true">TG</span>
-        <span>TechGnomo <small>/ Product 01</small></span>
-      </a>
-      <nav class="product-nav" aria-label="ClearMoneyPath navigation">
-        <a href="#problem">Problem</a>
-        <a href="#system">System</a>
-        <a href="#status">Build status</a>
-        <a class="product-nav-cta" href="mailto:gnomocode@gmail.com?subject=ClearMoneyPath%20launch%20updates" data-event="cmp_updates">Launch updates</a>
-      </nav>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="wrap header-bar">
+        <a class="brand" href="/">
+          <svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1.2" y="1.2" width="29.6" height="29.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M16 6.2l5.2 8.4H10.8L16 6.2z"/><circle cx="16" cy="18.4" r="3.2"/><path fill="currentColor" d="M11 23.4c1.5-1.7 3.1-2.4 5-2.4s3.5.7 5 2.4c-1.6 1.6-3.2 2.3-5 2.3s-3.4-.7-5-2.3z"/></svg>
+          <span class="brand-text"><span class="brand-name">TechGnomo</span><span class="brand-sub">Fabio D’Anna</span></span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span class="menu-bars" aria-hidden="true"></span>
+          <span>Menu</span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+        <a href="/workshop.html" aria-current="page">Workshop</a>
+        <a href="/hire.html">Hire Fabio</a>
+        <a href="/work-with.html">For venues</a>
+        <a href="/lab.html">Lab</a>
+        <a href="/contact.html">Contact</a>
+        </nav>
+      </div>
     </header>
+    <main id="main">
 
-    <main class="product-main" id="product-content">
-      <section class="product-container product-hero">
-        <div>
-          <p class="product-kicker">Fintech · Mobile budgeting</p>
-          <h1>Know what is <em>safe to spend.</em></h1>
-          <p class="product-lede">
-            ClearMoneyPath organises bills, debts and savings around the way people are actually paid, then makes the
-            money left until the next payday visible.
-          </p>
-          <div class="product-actions">
-            <a class="product-button product-button-primary" href="mailto:gnomocode@gmail.com?subject=ClearMoneyPath%20launch%20updates" data-event="cmp_hero_updates">Get launch updates ↗</a>
-            <a class="product-button" href="#system" data-event="cmp_explore_system">Explore the system ↓</a>
-          </div>
-          <dl class="product-meta">
-            <div><dt>Platforms</dt><dd>iOS + Android</dd></div>
-            <div><dt>Build</dt><dd>React Native + Firebase</dd></div>
-            <div><dt>Status</dt><dd>MVP in development</dd></div>
-          </dl>
+      <article class="wrap">
+        <nav class="crumbs" aria-label="Breadcrumb"><a href="/workshop.html">Workshop</a> <span aria-hidden="true">/</span> <span aria-current="page">ClearMoneyPath</span></nav>
+        <div class="card-top"><span class="code">TG–01</span><span class="status status-beta">Beta</span></div>
+        <h1>Know what is safe to spend until payday.</h1>
+        <p class="lede measure">A bank balance is not a plan. ClearMoneyPath works in pay cycles: set aside bills, a debt payment and savings, then see what is actually free to spend.</p>
+        <p class="measure">Beta means an Android build that can be tried. It is not a public release, and it is not on Google Play or the App Store. These screens use sample data, not a real person’s money.</p>
+
+        <h2>The problem</h2>
+        <p class="measure">Pay doesn’t always land on the first of the month. Bills do not care. If you only look at the balance, rent and a debt payment that fall before the next payday are still sitting in that number, pretending to be spendable.</p>
+        <p class="measure">I know that week from hospitality: hours change, the pay changes with them, and the bills do not. ClearMoneyPath is the planner I wanted for that stretch.</p>
+
+        <h2>Screens with sample data</h2>
+        <div class="shot-grid">
+          <figure class="shot">
+            <img src="/assets/img/cmp-home.jpg" width="540" height="1169" alt="ClearMoneyPath home screen with sample data. Safe to spend $1,292.23, bills due $458, saved $2,540, debt left $8,420." />
+            <figcaption>Home. Safe to spend, bills due, savings and debt left. Sample data.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="/assets/img/cmp-money.jpg" width="540" height="1169" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
+            <figcaption>Money in and out. Sample data.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="/assets/img/cmp-debts.jpg" width="540" height="1169" alt="ClearMoneyPath debts screen with sample data, showing snowball and avalanche and a short debt list." />
+            <figcaption>Debts, with snowball or avalanche. Sample data.</figcaption>
+          </figure>
+          <figure class="shot">
+            <img src="/assets/img/cmp-plan.jpg" width="540" height="1169" alt="ClearMoneyPath payday plan with sample data: bills, savings and spending checked against safe to spend." />
+            <figcaption>The payday plan. Sample data.</figcaption>
+          </figure>
         </div>
 
-        <div class="product-stage" aria-label="ClearMoneyPath safe-to-spend interface concept">
-          <div class="stage-top"><span>CLEARMONEYPATH / PAY CYCLE</span><span>SYNCED</span></div>
-          <div class="cmp-screen">
-            <div class="cmp-screen-inner">
-              <div class="cmp-screen-top"><span>THIS PAY CYCLE</span><span>12 DAYS LEFT</span></div>
-              <div class="cmp-balance"><span>Safe to spend</span><strong>$486</strong></div>
-              <div class="cmp-bar" aria-label="Pay-cycle allocation progress"></div>
-              <div class="cmp-row"><span>Bills reserved</span><b>$1,240</b></div>
-              <div class="cmp-row"><span>Debt payments</span><b>$310</b></div>
-              <div class="cmp-row"><span>Savings protected</span><b>$150</b></div>
-              <div class="cmp-row"><span>Daily guide</span><b>$40.50</b></div>
+        <h2>What this beta does</h2>
+        <ul class="measure">
+          <li>Shows a safe-to-spend figure for the current pay cycle, and the next payday.</li>
+          <li>Records money in, bills, spending and savings.</li>
+          <li>Tracks debts with a minimum, a rate and a payoff estimate, and lets you switch between snowball and avalanche.</li>
+          <li>Lays out the cycle as a short plan: bills covered, savings set aside, spending inside the safe amount.</li>
+        </ul>
+        <p class="measure">Built with React Native, Expo and Firebase. I use AI assistance heavily while building. I decide the pay-cycle model, what a bill or a debt has to do, and whether a screen is telling the truth. Generated code still needs checking, especially around dates and money. The repository is not public yet, so that split is not something you can read line by line. I’m happy to walk through it.</p>
+
+        <h2>Try the idea on this page</h2>
+        <p class="measure">This box is a sketch, not the app. It only does the subtraction. The numbers stay in your browser.</p>
+        <form class="sketch" id="spend-sketch">
+          <div class="sketch-grid">
+            <div class="field">
+              <label for="pay"><span>Pay this cycle (A$)</span></label>
+              <input id="pay" name="pay" type="number" inputmode="decimal" min="0" step="0.01" value="1840" />
+            </div>
+            <div class="field">
+              <label for="bills"><span>Bills due before next payday</span></label>
+              <input id="bills" name="bills" type="number" inputmode="decimal" min="0" step="0.01" value="620" />
+            </div>
+            <div class="field">
+              <label for="debt"><span>Debt payment this cycle</span></label>
+              <input id="debt" name="debt" type="number" inputmode="decimal" min="0" step="0.01" value="150" />
+            </div>
+            <div class="field">
+              <label for="save"><span>Set aside for savings</span></label>
+              <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" />
             </div>
           </div>
-        </div>
-      </section>
+          <p class="sketch-result" aria-live="polite"><span id="safe-label">Safe to spend</span> <strong id="safe-amount">$990.00</strong></p>
+          <p class="help">Sample figures. Change them. If the bills and payments are bigger than the pay, it says you’re short, instead of pretending the number is zero.</p>
+        </form>
 
-      <section class="product-section" id="problem">
-        <div class="product-container product-split">
-          <div>
-            <p class="product-kicker">The problem</p>
-            <h2>A bank balance is not a <em>spending plan.</em></h2>
-          </div>
-          <div class="product-split-copy">
-            <p>
-              People get paid, cover immediate bills and try to remember everything else coming before the next
-              payday. The account balance looks available even when much of it already has a job.
-            </p>
-            <p>
-              Traditional monthly budgets can make that harder for weekly and fortnightly income. ClearMoneyPath
-              treats each pay cycle as the planning unit and protects future obligations before calculating what is
-              genuinely free.
-            </p>
-          </div>
-        </div>
-      </section>
+        <h2>What it is not</h2>
+        <ul class="measure">
+          <li>Not financial advice. It doesn’t suggest loans, cards or other products. Snowball and avalanche are methods you choose.</li>
+          <li>Not a public app yet. Don’t look for it on a store.</li>
+          <li>Not a picture of a customer. Every figure on this page is sample data.</li>
+        </ul>
+        <p class="measure"><a href="/workshop.html">Back to the workshop</a> · <a href="/hire.html">Hiring? The résumé is here.</a></p>
+      </article>
 
-      <section class="product-section" id="system">
-        <div class="product-container">
-          <header class="product-heading">
-            <p class="product-kicker">The planning system</p>
-            <h2>Every dollar gets a job before the <em>leftover.</em></h2>
-            <p>
-              Income, bills, debts and savings are organised into one pay-cycle view so the user can make everyday
-              decisions without rebuilding the budget in their head.
-            </p>
-          </header>
-
-          <ol class="workflow-list">
-            <li><span>01</span><h3>Start at payday</h3><p>Choose a weekly, fortnightly or monthly cycle and set the income available for that period.</p></li>
-            <li><span>02</span><h3>Reserve obligations</h3><p>Protect upcoming bills, required debt payments and the savings target before treating money as available.</p></li>
-            <li><span>03</span><h3>See the safe number</h3><p>Calculate what remains for flexible spending across the days left in the current pay cycle.</p></li>
-            <li><span>04</span><h3>Track the longer path</h3><p>Keep debts, progress and future goals visible without losing the immediate payday decision.</p></li>
-          </ol>
-        </div>
-      </section>
-
-      <section class="product-section">
-        <div class="product-container">
-          <header class="product-heading">
-            <p class="product-kicker">Core experience</p>
-            <h2>Less spreadsheet anxiety. More <em>visibility.</em></h2>
-            <p>The MVP concentrates on the information needed to make a confident decision today.</p>
-          </header>
-
-          <div class="feature-grid">
-            <article class="feature-card"><span>01 / PLAN</span><h3>Pay-cycle budget</h3><p>Build around the next payday instead of forcing every user into a calendar-month model.</p></article>
-            <article class="feature-card"><span>02 / PROTECT</span><h3>Bills and savings</h3><p>Reserve upcoming obligations and chosen savings before calculating flexible money.</p></article>
-            <article class="feature-card"><span>03 / PROGRESS</span><h3>Debt tracking</h3><p>Keep balances and payoff progress connected to the same plan used each payday.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="product-section" id="status">
-        <div class="product-container">
-          <header class="product-heading">
-            <p class="product-kicker">Working MVP</p>
-            <h2>Built beyond the <em>concept.</em></h2>
-            <p>These are implemented foundations in the current application—not a speculative feature list.</p>
-          </header>
-
-          <div class="status-grid">
-            <article class="status-card"><span>ACCESS / WORKING</span><h3>Secure accounts</h3><p>Email and Google sign-in are connected through Firebase Authentication.</p></article>
-            <article class="status-card"><span>DATA / WORKING</span><h3>Cloud backup</h3><p>User data can be backed up to Firestore and restored across supported sessions.</p></article>
-            <article class="status-card"><span>BUDGET / WORKING</span><h3>Budget planner</h3><p>The core planning flow supports the user’s income and spending structure.</p></article>
-            <article class="status-card"><span>BILLS / WORKING</span><h3>Bill tracking</h3><p>Upcoming commitments remain visible inside the budgeting experience.</p></article>
-            <article class="status-card"><span>DEBT / WORKING</span><h3>Debt tracking</h3><p>Balances and repayment progress connect short-term actions to the longer goal.</p></article>
-            <article class="status-card"><span>NEXT / ACTIVE</span><h3>Product validation</h3><p>Onboarding, usability, subscription value and launch readiness remain active work.</p></article>
-          </div>
-        </div>
-      </section>
-
-      <section class="product-section">
-        <div class="product-container product-final">
-          <div>
-            <p class="product-kicker">Follow the build</p>
-            <h2>Clearer money decisions, one payday at a <em>time.</em></h2>
-            <p>Email TechGnomo to ask about the product or be included in future launch updates.</p>
-          </div>
-          <a class="product-button product-button-primary" href="mailto:gnomocode@gmail.com?subject=ClearMoneyPath%20launch%20updates" data-event="cmp_final_updates">Request updates ↗</a>
-        </div>
-      </section>
     </main>
 
-    <footer class="product-container product-footer">
-      <p>© <span id="currentYear">2026</span> TechGnomo / ClearMoneyPath</p>
-      <div><a href="index.html#work">All products</a><a href="index.html#contact">Contact</a></div>
-    </footer>
+  <footer class="site-footer">
+    <div class="wrap footer-grid">
+      <div>
+        <p class="footer-brand"><svg class="mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="1.2" y="1.2" width="29.6" height="29.6" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/><path fill="currentColor" d="M16 6.2l5.2 8.4H10.8L16 6.2z"/><circle cx="16" cy="18.4" r="3.2"/><path fill="currentColor" d="M11 23.4c1.5-1.7 3.1-2.4 5-2.4s3.5.7 5 2.4c-1.6 1.6-3.2 2.3-5 2.3s-3.4-.7-5-2.3z"/></svg> TechGnomo</p>
+        <p>Fabio D’Anna’s workshop in Brisbane. A person, not a company.</p>
+        <p class="footnote">The gnome is a maker’s mark. He stays in the corner on purpose.</p>
+      </div>
+      <div>
+        <nav class="footer-nav" aria-label="Footer">
+          <a href="/">Home</a>
+          <a href="/workshop.html">Workshop</a>
+          <a href="/hire.html">Hire Fabio</a>
+          <a href="/work-with.html">For venues</a>
+          <a href="/lab.html">Lab</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="mailto:gnomocode@gmail.com">gnomocode@gmail.com</a>
+          <a href="https://github.com/TechGnomo" rel="noopener noreferrer">GitHub<span class="visually-hidden"> (opens in a new tab)</span></a>
+          <a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/" rel="noopener noreferrer">LinkedIn<span class="visually-hidden"> (opens in a new tab)</span></a>
+        </nav>
+        <p class="footnote">© 2026 Fabio D’Anna</p>
+      </div>
+    </div>
+  </footer>
 
-    <script src="script.js" defer></script>
+    <script src="/assets/js/nav.js" defer></script>
+    <script src="/assets/js/spend-sketch.js" defer></script>
   </body>
 </html>

@@ -2,26 +2,42 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://techgnomo.com/</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-09-26</lastmod>
+  </url>
+  <url>
+    <loc>https://techgnomo.com/workshop.html</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://techgnomo.com/clearmoneypath.html</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
-    <loc>https://techgnomo.com/appstart.html</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://techgnomo.com/gnomorestaurant.html</loc>
+    <lastmod>2026-09-26</lastmod>
+  </url>
+  <url>
+    <loc>https://techgnomo.com/hire.html</loc>
+    <lastmod>2026-09-26</lastmod>
+  </url>
+  <url>
+    <loc>https://techgnomo.com/work-with.html</loc>
+    <lastmod>2026-09-26</lastmod>
+  </url>
+  <url>
+    <loc>https://techgnomo.com/lab.html</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
   <url>
     <loc>https://techgnomo.com/mvp-scope-checker.html</loc>
-    <lastmod>2026-08-26</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-09-26</lastmod>
+  </url>
+  <url>
+    <loc>https://techgnomo.com/contact.html</loc>
+    <lastmod>2026-09-26</lastmod>
+  </url>
+  <url>
+    <loc>https://techgnomo.com/privacy.html</loc>
+    <lastmod>2026-09-26</lastmod>
   </url>
 </urlset>

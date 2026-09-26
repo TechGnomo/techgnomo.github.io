@@ -1,9 +1,24 @@
 {
   "name": "TechGnomo",
   "short_name": "TechGnomo",
-  "description": "Websites, app MVPs and practical AI automations.",
+  "description": "Fabio D’Anna’s workshop: useful software, honestly labelled.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07080c",
-  "theme_color": "#07080c"
+  "background_color": "#f4efe4",
+  "theme_color": "#f4efe4",
+  "lang": "en-AU",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
 }

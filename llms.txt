@@ -1,0 +1,22 @@
+# TechGnomo
+
+> Fabio D’Anna’s workshop in Brisbane. A personal site, not a company. He is a hospitality professional moving into IT.
+
+TechGnomo publishes useful software with an honest status (idea, experiment, prototype, alpha, beta, live, mature, archived). AI, automation and cybersecurity are learning, not services.
+
+## Pages
+
+- [Home](https://techgnomo.com/): who he is, and three ways in
+- [Workshop](https://techgnomo.com/workshop.html): ClearMoneyPath (beta), GnomoRestaurant (prototype), MVP Scope Checker (live)
+- [ClearMoneyPath](https://techgnomo.com/clearmoneypath.html): pay-cycle planner, Android beta, screens use sample data
+- [GnomoRestaurant](https://techgnomo.com/gnomorestaurant.html): hospitality prototype, no public screenshots
+- [Hire Fabio](https://techgnomo.com/hire.html): web résumé, no PDF
+- [For venues](https://techgnomo.com/work-with.html): two small fixed-price jobs
+- [Lab](https://techgnomo.com/lab.html): the scope checker, and what he is learning
+- [MVP Scope Checker](https://techgnomo.com/mvp-scope-checker.html): free browser tool, nothing uploaded
+- [Contact](https://techgnomo.com/contact.html): gnomocode@gmail.com
+- [Privacy](https://techgnomo.com/privacy.html)
+
+## Contact
+
+gnomocode@gmail.com
