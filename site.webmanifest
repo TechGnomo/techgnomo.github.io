@@ -1,9 +1,17 @@
 {
   "name": "TechGnomo",
   "short_name": "TechGnomo",
-  "description": "Websites, app MVPs and practical AI automations.",
+  "description": "A small workshop in Brisbane where real problems become useful tools.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#07080c",
-  "theme_color": "#07080c"
+  "background_color": "#f4efe6",
+  "theme_color": "#f4efe6",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
 }
