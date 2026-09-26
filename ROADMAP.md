@@ -1,16 +1,18 @@
 # TechGnomo roadmap
 
-V1 is the honest workshop: a front door, proof with real status labels, a web résumé, two small venue offers, the live scope checker, contact and a privacy note. Anything that would have been a stub, a fake screenshot or an unverifiable claim is here instead.
+V1 is the TechGnomo hub. The workshop makes products, takes small studio jobs, keeps a lab, and names Fabio as the founder. Anything that would have been a stub, a fake screenshot, a buy button, or an unverifiable claim is here instead.
+
+The visual system is the one in `DESIGN.md` and `/assets/css/tokens.css`, shared with the launch door.
 
 ## Shipped in V1
 
-- Home with three paths: hire, venues, workshop
-- Workshop catalogue and case notes for ClearMoneyPath (beta, sample-data screens) and GnomoRestaurant (prototype, no fake UI)
-- MVP Scope Checker kept working, restyled, and moved to the lab
-- Web résumé at `/hire.html` (no PDF, no phone, no street address)
-- Two venue offers with indicative AUD ranges
-- Contact via the existing public address, gnomocode@gmail.com
-- Privacy note, sitemap, robots, 404, favicon, shared design tokens
+- `/` Hub: the workshop, ClearMoneyPath featured as a product (beta, not for sale), paths into the ecosystem
+- `/products/` and `/products/clearmoneypath/`, `/products/gnomorestaurant/`
+- `/studio/` two venue offers with indicative AUD ranges
+- `/lab/` and `/lab/scope-checker/` (the live tool)
+- `/fabio/` web résumé (no PDF, no phone, no street address)
+- `/contact/`, `/privacy/`, 404, sitemap, robots
+- Old flat URLs for ClearMoneyPath and the scope checker redirect to the new paths
 - Old overlapping portfolios and the public résumé PDF removed from the served tree
 
 ## NEXT
