@@ -704,7 +704,7 @@ def pages():
             <a href="mailto:gnomocode@gmail.com?subject=Junior%20role%20via%20TechGnomo">Email about a role</a>
             <a href="/products/">See the products</a>
           </p>
-          <p>gnomocode@gmail.com · <a href="https://github.com/TechGnomo" rel="noopener noreferrer">GitHub<span class="sr"> (opens in a new tab)</span></a> · <a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/" rel="noopener noreferrer">LinkedIn<span class="sr"> (opens in a new tab)</span></a></p>
+          <p>gnomocode@gmail.com · <a href="https://github.com/TechGnomo">GitHub</a> · <a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/">LinkedIn</a></p>
         </div>
       </div>
       <section class="section" aria-labelledby="skills">
@@ -764,8 +764,8 @@ def pages():
       </p>
       <h2>Also public</h2>
       <ul>
-        <li><a href="https://github.com/TechGnomo" rel="noopener noreferrer">github.com/TechGnomo<span class="sr"> (opens in a new tab)</span></a></li>
-        <li><a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/" rel="noopener noreferrer">LinkedIn<span class="sr"> (opens in a new tab)</span></a></li>
+        <li><a href="https://github.com/TechGnomo">github.com/TechGnomo</a></li>
+        <li><a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/">LinkedIn</a></li>
       </ul>
       <p>I don’t list a phone number or a home address. Brisbane is the city.</p>
       <p><a href="/privacy/">Privacy</a></p>
