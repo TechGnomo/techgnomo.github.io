@@ -140,7 +140,7 @@ def render(page):
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
           <span class="menu-bars" aria-hidden="true"></span>
-          <span>Menu</span>
+          <span class="menu-word">Menu</span>
         </button>
         <nav class="site-nav" id="site-nav" aria-label="Primary">
         {nav_html(nav_current)}
@@ -168,7 +168,7 @@ def pages():
         "alternateName": "TechGnomo",
         "url": ORIGIN + "/",
         "email": "gnomocode@gmail.com",
-        "image": ORIGIN + "/assets/img/fabio.jpg",
+        "image": ORIGIN + "/assets/img/fabio.webp",
         "homeLocation": {
             "@type": "Place",
             "name": "Brisbane",
@@ -246,7 +246,7 @@ def pages():
             <h3>ClearMoneyPath</h3>
             <p>What is safe to spend until payday, once bills, a debt payment and savings are set aside. Android beta. Not on a public store.</p>
             <div class="card-shot">
-              <img src="/assets/img/cmp-home.jpg" width="540" height="1169" alt="ClearMoneyPath home screen with sample data: safe to spend, bills due, amount saved and debt left." />
+              <img src="/assets/img/cmp-home.webp" width="540" height="1169" alt="ClearMoneyPath home screen with sample data: safe to spend, bills due, amount saved and debt left." />
             </div>
             <p class="quiet">Top of the home screen. Sample data.</p>
             <a class="card-link" href="/clearmoneypath.html">Read the project</a>
@@ -267,7 +267,7 @@ def pages():
       </section>
       <section class="section wrap portrait-block">
         <figure class="portrait">
-          <img src="/assets/img/fabio.jpg" width="840" height="1170" alt="Portrait of Fabio D’Anna outdoors, wearing a dark shirt." />
+          <img src="/assets/img/fabio.webp" width="720" height="1003" alt="Portrait of Fabio D’Anna outdoors, wearing a dark shirt." />
           <figcaption>Fabio D’Anna, Brisbane.</figcaption>
         </figure>
         <div>
@@ -340,19 +340,19 @@ def pages():
         <h2>Screens with sample data</h2>
         <div class="shot-grid">
           <figure class="shot">
-            <img src="/assets/img/cmp-home.jpg" width="540" height="1169" alt="ClearMoneyPath home screen with sample data. Safe to spend $1,292.23, bills due $458, saved $2,540, debt left $8,420." />
+            <img src="/assets/img/cmp-home.webp" width="540" height="1169" alt="ClearMoneyPath home screen with sample data. Safe to spend $1,292.23, bills due $458, saved $2,540, debt left $8,420." />
             <figcaption>Home. Safe to spend, bills due, savings and debt left. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-money.jpg" width="540" height="1169" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
+            <img src="/assets/img/cmp-money.webp" width="540" height="1169" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
             <figcaption>Money in and out. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-debts.jpg" width="540" height="1169" alt="ClearMoneyPath debts screen with sample data, showing snowball and avalanche and a short debt list." />
+            <img src="/assets/img/cmp-debts.webp" width="540" height="1169" alt="ClearMoneyPath debts screen with sample data, showing snowball and avalanche and a short debt list." />
             <figcaption>Debts, with snowball or avalanche. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-plan.jpg" width="540" height="1169" alt="ClearMoneyPath payday plan with sample data: bills, savings and spending checked against safe to spend." />
+            <img src="/assets/img/cmp-plan.webp" width="540" height="1169" alt="ClearMoneyPath payday plan with sample data: bills, savings and spending checked against safe to spend." />
             <figcaption>The payday plan. Sample data.</figcaption>
           </figure>
         </div>
@@ -454,7 +454,7 @@ def pages():
         <p class="lede measure">Hospitality professional moving into IT. Junior software developer, junior web developer, or IT support. Brisbane, or remote within Australia.</p>
         <div class="portrait-block">
           <figure class="portrait">
-            <img src="/assets/img/fabio.jpg" width="840" height="1170" alt="Portrait of Fabio D’Anna outdoors, wearing a dark shirt." />
+            <img src="/assets/img/fabio.webp" width="720" height="1003" alt="Portrait of Fabio D’Anna outdoors, wearing a dark shirt." />
             <figcaption>Brisbane. Email is the contact. No phone number and no street address on this page.</figcaption>
           </figure>
           <div>
@@ -535,7 +535,7 @@ def pages():
             <li>Diploma of Software Development. Completed.</li>
             <li>Diploma of IT Networking and Telecommunications. Completed.</li>
           </ul>
-          <p class="measure quiet">I’ve left the provider and the year off this page so the line matches the certificate, not an old draft. Ask and I’ll send them.</p>
+          <p class="measure quiet">Both completed. Ask if you need the provider and the year; I’ll send them with the certificates.</p>
         </section>
 
         <section class="section" aria-labelledby="projects-title">

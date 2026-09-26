@@ -49,8 +49,8 @@
   --raised: #fffaf3;
   --ink: #241c15;
   --muted: #4e4338;
-  --line: #d9cdb8;
-  --line-strong: #b7a890;
+  --line: #948270;
+  --line-strong: #6e5e49;
   --stamp: #7a2e1e;
   --stamp-ink: #fff8f3;
   --moss: #1f5c40;
@@ -240,9 +240,8 @@ em {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: rgba(244, 239, 228, 0.94);
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
-  backdrop-filter: blur(8px);
 }
 
 .header-bar {
@@ -507,7 +506,7 @@ main {
 .portrait img {
   width: 100%;
   height: auto;
-  aspect-ratio: 840 / 1170;
+  aspect-ratio: 720 / 1003;
   object-fit: cover;
 }
 

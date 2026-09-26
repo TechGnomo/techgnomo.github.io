@@ -3,16 +3,20 @@
   var nav = document.getElementById("site-nav");
   if (!toggle || !nav) return;
 
+  var word = toggle.querySelector(".menu-word");
+
   function closeMenu() {
     nav.classList.remove("is-open");
     toggle.setAttribute("aria-expanded", "false");
     toggle.setAttribute("aria-label", "Open menu");
+    if (word) word.textContent = "Menu";
   }
 
   function openMenu() {
     nav.classList.add("is-open");
     toggle.setAttribute("aria-expanded", "true");
     toggle.setAttribute("aria-label", "Close menu");
+    if (word) word.textContent = "Close";
   }
 
   toggle.addEventListener("click", function () {
