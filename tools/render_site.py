@@ -312,23 +312,23 @@ def pages():
 
       <section class="section" aria-labelledby="screens">
         <h2 id="screens">Screens with sample data</h2>
-        <p class="measure quiet">Android beta. These pictures are an earlier build. The figures are sample data, not a person’s accounts. The list below is the current beta.</p>
+        <p class="measure quiet">Android beta. These figures are sample data, not a person’s accounts.</p>
         <div class="shots">
           <figure class="shot">
-            <img src="/assets/img/cmp-home.webp" width="540" height="1117" alt="Earlier ClearMoneyPath home screen. Sample data." />
-            <figcaption>Home. Earlier build. Sample data.</figcaption>
+            <img src="/assets/img/cmp-home.webp" width="780" height="1688" alt="ClearMoneyPath home with sample data. Left this cycle is shown, with a line that this is general information, not personal financial advice." />
+            <figcaption>Home. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-money.webp" width="540" height="1117" alt="Earlier ClearMoneyPath money screen. Sample data." />
-            <figcaption>Money in and out. Earlier build. Sample data.</figcaption>
+            <img src="/assets/img/cmp-money.webp" width="780" height="1688" alt="ClearMoneyPath money screen with sample data, split into money in and money out." />
+            <figcaption>Money in and out. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-debts.webp" width="540" height="1117" alt="Earlier ClearMoneyPath debts screen. Sample data." />
-            <figcaption>Debts. Earlier build. Sample data.</figcaption>
+            <img src="/assets/img/cmp-debts.webp" width="780" height="1688" alt="ClearMoneyPath debts screen with sample data. Snowball is selected, and the first debt in snowball order is marked." />
+            <figcaption>Debt order: snowball, avalanche or your own. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-plan.webp" width="540" height="1117" alt="Earlier ClearMoneyPath payday plan. Sample data." />
-            <figcaption>The payday plan. Earlier build. Sample data.</figcaption>
+            <img src="/assets/img/cmp-plan.webp" width="780" height="1688" alt="ClearMoneyPath payday plan with sample data. The cycle closes when payday arrives." />
+            <figcaption>The payday plan. Sample data.</figcaption>
           </figure>
         </div>
         <p class="measure">General information only, not personal financial advice.</p>
@@ -377,7 +377,7 @@ def pages():
         <ul class="measure">
           <li>Not for sale. No checkout, no waitlist price, no “founding licence”.</li>
           <li>Not financial advice, and it does not suggest loans, cards or other products.</li>
-          <li>Not a public app yet. The screens on this page are an earlier build, with sample data.</li>
+          <li>Not a public app yet. The screens on this page use sample data.</li>
         </ul>
         <p><a href="/products/">All products</a></p>
       </section>
