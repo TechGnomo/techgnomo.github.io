@@ -10,6 +10,8 @@ The log at `/news/` is generated. It is not a blog engine. Home shows the three 
 
 Newest first. The renderer sorts by `datetime`. Do not invent an event or a time you do not have. If you only know the day, use `YYYY-MM-DD`. The page prints the date and no clock time. Those posts sort at noon Brisbane so they stay on that day.
 
+Each post is rendered with the maker’s mark, the name TechGnomo, the time as the permalink, a status chip, and, when `product` is an announced slug, a small card in that product’s colours. Write the text as a person would say it. No pull-request numbers, commit ids, or time-zone notes.
+
 ```json
 {
   "id": "short-unique-id",

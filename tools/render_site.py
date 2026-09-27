@@ -103,6 +103,7 @@ def footer(with_mark=True):
       <nav class="foot-nav" aria-label="Footer">
         <a href="/studio/">Studio</a>
         <a href="/lab/">Lab</a>
+        <a href="/fabio/">Fabio</a>
         <a href="/contact/">Contact</a>
         <a href="/privacy/">Privacy</a>
       </nav>
@@ -111,16 +112,19 @@ def footer(with_mark=True):
     <div class="sill" aria-hidden="true"></div>"""
 
 
-def post_html(post, catalogue):
+def post_html(post, catalogue, level="h2"):
+    if level not in ("h2", "h3"):
+        level = "h2"
     when = format_when(post["datetime"])
     status = post.get("status") or ""
-    status_html = f'<span class="post-status">{html.escape(status)}</span>' if status else ""
+    status_html = f'<p class="post-status">{html.escape(status)}</p>' if status else ""
     product = catalogue.get(post.get("product") or "")
     product_html = ""
     if product and product.get("announced"):
         product_html = (
-            f'<p class="post-product"><a href="{html.escape(product["url"])}">'
-            f'{html.escape(product["name"])}</a></p>'
+            f'<p class="post-product"><a class="product-chip" href="{html.escape(product["url"])}" '
+            f'style="--chip-surface:{product["surface"]};--chip-accent:{product["accent"]};--chip-ink:{product["ink"]}">'
+            f'<span class="chip-swatch" aria-hidden="true"></span>{html.escape(product["name"])}</a></p>'
         )
     image_html = ""
     if post.get("image"):
@@ -133,30 +137,38 @@ def post_html(post, catalogue):
             f'alt="{alt}" loading="lazy" decoding="async" />'
         )
     permalink = f'/news/#{html.escape(post["id"])}'
+    label = f'label-{html.escape(post["id"])}'
     return f"""
-        <article class="post" id="{html.escape(post["id"])}">
-          <p class="post-meta">
-            <time datetime="{html.escape(post["datetime"])}">{when}</time>
-            {status_html}
-            <a class="permalink" href="{permalink}">Permalink <span class="sr">for {html.escape(when)}</span></a>
-          </p>
-          <p class="post-text">{html.escape(post["text"])}</p>
-          {image_html}
-          {product_html}
+        <article class="post" id="{html.escape(post["id"])}" aria-labelledby="{label}">
+          <div class="post-avatar" aria-hidden="true"><span class="mark"></span></div>
+          <div class="post-main">
+            <div class="post-top">
+              <{level} class="post-label" id="{label}">
+                <span class="post-name">TechGnomo</span>
+                <a class="post-time" href="{permalink}"><time datetime="{html.escape(post["datetime"])}">{html.escape(when)}</time></a>
+              </{level}>
+              {status_html}
+            </div>
+            <p class="post-text">{html.escape(post["text"])}</p>
+            {image_html}
+            {product_html}
+          </div>
         </article>"""
 
 
-def feed_html(posts, catalogue):
-    return "\n".join(post_html(post, catalogue) for post in posts)
+def feed_html(posts, catalogue, level="h2"):
+    return "\n".join(post_html(post, catalogue, level) for post in posts)
 
 
-def product_window(item, heading="h2"):
+def product_window(item, heading="h2", heading_id="", hero=False):
     phrase = html.escape(item.get("phrase") or STATUS_LABEL.get(item["status"], item["status"]))
+    id_attr = f' id="{heading_id}"' if heading_id else ""
+    klass = "window window-hero" if hero else "window"
     return f"""
-      <article class="window" style="--window-surface:{item["surface"]};--window-card:{item["card"]};--window-accent:{item["accent"]};--window-ink:{item["ink"]};--window-rule:{item["rule"]}">
+      <article class="{klass}" style="--window-surface:{item["surface"]};--window-card:{item["card"]};--window-accent:{item["accent"]};--window-ink:{item["ink"]};--window-rule:{item["rule"]}">
         <div class="window-copy">
           <p class="status">{phrase}</p>
-          <{heading}>{html.escape(item["name"])}</{heading}>
+          <{heading}{id_attr}>{html.escape(item["name"])}</{heading}>
           <p>{html.escape(item["summary"])}</p>
           <p class="actions"><a href="{html.escape(item["url"])}">See {html.escape(item["name"])}</a></p>
         </div>
@@ -285,7 +297,7 @@ def pages():
     person = {
         "@type": "Person",
         "name": "Fabio D’Anna",
-        "url": ORIGIN + "/about/",
+        "url": ORIGIN + "/fabio/",
         "email": "gnomocode@gmail.com",
         "image": ORIGIN + "/assets/img/fabio.webp",
         "homeLocation": {
@@ -330,11 +342,11 @@ def pages():
     }
     catalogue = products_by_slug()
     posts = news_posts()
-    latest = feed_html(posts[:3], catalogue)
+    latest = feed_html(posts[:3], catalogue, "h3")
     gallery = "\n".join(product_window(item, "h2") for item in announced_products())
-    featured = product_window(catalogue["clearmoneypath"], "h3")
-    cmp_log = feed_html([post for post in posts if post.get("product") == "clearmoneypath"], catalogue)
-    news_feed = feed_html(posts, catalogue)
+    featured = product_window(catalogue["clearmoneypath"], "h2", "now", hero=True)
+    cmp_log = feed_html([post for post in posts if post.get("product") == "clearmoneypath"], catalogue, "h3")
+    news_feed = feed_html(posts, catalogue, "h2")
     return [
         {
             "path": "index.html",
@@ -354,20 +366,33 @@ def pages():
         <p class="line">A workshop for practical digital products.</p>
       </div>
       <div class="hub-rest">
-        <p class="hub-lead">It exists so each product can solve its own problem, and still belong somewhere.</p>
-        <section class="section" aria-labelledby="build">
-          <h2 id="build">What we build</h2>
-          <ul class="build">
-            <li>Products that can look nothing like each other.</li>
-            <li>Experiments, including <a href="/lab/">tools you can open</a>.</li>
-            <li>Small digital tools, when a smaller thing is the honest answer.</li>
-          </ul>
-        </section>
-        <section class="section" aria-labelledby="now">
-          <h2 id="now">Now</h2>
+        <p class="why">Practical products. Each one solves a specific problem. Then it ships.</p>
+        <section class="section moment" aria-labelledby="now">
           {featured}
         </section>
-        <section class="section" aria-labelledby="latest">
+        <section class="section" aria-labelledby="build">
+          <h2 id="build">What we build</h2>
+          <ul class="tiles">
+            <li class="tile rise-in">
+              <p class="tile-name">Products</p>
+              <p>Each one, its own face.</p>
+            </li>
+            <li class="tile rise-in">
+              <p class="tile-name">Experiments</p>
+              <p>Tests you can <a href="/lab/">open</a>.</p>
+            </li>
+            <li class="tile rise-in">
+              <p class="tile-name">Tools</p>
+              <p>Small, when that is enough.</p>
+            </li>
+          </ul>
+        </section>
+        <section class="section next-band rise-in" aria-labelledby="next">
+          <h2 id="next">What’s next</h2>
+          <p class="next-line">ClearMoneyPath, in 3 weeks.</p>
+          <p>Nothing else is announced.</p>
+        </section>
+        <section class="section latest-block" aria-labelledby="latest">
           <h2 id="latest">Latest</h2>
           <div class="feed">
             {latest}
@@ -384,38 +409,23 @@ def pages():
             "title": "About | TechGnomo",
             "description": "TechGnomo builds practical digital products. Fabio D’Anna is the founder, in Brisbane.",
             "section": "about",
-            "jsonld": person,
             "body": """
       <p class="kicker">About</p>
-      <h1>The workshop, and the person who runs it.</h1>
-      <p class="lede">TechGnomo builds practical digital products, tries ideas, and ships the ones that solve a specific problem.</p>
-      <p class="measure">The products can look nothing like each other. Each one has its own problem, so each one has its own face. TechGnomo is the parent that connects them.</p>
-      <div class="split">
-        <figure class="portrait">
-          <img src="/assets/img/fabio.webp" width="720" height="1003" alt="Portrait of Fabio D’Anna outdoors, wearing a dark shirt." />
-          <figcaption>Fabio D’Anna, Brisbane.</figcaption>
-        </figure>
-        <div>
-          <h2>Fabio</h2>
-          <p>Fabio D’Anna is the founder. About ten years in hospitality, then software. He decides what a product should do, and he checks the work, including when a machine helped write it.</p>
-          <p>He is open to junior developer and IT support roles, in Brisbane or remote within Australia.</p>
-          <p>Diploma of Software Development. Diploma of IT Networking and Telecommunications. Both completed. Details on request.</p>
-          <p>gnomocode@gmail.com · <a href="https://github.com/TechGnomo">GitHub</a> · <a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/">LinkedIn</a></p>
-          <p class="actions"><a href="/contact/">Contact</a></p>
+      <h1>The workshop</h1>
+      <p class="lede">TechGnomo builds practical digital products. One specific problem. Then it ships.</p>
+      <p class="measure">They do not have to look like each other. TechGnomo is the workshop that connects them.</p>
+      <section class="section founder" aria-labelledby="founder">
+        <h2 id="founder">Fabio</h2>
+        <div class="split">
+          <figure class="portrait">
+            <img src="/assets/img/fabio.webp" width="720" height="1003" alt="Portrait of Fabio D’Anna outdoors, wearing a dark shirt." />
+            <figcaption>Brisbane.</figcaption>
+          </figure>
+          <div>
+            <p>Fabio D’Anna is the founder. About ten years in hospitality, then software. He decides what a product should do, and he checks the work.</p>
+            <p class="actions"><a href="/contact/">Contact</a></p>
+          </div>
         </div>
-      </div>
-      <section class="section" aria-labelledby="level">
-        <h2 id="level">At an honest level</h2>
-        <ul class="measure">
-          <li>HTML, CSS and accessible pages. Working. This site.</li>
-          <li>JavaScript. Working, on small tools. The scope checker runs in the browser.</li>
-          <li>React Native, Expo and Firebase. In use on ClearMoneyPath, still learning.</li>
-          <li>Java and C++. Diploma foundation, not daily tools.</li>
-          <li>IT networking and support. Diploma foundation. Enough for junior IT support, not a security practice.</li>
-          <li>AI-assisted development. A daily method. He decides what to keep.</li>
-          <li>Automation and cybersecurity. Currently learning. Not services.</li>
-          <li>Hospitality operations. About ten years. The deep skill. Software is the newer one.</li>
-        </ul>
       </section>
 """,
         },
@@ -425,12 +435,15 @@ def pages():
             "title": "News | TechGnomo",
             "description": "A short TechGnomo log: build notes, fixes, and product news. Not a blog archive.",
             "section": "news",
+            "main_class": "page log",
             "body": f"""
-      <p class="kicker">News</p>
-      <h1>The log</h1>
-      <p class="lede">Build notes, fixes, and the occasional announcement. Short on purpose.</p>
-      <div class="feed">
-        {news_feed}
+      <div class="log-wrap">
+        <p class="kicker">News</p>
+        <h1>The log</h1>
+        <p class="lede">Notes from the work, as they happen.</p>
+        <div class="feed">
+          {news_feed}
+        </div>
       </div>
 """,
         },
@@ -876,6 +889,63 @@ def pages():
 """,
         },
         {
+            "path": "fabio/index.html",
+            "url": "/fabio/",
+            "title": "Fabio D’Anna | TechGnomo",
+            "description": "Fabio D’Anna, founder of TechGnomo, Brisbane. Open to junior developer and IT support roles.",
+            "section": "",
+            "jsonld": person,
+            "body": """
+      <p class="kicker">Founder</p>
+      <h1>Fabio D’Anna</h1>
+      <p class="lede">Open to junior developer and IT support roles. Brisbane, or remote within Australia.</p>
+      <div class="split">
+        <figure class="portrait">
+          <img src="/assets/img/fabio.webp" width="720" height="1003" alt="Portrait of Fabio D’Anna outdoors, wearing a dark shirt." />
+          <figcaption>Brisbane. Email is the contact.</figcaption>
+        </figure>
+        <div>
+          <p>gnomocode@gmail.com · <a href="https://github.com/TechGnomo">GitHub</a> · <a href="https://www.linkedin.com/in/fabio-d-anna-5083b5378/">LinkedIn</a></p>
+          <p class="actions">
+            <a href="mailto:gnomocode@gmail.com?subject=Junior%20role%20via%20TechGnomo">Email about a role</a>
+            <a href="/products/">See the products</a>
+          </p>
+        </div>
+      </div>
+      <section class="section" aria-labelledby="skills">
+        <h2 id="skills">Skills, with an honest level</h2>
+        <ul class="skill-list">
+          <li><h3>HTML, CSS and accessible pages</h3><p class="level">Working</p><p>This site.</p></li>
+          <li><h3>JavaScript</h3><p class="level">Working, on small tools</p><p>The scope checker runs entirely in the browser.</p></li>
+          <li><h3>React Native and Expo</h3><p class="level">In use, still learning</p><p>ClearMoneyPath.</p></li>
+          <li><h3>Firebase</h3><p class="level">In use, still learning</p><p>Used on ClearMoneyPath.</p></li>
+          <li><h3>Java</h3><p class="level">Diploma foundation</p><p>Not a language used every week.</p></li>
+          <li><h3>C++</h3><p class="level">Diploma foundation</p><p>Studied, not a daily tool.</p></li>
+          <li><h3>IT networking and support</h3><p class="level">Diploma foundation</p><p>Enough for junior IT support. Not a security practice.</p></li>
+          <li><h3>AI-assisted development</h3><p class="level">Daily method, still learning the limits</p><p>Used to build, then checked.</p></li>
+          <li><h3>Automation</h3><p class="level">Currently learning</p><p>Not a service.</p></li>
+          <li><h3>Cybersecurity</h3><p class="level">Currently learning</p><p>Not a service.</p></li>
+          <li><h3>Hospitality operations</h3><p class="level">About ten years</p><p>Floor, bar and restaurant management.</p></li>
+        </ul>
+      </section>
+      <section class="section" aria-labelledby="study">
+        <h2 id="study">Diplomas</h2>
+        <ul>
+          <li>Diploma of Software Development. Completed. Details on request.</li>
+          <li>Diploma of IT Networking and Telecommunications. Completed. Details on request.</li>
+        </ul>
+      </section>
+      <section class="section" aria-labelledby="work">
+        <h2 id="work">Work you can inspect</h2>
+        <ul>
+          <li><a href="/products/clearmoneypath/">ClearMoneyPath</a>. Coming in 3 weeks. Not for sale.</li>
+          <li><a href="/lab/scope-checker/">MVP Scope Checker</a>. A lab experiment, in the browser.</li>
+          <li>This website.</li>
+        </ul>
+      </section>
+""",
+        },
+        {
             "path": "contact/index.html",
             "url": "/contact/",
             "title": "Contact | TechGnomo",
@@ -991,7 +1061,6 @@ def main():
     sitemap(rendered)
     redirect("clearmoneypath.html", "/products/clearmoneypath/", "ClearMoneyPath")
     redirect("mvp-scope-checker.html", "/lab/scope-checker/", "MVP Scope Checker")
-    redirect("fabio/index.html", "/about/", "About")
     release = {"name": "TechGnomo", "release": "v1"}
     (ROOT / "release.json").write_text(json.dumps(release, indent=2) + "\n", encoding="utf-8")
     print("wrote release.json")
