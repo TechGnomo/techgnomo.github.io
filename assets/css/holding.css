@@ -127,6 +127,10 @@ body {
   animation: rise var(--duration-slow) var(--ease-out) 240ms both;
 }
 
+.when:has(.clock[hidden]) {
+  margin-top: 0;
+}
+
 .opens {
   margin: 0 0 var(--space-5);
   font-weight: 500;
@@ -284,6 +288,11 @@ body {
     opacity: 1;
     transform: none;
   }
+}
+
+.plate.is-revealing {
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
 }
 
 @media (min-width: 800px) {
