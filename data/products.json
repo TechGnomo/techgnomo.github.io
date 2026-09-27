@@ -1,0 +1,20 @@
+[
+  {
+    "slug": "clearmoneypath",
+    "name": "ClearMoneyPath",
+    "status": "coming-soon",
+    "announced": true,
+    "phrase": "Coming in 3 weeks",
+    "summary": "A pay-cycle planner. Bills, a debt payment and savings come out first. What remains is left this cycle.",
+    "url": "/products/clearmoneypath/",
+    "surface": "#06101E",
+    "card": "#101827",
+    "accent": "#2D7BFF",
+    "ink": "#F7FAFF",
+    "rule": "#1F2D43",
+    "image": "/assets/img/cmp-home.webp",
+    "imageWidth": 780,
+    "imageHeight": 1688,
+    "imageAlt": "ClearMoneyPath home with sample data. Left this cycle is shown, with a line that this is general information, not personal financial advice."
+  }
+]

@@ -136,7 +136,7 @@ Cream paper with dark ink and a navy ground with light ink cannot be blended und
 2. Add `/assets/css/themes/<slug>.css`. On `[data-product="<slug>"]`, set `--theme-surface`, `--theme-surface-inset`, `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint`, `--theme-accent`, `--theme-rule`, `--theme-warm`, `--accent-fill` and `--font-product`. Set `--field-a` through `--field-d` to the stops between paper and the theme surface. If the hue has to swing, set `--field-pass` and `--field-pass-cool` as a near-neutral pair so the mix does not pick up a strong chroma in between. Record where each value came from. If the chapters sit at very different heights than ClearMoneyPath, adjust the stop positions in `product-transition.css` so the failing middle of the ramp stays behind art, not under paragraphs.
 3. Prefer the product's own font stack when it is already on the system. Self-host at most two extra font files (woff2, subset) and only when the product actually ships those files. No third-party font request. Confirm `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint` and `--theme-accent` are at least 4.5:1 on both `--theme-surface` and `--theme-surface-inset`.
 4. On that page only, link `tokens.css` and `site.css`. Set `data-product` and `data-product-theme` on `body`. Set `data-product-fonts` only when a self-hosted face is required. Include `product-transition.js`. In `<noscript>`, link `product-transition.css`, the theme, and the font file when there is one, so the page is complete with JavaScript off. Mark the chapters `data-stage="parent"`, then `approach`, `crossover`, and `product`, in that order. One `product` wrapper may hold several sections. If the theme changes a component's size, put that box model in a short style block on the page so the first paint already has it.
-5. Keep the line "A TechGnomo product" (or the same attribution). Keep the header on the parent. Leave the copy, status and legal lines as they are.
+5. Keep the line "A TechGnomo product" (or the same attribution). Keep the header on the parent. Leave the legal lines as they are. Status copy comes from `data/products.json`, not from a hardcoded “available now”.
 6. Check contrast at the top, at 25%, 50%, 75% and the main action, including the colours between the resting stages. Check reduced motion, JavaScript off, and that other pages did not change.
 
 GnomoRestaurant is the empty slot: `/assets/css/themes/gnomorestaurant.css` is comments only, and the page does not link it.
@@ -172,10 +172,14 @@ Spacing stays on the parent scale. Changing it as you scroll would move the layo
 
 On `/products/clearmoneypath/`:
 
-- Header and the opening (the "A TechGnomo product" line, the name, the beta status) are parent. The header bar is a paper veil, so it warms toward the field instead of staying a solid cream strip.
+- Header and the opening (the "A TechGnomo product" line, the name, “Coming in 3 weeks”) are parent. The header bar is a paper veil, so it warms toward the field instead of staying a solid cream strip.
 - "The problem" is the approach. The field has only begun to warm.
 - "Screens with sample data" is the crossover. Parent type. The field passes from sand into the cool dusk and then the navy behind the shots. The line under the shots is already the product's light ink, on the navy. The shots themselves sit on `#06101E`, with a 22px card and a `#1F2D43` hairline. That box is repeated in a short style block in the page head, the same rules as the theme, so the cards do not change size when the theme file arrives. The four shots are `loading="lazy"` so their bytes do not compete with Fraunces and Source Sans on the first paint. The rail is faint here.
-- "What this beta does", the sketch, and "What it is not" are the product world, in the system UI stack. The same attribution, "A TechGnomo product", sits above the sketch. The rail is fully drawn there.
+- "What it does", the sketch, and "What it is not" are the product world, in the system UI stack. The same attribution, "A TechGnomo product", sits above the sketch. The rail is fully drawn there. Related posts from the log sit in that same chapter.
 - The footer returns to the parent along the bottom of the same field: navy eases back through the cool dusk and the sand in the padding under the last chapter, then the mark, the workshop links and the brass sill. The visit ends in the workshop.
 
-Copy, the beta status, "General information only, not personal financial advice.", "Left this cycle" / "Short this cycle", and the schema are unchanged. No FinanceApplication. No new claims.
+Public status is “Coming in 3 weeks”. It is not a released app. “General information only, not personal financial advice.”, “Left this cycle” / “Short this cycle”, and the absence of a FinanceApplication category stay. No new claims.
+
+## News and the catalogue
+
+Primary navigation is TechGnomo, About, News, Products. Studio, the lab, contact and privacy stay in the footer. How to add a log post, and the product status values (`available`, `beta`, `coming-soon`, `in-development`), are in `/NEWS.md`. Announced products are `data/products.json`. A product that is not announced does not get a card. GnomoRestaurant remains a theme file only (`assets/css/themes/gnomorestaurant.css`).

@@ -1,7 +1,7 @@
 {
   "name": "TechGnomo",
   "short_name": "TechGnomo",
-  "description": "TechGnomo is Fabio D’Anna’s workshop: products, a studio, and a lab.",
+  "description": "TechGnomo builds practical digital products.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f1eadc",

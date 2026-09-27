@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Products | TechGnomo</title>
-    <meta name="description" content="Products TechGnomo makes. ClearMoneyPath is in beta and not for sale. GnomoRestaurant is a prototype." />
+    <meta name="description" content="Products from TechGnomo. ClearMoneyPath is coming in 3 weeks. Nothing else is announced." />
     <meta name="author" content="Fabio D’Anna" />
     <meta name="theme-color" content="#f1eadc" />
     <meta name="color-scheme" content="light" />
@@ -21,12 +21,12 @@
     <meta property="og:locale" content="en_AU" />
     <meta property="og:site_name" content="TechGnomo" />
     <meta property="og:title" content="Products | TechGnomo" />
-    <meta property="og:description" content="Products TechGnomo makes. ClearMoneyPath is in beta and not for sale. GnomoRestaurant is a prototype." />
+    <meta property="og:description" content="Products from TechGnomo. ClearMoneyPath is coming in 3 weeks. Nothing else is announced." />
     <meta property="og:url" content="https://techgnomo.com/products/" />
     <meta property="og:image" content="https://techgnomo.com/assets/img/og-v1b.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Products | TechGnomo" />
-    <meta name="twitter:description" content="Products TechGnomo makes. ClearMoneyPath is in beta and not for sale. GnomoRestaurant is a prototype." />
+    <meta name="twitter:description" content="Products from TechGnomo. ClearMoneyPath is coming in 3 weeks. Nothing else is announced." />
     <meta name="twitter:image" content="https://techgnomo.com/assets/img/og-v1b.png" />
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script type="application/ld+json">
@@ -34,7 +34,7 @@
   "@context": "https://schema.org",
   "@type": "WebPage",
   "name": "Products | TechGnomo",
-  "description": "Products TechGnomo makes. ClearMoneyPath is in beta and not for sale. GnomoRestaurant is a prototype.",
+  "description": "Products from TechGnomo. ClearMoneyPath is coming in 3 weeks. Nothing else is announced.",
   "url": "https://techgnomo.com/products/",
   "inLanguage": "en-AU",
   "isPartOf": {
@@ -45,7 +45,7 @@
   "author": {
     "@type": "Person",
     "name": "Fabio D’Anna",
-    "url": "https://techgnomo.com/fabio/"
+    "url": "https://techgnomo.com/about/"
   }
 }
     </script>
@@ -54,17 +54,16 @@
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="header-bar">
-        <a class="home-name" href="/">TechGnomo</a>
-        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
-          <span class="menu-word">Menu</span>
-        </button>
         <nav class="site-nav" id="site-nav" aria-label="Primary">
-          <a href="/fabio/">Hire Fabio</a>
-          <a href="/studio/">Work with TechGnomo</a>
-          <a href="/products/">Explore the workshop</a>
-          <a href="/products/" aria-current="page">Products</a>
-          <a href="/lab/">Lab</a>
-          <a href="/contact/">Contact</a>
+          <a class="home-name" href="/">TechGnomo</a>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+            <span class="menu-word">Menu</span>
+          </button>
+          <div class="nav-panel" id="nav-panel">
+            <a href="/about/">About</a>
+            <a href="/news/">News</a>
+            <a href="/products/" aria-current="page">Products</a>
+          </div>
         </nav>
       </div>
     </header>
@@ -72,31 +71,37 @@
 
       <p class="kicker">TechGnomo</p>
       <h1>Products</h1>
-      <p class="lede">Things the workshop creates. Each one keeps its real status. Nothing here is a client logo or a launch.</p>
-      <ul class="product-list">
-        <li>
-          <p class="status">Beta · in development · not for sale</p>
-          <h2><a href="/products/clearmoneypath/">ClearMoneyPath</a></h2>
-          <p>A pay-cycle planner. An Android beta exists, a web version is being built, and it is not on sale.</p>
-        </li>
-        <li>
-          <p class="status">Prototype</p>
-          <h2><a href="/products/gnomorestaurant/">GnomoRestaurant</a></h2>
-          <p>Costing, menu prices, suppliers, stocktake and ordering for a venue. No public build yet.</p>
-        </li>
-      </ul>
+      <p class="lede">What the workshop is shipping, and what is still on the way. Only announced work is on this page.</p>
+      <div class="gallery">
+        
+      <article class="window" style="--window-surface:#06101E;--window-card:#101827;--window-accent:#2D7BFF;--window-ink:#F7FAFF;--window-rule:#1F2D43">
+        <div class="window-copy">
+          <p class="status">Coming in 3 weeks</p>
+          <h2>ClearMoneyPath</h2>
+          <p>A pay-cycle planner. Bills, a debt payment and savings come out first. What remains is left this cycle.</p>
+          <p class="actions"><a href="/products/clearmoneypath/">See ClearMoneyPath</a></p>
+        </div>
+        <div class="window-screen">
+          <img src="/assets/img/cmp-home.webp" width="780" height="1688" alt="ClearMoneyPath home with sample data. Left this cycle is shown, with a line that this is general information, not personal financial advice." loading="lazy" decoding="async" />
+        </div>
+      </article>
+      </div>
+      <section class="section" aria-labelledby="next">
+        <h2 id="next">What’s next</h2>
+        <p class="measure">More in the workshop. Nothing else is announced.</p>
+      </section>
 
     </main>
 
     <footer class="foot">
       <span class="mark" aria-hidden="true"></span>
-      <span>© TechGnomo · Brisbane</span>
-      <a href="/products/">Products</a>
-      <a href="/studio/">Studio</a>
-      <a href="/lab/">Lab</a>
-      <a href="/fabio/">Fabio</a>
-      <a href="/contact/">Contact</a>
-      <a href="/privacy/">Privacy</a>
+      <span class="foot-sign">TechGnomo · Brisbane</span>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/studio/">Studio</a>
+        <a href="/lab/">Lab</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy</a>
+      </nav>
       <a href="mailto:gnomocode@gmail.com">gnomocode@gmail.com</a>
     </footer>
     <div class="sill" aria-hidden="true"></div>
