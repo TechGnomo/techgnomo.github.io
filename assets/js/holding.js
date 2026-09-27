@@ -14,6 +14,7 @@
   var sr = document.getElementById("sr");
   var lastMinute = null;
   var timer = 0;
+  var looking = false;
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function pad(n) {
@@ -35,6 +36,30 @@
     el.classList.add("is-tick");
   }
 
+  function lookForRelease() {
+    var url = "/release.json?ts=" + Date.now();
+    fetch(url, { cache: "no-store" })
+      .then(function (response) {
+        if (!response.ok) throw new Error("missing");
+        return response.json();
+      })
+      .then(function (data) {
+        if (!data || data.release !== "v1") throw new Error("not-v1");
+        var plate = document.getElementById("plate");
+        if (reduced) {
+          window.location.replace("/");
+          return;
+        }
+        if (plate) plate.classList.add("is-revealing");
+        window.setTimeout(function () {
+          window.location.replace("/");
+        }, 700);
+      })
+      .catch(function () {
+        window.setTimeout(lookForRelease, 4000);
+      });
+  }
+
   function showLive() {
     clock.hidden = true;
     opens.hidden = true;
@@ -45,6 +70,10 @@
     if (timer) {
       clearTimeout(timer);
       timer = 0;
+    }
+    if (!looking) {
+      looking = true;
+      lookForRelease();
     }
   }
 
