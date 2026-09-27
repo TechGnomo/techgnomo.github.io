@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en-AU" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MVP Scope Checker | TechGnomo</title>
+    <meta name="description" content="A free browser experiment from the TechGnomo lab. Cut an app idea down to a first test. Nothing is uploaded." />
+    <meta name="author" content="Fabio D’Anna" />
+    <meta name="theme-color" content="#f1eadc" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://techgnomo.com/lab/scope-checker/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/assets/fonts/fraunces-latin-opsz-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_AU" />
+    <meta property="og:site_name" content="TechGnomo" />
+    <meta property="og:title" content="MVP Scope Checker | TechGnomo" />
+    <meta property="og:description" content="A free browser experiment from the TechGnomo lab. Cut an app idea down to a first test. Nothing is uploaded." />
+    <meta property="og:url" content="https://techgnomo.com/lab/scope-checker/" />
+    <meta property="og:image" content="https://techgnomo.com/assets/img/og-v1b.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MVP Scope Checker | TechGnomo" />
+    <meta name="twitter:description" content="A free browser experiment from the TechGnomo lab. Cut an app idea down to a first test. Nothing is uploaded." />
+    <meta name="twitter:image" content="https://techgnomo.com/assets/img/og-v1b.png" />
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "name": "MVP Scope Checker | TechGnomo",
+      "description": "A free browser experiment from the TechGnomo lab. Cut an app idea down to a first test. Nothing is uploaded.",
+      "url": "https://techgnomo.com/lab/scope-checker/",
+      "inLanguage": "en-AU",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "TechGnomo",
+        "url": "https://techgnomo.com/"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Fabio D’Anna",
+        "url": "https://techgnomo.com/about/"
+      }
+    },
+    {
+      "@type": "WebApplication",
+      "name": "MVP Scope Checker",
+      "url": "https://techgnomo.com/lab/scope-checker/",
+      "description": "A free browser experiment from the TechGnomo lab. Nothing is uploaded.",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any web browser",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "AUD"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "Fabio D’Anna",
+        "url": "https://techgnomo.com/about/"
+      }
+    }
+  ]
+}
+    </script>
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-bar">
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a class="home-name" href="/">TechGnomo</a>
+          <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-panel" aria-label="Open menu">
+            <span class="menu-word">Menu</span>
+          </button>
+          <div class="nav-panel" id="nav-panel">
+            <a href="/about/">About</a>
+            <a href="/news/">News</a>
+            <a href="/products/">Products</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="page">
+
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/lab/">Lab</a> <span aria-hidden="true">/</span> <span aria-current="page">MVP Scope Checker</span></nav>
+      <p class="status">Live · experiment</p>
+      <h1>Make the first version smaller.</h1>
+      <p class="lede">Name the person, the problem and the features. The checker keeps three features in the first test, parks the rest, and writes a brief. The score is a fixed formula, not market research.</p>
+      <p class="quiet">Runs in your browser. Nothing is uploaded unless you choose to email the brief.</p>
+      <div class="tool-grid" id="scope-workspace">
+        <form id="scopeForm">
+          <div class="field">
+            <label for="productName"><span>Working product name</span></label>
+            <input id="productName" name="productName" type="text" autocomplete="off" maxlength="80" required placeholder="e.g. ShiftMate" />
+          </div>
+          <div class="field">
+            <label for="targetUser"><span>Who is the first specific person?</span></label>
+            <input id="targetUser" name="targetUser" type="text" autocomplete="off" maxlength="160" required placeholder="e.g. Independent restaurant managers" />
+          </div>
+          <div class="field">
+            <label for="problem"><span>What recurring problem do they have?</span></label>
+            <textarea id="problem" name="problem" rows="4" maxlength="600" required placeholder="Describe what happens now, not the app you want to build."></textarea>
+          </div>
+          <div class="field">
+            <label for="outcome"><span>What single outcome should improve?</span></label>
+            <input id="outcome" name="outcome" type="text" autocomplete="off" maxlength="220" required placeholder="e.g. Fill an uncovered shift in under 10 minutes" />
+          </div>
+          <div class="field">
+            <label for="features"><span>Proposed features, one per line</span></label>
+            <textarea id="features" name="features" rows="7" maxlength="1400" required aria-describedby="features-help" placeholder="Create a shift&#10;Notify available staff&#10;Let one person accept&#10;Manager confirms"></textarea>
+            <p class="help" id="features-help">The first three lines are treated as the core.</p>
+          </div>
+          <fieldset>
+            <legend>Does version one require any of these?</legend>
+            <div class="check-list">
+              <label><input type="checkbox" name="complexity" value="User accounts and authentication" /> User accounts and authentication</label>
+              <label><input type="checkbox" name="complexity" value="Payments or subscriptions" /> Payments or subscriptions</label>
+              <label><input type="checkbox" name="complexity" value="Real-time chat or live updates" /> Real-time chat or live updates</label>
+              <label><input type="checkbox" name="complexity" value="Sensitive personal or financial data" /> Sensitive personal or financial data</label>
+              <label><input type="checkbox" name="complexity" value="Multiple roles or admin permissions" /> Multiple roles or admin permissions</label>
+              <label><input type="checkbox" name="complexity" value="AI-generated decisions or content" /> AI-generated decisions or content</label>
+            </div>
+          </fieldset>
+          <div class="field">
+            <label for="validationMethod"><span>Best available first test</span></label>
+            <select id="validationMethod" name="validationMethod" required>
+              <option value="">Choose one</option>
+              <option value="interviews">User interviews</option>
+              <option value="prototype">Clickable prototype</option>
+              <option value="manual">Manual or concierge test</option>
+              <option value="waitlist">Landing page or waitlist</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+          <button class="quiet-button" type="submit">Generate the brief</button>
+        </form>
+        <section aria-labelledby="result-title" aria-live="polite">
+          <p class="kicker">First test <span id="resultState">Waiting</span></p>
+          <div id="scopeEmpty"><p>The smaller scope, the risks and the next test will show up here.</p></div>
+          <div id="scopeContent" hidden>
+            <h2 id="result-title">The brief</h2>
+            <h3>Core assumption</h3>
+            <p id="coreAssumption"></p>
+            <h3>Keep in the first test</h3>
+            <ol id="keepFeatures"></ol>
+            <h3>Move to later</h3>
+            <ul id="laterFeatures"></ul>
+            <h3>Complexity to prove necessary</h3>
+            <ul id="riskFlags"></ul>
+            <h3>Recommended next test</h3>
+            <p id="nextTest"></p>
+            <p class="heuristic" id="scoreNote"></p>
+            <p class="actions">
+              <button class="quiet-button" type="button" id="copyBrief">Copy brief</button>
+              <button class="quiet-button" type="button" id="emailBrief">Email this brief</button>
+            </p>
+            <p class="form-status" id="scopeStatus" aria-live="polite"></p>
+          </div>
+        </section>
+      </div>
+      <section class="section" aria-labelledby="read">
+        <h2 id="read">How to read the result</h2>
+        <h3>One person</h3>
+        <p>“Everyone” can’t tell you if the problem is real.</p>
+        <h3>One outcome</h3>
+        <p>The first version should move one outcome.</p>
+        <h3>Earn the complicated parts</h3>
+        <p>Accounts, payments, live data and AI belong in version one only if the test needs them.</p>
+        <p>If you want another person to read the brief, email it. I don’t sell app builds.</p>
+      </section>
+
+    </main>
+
+    <footer class="foot">
+      <span class="mark" aria-hidden="true"></span>
+      <span class="foot-sign">TechGnomo · Brisbane</span>
+      <nav class="foot-nav" aria-label="Footer">
+        <a href="/lab/">Lab</a>
+        <a href="/contact/">Contact</a>
+        <a href="/privacy/">Privacy</a>
+      </nav>
+      <a href="mailto:gnomocode@gmail.com">gnomocode@gmail.com</a>
+    </footer>
+    <div class="sill" aria-hidden="true"></div>
+    <script src="/assets/js/nav.js" defer></script>
+    <script src="/assets/js/scope-checker.js" defer></script>
+  </body>
+</html>

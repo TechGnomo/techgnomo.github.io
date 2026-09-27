@@ -1,0 +1,11 @@
+/* GnomoRestaurant has no independent identity yet.
+   Do not link this file. The product page stays on the parent theme.
+
+   When a real build exists to derive from, define the same endpoints as
+   /assets/css/themes/clearmoneypath.css on [data-product="gnomorestaurant"]:
+   --theme-surface, --theme-surface-inset, --theme-ink, --theme-ink-soft,
+   --theme-ink-faint, --theme-accent, --theme-rule, --theme-warm,
+   --accent-fill, --font-product.
+   Then set data-product on the body and data-stage on the chapters.
+   The shared mechanism is /assets/css/product-transition.css.
+   See /DESIGN.md, "Add a product". */

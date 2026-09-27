@@ -1,16 +1,23 @@
 {
   "name": "TechGnomo",
   "short_name": "TechGnomo",
-  "description": "Something new is taking shape.",
+  "description": "TechGnomo builds practical digital products.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#f1eadc",
   "theme_color": "#f1eadc",
+  "lang": "en-AU",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/assets/img/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

@@ -1,0 +1,19 @@
+# TechGnomo
+
+> TechGnomo is a product lab in Brisbane. It builds practical digital products. ClearMoneyPath is coming in 3 weeks and is not for sale.
+
+## Pages
+
+- [Hub](https://techgnomo.com/)
+- [About](https://techgnomo.com/about/)
+- [News](https://techgnomo.com/news/)
+- [Products](https://techgnomo.com/products/)
+- [ClearMoneyPath](https://techgnomo.com/products/clearmoneypath/)
+- [Lab](https://techgnomo.com/lab/)
+- [MVP Scope Checker](https://techgnomo.com/lab/scope-checker/)
+- [Contact](https://techgnomo.com/contact/)
+- [Privacy](https://techgnomo.com/privacy/)
+
+## Contact
+
+gnomocode@gmail.com

@@ -1,0 +1,229 @@
+/* Shared product transition.
+   One field behind the whole page, not a background on each chapter.
+   The theme file supplies the destination and the field stops.
+   See /DESIGN.md. */
+
+[data-product] {
+  --theme-surface: var(--color-paper);
+  --theme-surface-inset: var(--color-paper-deep);
+  --theme-ink: var(--color-ink);
+  --theme-ink-soft: var(--color-ink-soft);
+  --theme-ink-faint: var(--color-ink-faint);
+  --theme-accent: var(--color-seal);
+  --theme-rule: var(--color-line);
+  --theme-warm: var(--color-brass);
+  --accent-fill: var(--color-seal);
+  --font-product: var(--font-display);
+  --field-a: var(--color-paper);
+  --field-b: var(--color-paper);
+  --field-pass: var(--field-b);
+  --field-pass-cool: var(--field-c);
+  --field-c: var(--theme-surface);
+  --field-d: var(--theme-surface);
+  --stage-pad: max(var(--space-page), calc((100% - 76rem) / 2 + var(--space-page)));
+}
+
+/* Keep the canvas paper so the body's field is not promoted to the
+   viewport. The field itself is the body's ::before, the height of the page. */
+html:has(body[data-product]) {
+  background: var(--color-paper);
+}
+
+body[data-product] {
+  position: relative;
+  z-index: 0;
+  background: transparent;
+}
+
+body[data-product]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: var(--color-paper);
+  /* Navy is in by 38% so the line under the screenshots sits on it even
+     when the row is one short line (wide viewports). The dusk stays in the
+     band the cards cover. Parent ink is only on the sand, above that. */
+  background-image: linear-gradient(
+    var(--color-paper) 0%,
+    var(--field-a) 16%,
+    var(--field-b) 24%,
+    var(--field-b) 27%,
+    var(--field-pass) 29.2%,
+    var(--field-pass-cool) 31.2%,
+    var(--field-c) 33.6%,
+    var(--field-d) 36%,
+    var(--theme-surface) 38%,
+    var(--theme-surface) 93%,
+    var(--field-d) 94.2%,
+    var(--field-pass-cool) 95.3%,
+    var(--field-pass) 96.2%,
+    var(--field-b) 96.9%,
+    var(--color-paper) 97.8%,
+    var(--color-paper) 100%
+  );
+  background-image: linear-gradient(
+    in oklch,
+    var(--color-paper) 0%,
+    var(--field-a) 16%,
+    var(--field-b) 24%,
+    var(--field-b) 27%,
+    var(--field-pass) 29.2%,
+    var(--field-pass-cool) 31.2%,
+    var(--field-c) 33.6%,
+    var(--field-d) 36%,
+    var(--theme-surface) 38%,
+    var(--theme-surface) 93%,
+    var(--field-d) 94.2%,
+    var(--field-pass-cool) 95.3%,
+    var(--field-pass) 96.2%,
+    var(--field-b) 96.9%,
+    var(--color-paper) 97.8%,
+    var(--color-paper) 100%
+  );
+  background-repeat: no-repeat;
+}
+
+/* Wordmark, nav and mark stay the parent. The bar is a paper veil, so the
+   field shows through and the header tints as the ground changes. */
+body[data-product] .site-header,
+body[data-product] .foot,
+body[data-product] .sill {
+  --surface: var(--color-paper);
+  --surface-inset: var(--color-paper-deep);
+  --ink: var(--color-ink);
+  --ink-soft: var(--color-ink-soft);
+  --ink-faint: var(--color-ink-faint);
+  --accent: var(--color-seal);
+  --warm: var(--color-brass);
+  --rule: var(--color-line);
+  --font-display: "Fraunces", "Iowan Old Style", Palatino, "Palatino Linotype", Georgia, serif;
+  --font-body: var(--font-text);
+  --radius: var(--radius-sm);
+}
+
+body[data-product] .site-header {
+  background: color-mix(in oklab, var(--color-paper) 90%, transparent);
+  border-bottom-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
+}
+
+body[data-product] .foot {
+  background: transparent;
+  border-top: 0;
+}
+
+body[data-product] .page {
+  max-width: none;
+  padding: 0;
+  background: transparent;
+}
+
+body[data-product] [data-stage] {
+  position: relative;
+  margin: 0;
+  padding: var(--space-8) var(--stage-pad) 0;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-body);
+}
+
+body[data-product] [data-stage="parent"] {
+  padding-top: var(--space-6);
+}
+
+body[data-product] [data-stage="approach"],
+body[data-product] [data-stage="crossover"] {
+  --ink: var(--color-ink);
+  --ink-soft: var(--color-ink-soft);
+  --ink-faint: var(--color-ink-faint);
+  --accent: var(--color-seal);
+  --rule: var(--color-line);
+  --warm: var(--color-brass);
+}
+
+/* The line under the screens is already on the product ground. */
+body[data-product] [data-stage="crossover"] > .measure:last-child {
+  color: var(--theme-ink-soft);
+}
+
+body[data-product] [data-stage="product"] {
+  --surface: var(--theme-surface);
+  --surface-inset: var(--theme-surface-inset);
+  --ink: var(--theme-ink);
+  --ink-soft: var(--theme-ink-soft);
+  --ink-faint: var(--theme-ink-faint);
+  --accent: var(--theme-accent);
+  --rule: var(--theme-rule);
+  --warm: var(--accent-fill);
+  --font-display: var(--font-product);
+  --font-body: var(--font-product);
+  --radius: 15px;
+  padding-bottom: clamp(18rem, 40vh, 28rem);
+  color: var(--ink);
+  color-scheme: dark;
+}
+
+body[data-product] [data-stage].section,
+body[data-product] [data-stage] > .section:first-child {
+  margin-top: 0;
+}
+
+body[data-product] [data-stage="product"] > .section + .section {
+  margin-top: var(--space-8);
+}
+
+body[data-product] [data-stage="product"] ::selection {
+  background: var(--accent-fill);
+  color: var(--theme-surface);
+}
+
+/* Pay-cycle rail. Faint over the screens, further along at the product
+   chapter, fully drawn above the sketch. It does not take space. */
+body[data-product] [data-stage="crossover"]::before,
+body[data-product] [data-stage="product"]::before,
+body[data-product] [data-stage="product"] .section:has(#sketch-title)::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  left: var(--stage-pad);
+  width: min(22rem, 68%);
+  top: 1.05rem;
+  height: 0.7rem;
+  pointer-events: none;
+  transform-origin: left center;
+  background:
+    linear-gradient(var(--accent-fill), var(--accent-fill)) 0 0.28rem / 100% 2px no-repeat,
+    radial-gradient(circle, var(--accent-fill) 0 2px, transparent 2.4px) 0 0.28rem / 0.55rem 0.55rem no-repeat,
+    radial-gradient(circle, var(--accent-fill) 0 3px, transparent 3.5px) 50% 0.22rem / 0.7rem 0.7rem no-repeat,
+    radial-gradient(circle, var(--accent-fill) 0 2px, transparent 2.4px) 100% 0.28rem / 0.55rem 0.55rem no-repeat;
+}
+
+body[data-product] [data-stage="crossover"]::before {
+  opacity: 0.38;
+  transform: scaleX(0.46);
+}
+
+body[data-product] [data-stage="product"]::before {
+  opacity: 0.72;
+  transform: scaleX(0.74);
+}
+
+body[data-product] [data-stage="product"] .section:has(#sketch-title) {
+  position: relative;
+}
+
+body[data-product] [data-stage="product"] .section:has(#sketch-title)::before {
+  top: -1.35rem;
+  left: 0;
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The field is already one gradient. These edges only soften the rail. */
+  body[data-product] [data-stage="crossover"]::before,
+  body[data-product] [data-stage="product"]::before,
+  body[data-product] [data-stage="product"] .section:has(#sketch-title)::before {
+    transition: none;
+  }
+}
