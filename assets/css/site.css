@@ -143,8 +143,10 @@ strong {
 
 .page {
   flex: 1 0 auto;
-  width: auto;
+  width: 100%;
+  min-width: 0;
   max-width: 76rem;
+  margin-inline: auto;
   padding: var(--space-6) var(--space-page) var(--space-9);
 }
 
@@ -156,6 +158,7 @@ strong {
   position: sticky;
   top: 0;
   z-index: 2;
+  min-width: 0;
   background: var(--color-paper);
   border-bottom: 1px solid var(--color-line);
 }
@@ -163,6 +166,7 @@ strong {
 .header-bar {
   width: auto;
   max-width: 76rem;
+  margin-inline: auto;
   padding: var(--space-4) var(--space-page);
   display: flex;
   align-items: center;
@@ -243,7 +247,7 @@ strong {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: clamp(3.5rem, 12vh, 7rem) var(--space-5) clamp(2rem, 6vh, 3.5rem);
+  padding: clamp(1.5rem, 5vh, 3.25rem) var(--space-5) var(--space-5);
 }
 
 .plate .mark {
@@ -261,7 +265,7 @@ strong {
   font-family: var(--font-display);
   font-optical-sizing: none;
   font-weight: 650;
-  font-size: var(--text-display);
+  font-size: clamp(1.85rem, 8vw, 7.15rem);
   font-variation-settings: "opsz" 12, "wght" 650;
   line-height: var(--leading-tight);
   letter-spacing: 0.04em;
@@ -286,14 +290,40 @@ strong {
 .plate .rule {
   width: 2.75rem;
   height: 1px;
-  margin: clamp(1.75rem, 4vh, 2.5rem) 0 0;
+  margin: clamp(1.25rem, 3vh, 2rem) 0 0;
   border: 0;
   background: var(--color-brass);
+}
+
+.ways {
+  list-style: none;
+  margin: var(--space-5) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+.ways a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 500;
+  font-variation-settings: "opsz" 36, "wght" 500;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
 }
 
 .hub-rest {
   width: min(40rem, calc(100% - 2 * var(--space-page)));
   margin: var(--space-6) auto 0;
+}
+
+.hub-rest > .section {
+  margin-top: clamp(4.5rem, 32vh, 14rem);
 }
 
 .hub-lead {
@@ -688,6 +718,19 @@ button.quiet-button,
   font-variant-numeric: lining-nums tabular-nums;
 }
 
+.advice {
+  flex-basis: 100%;
+  color: var(--color-ink-faint);
+  font-size: var(--text-sm);
+  font-weight: 400;
+}
+
+.heuristic {
+  margin-top: var(--space-5);
+  color: var(--color-ink-faint);
+  font-size: var(--text-sm);
+}
+
 .product-list {
   list-style: none;
   padding: 0;
@@ -710,6 +753,9 @@ button.quiet-button,
 
 .foot {
   margin-top: auto;
+  margin-inline: auto;
+  width: 100%;
+  min-width: 0;
   max-width: 76rem;
   padding: var(--space-4) var(--space-page) var(--space-5);
   font-size: var(--text-sm);
@@ -731,8 +777,9 @@ body.is-hub .foot {
 }
 
 .foot .mark {
-  width: 1.15rem;
-  height: 1.15rem;
+  width: clamp(2.85rem, 4.2vw, 3.5rem);
+  height: clamp(2.85rem, 4.2vw, 3.5rem);
+  flex: none;
 }
 
 .sill {
@@ -767,7 +814,13 @@ body.is-hub .foot {
   }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 420px) {
+  h1 {
+    font-size: clamp(1.7rem, 8.2vw, 2.15rem);
+  }
+}
+
+@media (max-width: 1100px) {
   .menu-toggle {
     display: inline-flex;
     align-items: center;

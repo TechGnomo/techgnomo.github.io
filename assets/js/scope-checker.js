@@ -2,7 +2,6 @@ const scopeForm = document.getElementById("scopeForm");
 const scopeEmpty = document.getElementById("scopeEmpty");
 const scopeContent = document.getElementById("scopeContent");
 const resultState = document.getElementById("resultState");
-const scopeScore = document.getElementById("scopeScore");
 const resultTitle = document.getElementById("result-title");
 const coreAssumption = document.getElementById("coreAssumption");
 const keepFeatures = document.getElementById("keepFeatures");
@@ -144,8 +143,8 @@ scopeForm?.addEventListener("submit", (event) => {
   const brief = buildBrief(data);
   currentBrief = brief.text;
 
-  scopeScore.textContent = String(brief.score);
-  resultTitle.textContent = brief.title;
+  resultTitle.textContent = "The brief";
+  document.getElementById("scoreNote").textContent = `${brief.score} out of 100. ${brief.title}. A rough heuristic, not research.`;
   coreAssumption.textContent = brief.assumption;
   fillList(keepFeatures, brief.coreFeatures, "Define the single action that produces the promised outcome.");
   fillList(laterFeatures, brief.later, "No additional features listed. Protect this small scope.");

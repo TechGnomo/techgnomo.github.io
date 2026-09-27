@@ -18,7 +18,7 @@
   function update() {
     var left = read("pay") - read("bills") - read("debt") - read("save");
     if (left >= 0) {
-      label.textContent = "Safe to spend";
+      label.textContent = "Left this cycle";
       amount.textContent = money.format(left);
     } else {
       label.textContent = "Short this cycle";

@@ -23,11 +23,11 @@
     <meta property="og:title" content="ClearMoneyPath | TechGnomo" />
     <meta property="og:description" content="ClearMoneyPath is a TechGnomo product: a pay-cycle planner in beta. A web version is being built. Not for sale. Screens use sample data." />
     <meta property="og:url" content="https://techgnomo.com/products/clearmoneypath/" />
-    <meta property="og:image" content="https://techgnomo.com/assets/img/og.png" />
+    <meta property="og:image" content="https://techgnomo.com/assets/img/og-v1.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ClearMoneyPath | TechGnomo" />
     <meta name="twitter:description" content="ClearMoneyPath is a TechGnomo product: a pay-cycle planner in beta. A web version is being built. Not for sale. Screens use sample data." />
-    <meta name="twitter:image" content="https://techgnomo.com/assets/img/og.png" />
+    <meta name="twitter:image" content="https://techgnomo.com/assets/img/og-v1.png" />
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script type="application/ld+json">
 {
@@ -53,7 +53,6 @@
     {
       "@type": "SoftwareApplication",
       "name": "ClearMoneyPath",
-      "applicationCategory": "FinanceApplication",
       "operatingSystem": "Android",
       "url": "https://techgnomo.com/products/clearmoneypath/",
       "description": "A TechGnomo product. Pay-cycle planner, beta and in development. A web version is being built. Not for sale.",
@@ -81,10 +80,12 @@
           <span class="menu-word">Menu</span>
         </button>
         <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="/fabio/">Hire Fabio</a>
+          <a href="/studio/">Work with TechGnomo</a>
+          <a href="/products/">Explore the workshop</a>
           <a href="/products/" aria-current="page">Products</a>
-          <a href="/studio/">Studio</a>
           <a href="/lab/">Lab</a>
-          <a href="/fabio/">Fabio</a>
+          <a href="/contact/">Contact</a>
         </nav>
       </div>
     </header>
@@ -94,7 +95,7 @@
       <p class="kicker">A TechGnomo product</p>
       <h1>ClearMoneyPath</h1>
       <p class="status">Beta · in development · not for sale</p>
-      <p class="lede">Know what is safe to spend until payday. Bills, a debt payment and savings come out first. What remains is the number you can actually use.</p>
+      <p class="lede">A pay-cycle planner for the stretch between paydays. Bills, a debt payment and savings come out first. What remains is left this cycle.</p>
       <p class="measure">An Android beta exists. It is not a public release, and it is not on Google Play or the App Store. A web version is being built. There is nothing to buy.</p>
 
       <section class="section" aria-labelledby="problem">
@@ -108,28 +109,29 @@
         <p class="measure quiet">Android beta. These figures are sample data, not a person’s accounts.</p>
         <div class="shots">
           <figure class="shot">
-            <img src="/assets/img/cmp-home.webp" width="540" height="1169" alt="ClearMoneyPath home screen with sample data: safe to spend, bills due, savings and debt left." />
+            <img src="/assets/img/cmp-home.webp" width="540" height="1117" alt="ClearMoneyPath home screen with sample data: what is left this cycle, bills due, savings and debt." />
             <figcaption>Home. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-money.webp" width="540" height="1169" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
+            <img src="/assets/img/cmp-money.webp" width="540" height="1117" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
             <figcaption>Money in and out. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-debts.webp" width="540" height="1169" alt="ClearMoneyPath debts screen with sample data, showing snowball and avalanche." />
-            <figcaption>Debts, snowball or avalanche. Sample data.</figcaption>
+            <img src="/assets/img/cmp-debts.webp" width="540" height="1117" alt="ClearMoneyPath debts screen with sample data for snowball and avalanche ordering." />
+            <figcaption>Sample arithmetic: snowball and avalanche ordering. Not a recommendation.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-plan.webp" width="540" height="1169" alt="ClearMoneyPath payday plan with sample data." />
+            <img src="/assets/img/cmp-plan.webp" width="540" height="1117" alt="ClearMoneyPath payday plan with sample data." />
             <figcaption>The payday plan. Sample data.</figcaption>
           </figure>
         </div>
+        <p class="measure">General information only, not personal financial advice.</p>
       </section>
 
       <section class="section" aria-labelledby="does">
         <h2 id="does">What this beta does</h2>
         <ul class="measure">
-          <li>Shows a safe-to-spend figure for the current pay cycle, and the next payday.</li>
+          <li>Shows what is left this cycle, and the next payday.</li>
           <li>Records money in, bills, spending and savings.</li>
           <li>Tracks debts with a minimum, a rate and a payoff estimate, and switches between snowball and avalanche.</li>
           <li>Lays the cycle out as a short plan: bills covered, savings set aside, spending inside the safe amount.</li>
@@ -159,7 +161,7 @@
               <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" />
             </div>
           </div>
-          <p class="sketch-result" aria-live="polite"><span id="safe-label">Safe to spend</span> <strong id="safe-amount">$990.00</strong></p>
+          <p class="sketch-result" aria-live="polite"><span id="safe-label">Left this cycle</span> <strong id="safe-amount">$990.00</strong> <span class="advice">General information only, not personal financial advice.</span></p>
           <p class="help">Sample figures. If the bills and payments are larger than the pay, it says you are short.</p>
         </form>
       </section>

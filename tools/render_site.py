@@ -8,10 +8,12 @@ ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://techgnomo.com"
 
 NAV = [
+    ("/fabio/", "Hire Fabio", "fabio"),
+    ("/studio/", "Work with TechGnomo", "studio"),
+    ("/products/", "Explore the workshop", "explore"),
     ("/products/", "Products", "products"),
-    ("/studio/", "Studio", "studio"),
     ("/lab/", "Lab", "lab"),
-    ("/fabio/", "Fabio", "fabio"),
+    ("/contact/", "Contact", "contact"),
 ]
 
 
@@ -91,7 +93,7 @@ def page(spec):
     else:
         jsonld = json.dumps(graph, ensure_ascii=False, indent=2)
 
-    shell_header = "" if spec.get("bare") else header(section)
+    shell_header = header(section)
     doc = f"""<!doctype html>
 <html lang="en-AU" class="no-js">
   <head>
@@ -117,22 +119,22 @@ def page(spec):
     <meta property="og:title" content="{title}" />
     <meta property="og:description" content="{description}" />
     <meta property="og:url" content="{canonical}" />
-    <meta property="og:image" content="{ORIGIN}/assets/img/og.png" />
+    <meta property="og:image" content="{ORIGIN}/assets/img/og-v1.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{title}" />
     <meta name="twitter:description" content="{description}" />
-    <meta name="twitter:image" content="{ORIGIN}/assets/img/og.png" />
+    <meta name="twitter:image" content="{ORIGIN}/assets/img/og-v1.png" />
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script type="application/ld+json">
 {jsonld}
     </script>
   </head>
-  <body{ ' class="is-hub"' if spec.get("bare") else "" }>
+  <body{ ' class="is-hub"' if spec.get("hub") else "" }>
     <a class="skip" href="#main">Skip to content</a>{shell_header}
     <main id="main" class="{spec.get("main_class", "page")}">
 {spec["body"]}
     </main>
-{footer(not spec.get("bare"))}
+{footer(True)}
     <script src="/assets/js/nav.js" defer></script>
     {scripts}
   </body>
@@ -172,7 +174,6 @@ def pages():
     person = {
         "@type": "Person",
         "name": "Fabio D’Anna",
-        "alternateName": "TechGnomo",
         "url": ORIGIN + "/fabio/",
         "email": "gnomocode@gmail.com",
         "image": ORIGIN + "/assets/img/fabio.webp",
@@ -200,7 +201,6 @@ def pages():
     cmp = {
         "@type": "SoftwareApplication",
         "name": "ClearMoneyPath",
-        "applicationCategory": "FinanceApplication",
         "operatingSystem": "Android",
         "url": ORIGIN + "/products/clearmoneypath/",
         "description": "A TechGnomo product. Pay-cycle planner, beta and in development. A web version is being built. Not for sale.",
@@ -224,7 +224,7 @@ def pages():
             "url": "/",
             "title": "TechGnomo",
             "description": "TechGnomo is Fabio D’Anna’s workshop in Brisbane. Products, a small studio for venues, a lab, and the person behind it.",
-            "bare": True,
+            "hub": True,
             "italic": True,
             "main_class": "page hub",
             "jsonld": website,
@@ -234,44 +234,33 @@ def pages():
         <h1 class="wordmark">TechGnomo</h1>
         <p class="line">The workshop is open.</p>
         <hr class="rule" />
+        <nav aria-label="Ways in">
+          <ul class="ways">
+            <li><a href="/fabio/">Hire Fabio</a></li>
+            <li><a href="/studio/">Work with TechGnomo</a></li>
+            <li><a href="/products/">Explore the workshop</a></li>
+          </ul>
+        </nav>
       </div>
       <div class="hub-rest">
       <p class="hub-lead">TechGnomo is the workshop. It makes its own products, takes on small jobs for venues, and keeps a lab for tests. Fabio D’Anna is the person behind it, in Brisbane.</p>
-
-      <section class="feature" aria-labelledby="featured">
-        <p class="kicker" id="featured">A TechGnomo product</p>
-        <h2>ClearMoneyPath</h2>
-        <p class="status">Beta · in development · not for sale</p>
-        <p>A pay-cycle planner: what is safe to spend until payday. An Android beta exists. A web version is being built.</p>
-        <p><a class="text-link" href="/products/clearmoneypath/">See the product</a></p>
+      <section class="section" aria-labelledby="products-heading">
+        <h2 id="products-heading">Products</h2>
+        <p>Two things on the bench. Each keeps its real status.</p>
+        <ul class="product-list">
+          <li>
+            <p class="status">Beta · in development · not for sale</p>
+            <h3><a href="/products/clearmoneypath/">ClearMoneyPath</a></h3>
+            <p>A pay-cycle planner. An Android beta exists. A web version is being built.</p>
+          </li>
+          <li>
+            <p class="status">Prototype</p>
+            <h3><a href="/products/gnomorestaurant/">GnomoRestaurant</a></h3>
+            <p>Costing, menu prices, suppliers, stocktake and ordering for a venue. No public build yet.</p>
+          </li>
+        </ul>
+        <p>The <a href="/lab/">lab</a> is for tests that are not products yet.</p>
       </section>
-
-      <ul class="paths">
-        <li>
-          <a href="/products/">
-            <span class="path-name">Products</span>
-            <span class="path-note">What TechGnomo makes. ClearMoneyPath and GnomoRestaurant are the two on the bench.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/studio/">
-            <span class="path-name">Studio</span>
-            <span class="path-note">Small, fixed jobs for independent cafés and restaurants. Not an agency.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/fabio/">
-            <span class="path-name">Fabio</span>
-            <span class="path-note">The founder. For recruiters: skills, diplomas, and the hospitality years.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/lab/">
-            <span class="path-name">Lab</span>
-            <span class="path-note">Experiments. One of them you can use in the browser today.</span>
-          </a>
-        </li>
-      </ul>
       </div>
 """,
         },
@@ -312,7 +301,7 @@ def pages():
       <p class="kicker">A TechGnomo product</p>
       <h1>ClearMoneyPath</h1>
       <p class="status">Beta · in development · not for sale</p>
-      <p class="lede">Know what is safe to spend until payday. Bills, a debt payment and savings come out first. What remains is the number you can actually use.</p>
+      <p class="lede">A pay-cycle planner for the stretch between paydays. Bills, a debt payment and savings come out first. What remains is left this cycle.</p>
       <p class="measure">An Android beta exists. It is not a public release, and it is not on Google Play or the App Store. A web version is being built. There is nothing to buy.</p>
 
       <section class="section" aria-labelledby="problem">
@@ -326,28 +315,29 @@ def pages():
         <p class="measure quiet">Android beta. These figures are sample data, not a person’s accounts.</p>
         <div class="shots">
           <figure class="shot">
-            <img src="/assets/img/cmp-home.webp" width="540" height="1169" alt="ClearMoneyPath home screen with sample data: safe to spend, bills due, savings and debt left." />
+            <img src="/assets/img/cmp-home.webp" width="540" height="1117" alt="ClearMoneyPath home screen with sample data: what is left this cycle, bills due, savings and debt." />
             <figcaption>Home. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-money.webp" width="540" height="1169" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
+            <img src="/assets/img/cmp-money.webp" width="540" height="1117" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
             <figcaption>Money in and out. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-debts.webp" width="540" height="1169" alt="ClearMoneyPath debts screen with sample data, showing snowball and avalanche." />
-            <figcaption>Debts, snowball or avalanche. Sample data.</figcaption>
+            <img src="/assets/img/cmp-debts.webp" width="540" height="1117" alt="ClearMoneyPath debts screen with sample data for snowball and avalanche ordering." />
+            <figcaption>Sample arithmetic: snowball and avalanche ordering. Not a recommendation.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-plan.webp" width="540" height="1169" alt="ClearMoneyPath payday plan with sample data." />
+            <img src="/assets/img/cmp-plan.webp" width="540" height="1117" alt="ClearMoneyPath payday plan with sample data." />
             <figcaption>The payday plan. Sample data.</figcaption>
           </figure>
         </div>
+        <p class="measure">General information only, not personal financial advice.</p>
       </section>
 
       <section class="section" aria-labelledby="does">
         <h2 id="does">What this beta does</h2>
         <ul class="measure">
-          <li>Shows a safe-to-spend figure for the current pay cycle, and the next payday.</li>
+          <li>Shows what is left this cycle, and the next payday.</li>
           <li>Records money in, bills, spending and savings.</li>
           <li>Tracks debts with a minimum, a rate and a payoff estimate, and switches between snowball and avalanche.</li>
           <li>Lays the cycle out as a short plan: bills covered, savings set aside, spending inside the safe amount.</li>
@@ -377,7 +367,7 @@ def pages():
               <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" />
             </div>
           </div>
-          <p class="sketch-result" aria-live="polite"><span id="safe-label">Safe to spend</span> <strong id="safe-amount">$990.00</strong></p>
+          <p class="sketch-result" aria-live="polite"><span id="safe-label">Left this cycle</span> <strong id="safe-amount">$990.00</strong> <span class="advice">General information only, not personal financial advice.</span></p>
           <p class="help">Sample figures. If the bills and payments are larger than the pay, it says you are short.</p>
         </form>
       </section>
@@ -407,7 +397,7 @@ def pages():
       <p class="lede">The unglamorous part of a venue: what a plate costs, what to charge, who supplies it, what is in the fridge, and what to order next.</p>
       <p class="measure">Prototype means parts of it run on my machine. There is no public build, so there is no screenshot. I am not going to draw one.</p>
 
-      <h2>In a venue’s words</h2>
+      <h2>From the floor</h2>
       <ul class="measure">
         <li>Stocktake eats Sunday.</li>
         <li>Plate cost is a guess once a supplier puts prices up.</li>
@@ -451,9 +441,9 @@ def pages():
       </ul>
 
       <article class="offer">
-        <h2>A venue page, done properly</h2>
+        <h2>A venue page</h2>
         <p>One fast page for an independent café, restaurant or bar: hours, where you are, the current menu, and links to the booking or ordering you already use.</p>
-        <p class="price">Typically A$600–1,200</p>
+        <p>Typically A$600–1,200. Indicative. The quote is the price.</p>
         <p>Fixed quote after a free 20-minute call. Half to start, half when it goes live.</p>
         <h3>What you get</h3>
         <ul>
@@ -476,7 +466,7 @@ def pages():
       <article class="offer">
         <h2>Fix the sheet</h2>
         <p>One spreadsheet, in your Google account, for a job the floor already does on paper.</p>
-        <p class="price">Typically A$250–600</p>
+        <p>Typically A$250–600. Indicative. The quote is the price.</p>
         <p>One sheet per job. Or A$45–60 an hour to tidy a sheet you already have, with a cap on the quote.</p>
         <h3>Pick one</h3>
         <ul>
@@ -644,13 +634,7 @@ def pages():
           <p class="kicker">First test <span id="resultState">Waiting</span></p>
           <div id="scopeEmpty"><p>The smaller scope, the risks and the next test will show up here.</p></div>
           <div id="scopeContent" hidden>
-            <div class="score-row">
-              <strong id="scopeScore">–</strong>
-              <div>
-                <p class="quiet">Scope signal out of 100. A nudge, not validation.</p>
-                <h2 id="result-title">Ready to calculate</h2>
-              </div>
-            </div>
+            <h2 id="result-title">The brief</h2>
             <h3>Core assumption</h3>
             <p id="coreAssumption"></p>
             <h3>Keep in the first test</h3>
@@ -661,6 +645,7 @@ def pages():
             <ul id="riskFlags"></ul>
             <h3>Recommended next test</h3>
             <p id="nextTest"></p>
+            <p class="heuristic" id="scoreNote"></p>
             <p class="actions">
               <button class="quiet-button" type="button" id="copyBrief">Copy brief</button>
               <button class="quiet-button" type="button" id="emailBrief">Email this brief</button>
@@ -685,7 +670,7 @@ def pages():
             "path": "fabio/index.html",
             "url": "/fabio/",
             "title": "Fabio D’Anna | TechGnomo",
-            "description": "Fabio D’Anna, founder of TechGnomo, Brisbane. Open to junior developer and IT support roles. Web résumé, no PDF, no phone, no street address.",
+            "description": "Fabio D’Anna, founder of TechGnomo, Brisbane. Open to junior developer and IT support roles.",
             "section": "fabio",
             "jsonld": person,
             "body": """
@@ -726,8 +711,8 @@ def pages():
       <section class="section" aria-labelledby="study">
         <h2 id="study">Diplomas</h2>
         <ul>
-          <li>Diploma of Software Development. Completed.</li>
-          <li>Diploma of IT Networking and Telecommunications. Completed.</li>
+          <li>Diploma of Software Development. Completed. Details on request.</li>
+          <li>Diploma of IT Networking and Telecommunications. Completed. Details on request.</li>
         </ul>
         <p class="quiet measure">Both completed. Ask if you need the provider and the year; I’ll send them with the certificates.</p>
       </section>
@@ -742,7 +727,7 @@ def pages():
       </section>
       <section class="section">
         <h2>Hospitality, as operations</h2>
-        <p class="measure">I progressed through front-of-house, bar and management. The useful parts for a junior tech role are running a service when it gets busy, noticing when a cost has drifted, and explaining a problem clearly. I don’t publish a street address, a phone number, or a PDF of this page.</p>
+        <p class="measure">I progressed through front-of-house, bar and management. The useful parts for a junior tech role are running a service when it gets busy, noticing when a cost has drifted, and explaining a problem clearly.</p>
       </section>
 """,
         },
@@ -751,7 +736,7 @@ def pages():
             "url": "/contact/",
             "title": "Contact | TechGnomo",
             "description": "Email Fabio D’Anna at gnomocode@gmail.com. No form service and no tracker.",
-            "section": "",
+            "section": "contact",
             "body": """
       <p class="kicker">TechGnomo</p>
       <h1>Email Fabio.</h1>
@@ -784,12 +769,13 @@ def pages():
       <h2>What the pages do</h2>
       <ul class="measure">
         <li>Reading a page does not send me your name or your email.</li>
-        <li>The scope checker and the safe-to-spend sketch calculate in your browser. I don’t receive them unless you email them.</li>
+        <li>The scope checker and the pay-cycle sketch calculate in your browser. I don’t receive them unless you email them.</li>
         <li>Email links open your mail app. The message reaches gnomocode@gmail.com only if you send it.</li>
         <li>ClearMoneyPath screenshots on this site are sample data.</li>
       </ul>
       <h2>The host</h2>
       <p class="measure">The site is hosted on GitHub Pages. GitHub may keep ordinary connection logs. I don’t get a copy of those logs, and I don’t use them to market anything.</p>
+      <p class="measure">Emails sent via the contact links go to a Gmail inbox (Google, which may store data outside Australia) and are read only by Fabio D’Anna. He doesn’t sell or share them.</p>
       <p class="measure">Questions: <a href="mailto:gnomocode@gmail.com?subject=Privacy">gnomocode@gmail.com</a>.</p>
 """,
         },

@@ -24,11 +24,11 @@
     <meta property="og:title" content="TechGnomo" />
     <meta property="og:description" content="TechGnomo is Fabio D’Anna’s workshop in Brisbane. Products, a small studio for venues, a lab, and the person behind it." />
     <meta property="og:url" content="https://techgnomo.com/" />
-    <meta property="og:image" content="https://techgnomo.com/assets/img/og.png" />
+    <meta property="og:image" content="https://techgnomo.com/assets/img/og-v1.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="TechGnomo" />
     <meta name="twitter:description" content="TechGnomo is Fabio D’Anna’s workshop in Brisbane. Products, a small studio for venues, a lab, and the person behind it." />
-    <meta name="twitter:image" content="https://techgnomo.com/assets/img/og.png" />
+    <meta name="twitter:image" content="https://techgnomo.com/assets/img/og-v1.png" />
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script type="application/ld+json">
 {
@@ -68,6 +68,22 @@
   </head>
   <body class="is-hub">
     <a class="skip" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="header-bar">
+        <a class="home-name" href="/">TechGnomo</a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+          <span class="menu-word">Menu</span>
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="Primary">
+          <a href="/fabio/">Hire Fabio</a>
+          <a href="/studio/">Work with TechGnomo</a>
+          <a href="/products/">Explore the workshop</a>
+          <a href="/products/">Products</a>
+          <a href="/lab/">Lab</a>
+          <a href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </header>
     <main id="main" class="page hub">
 
       <div class="plate arrive">
@@ -75,50 +91,39 @@
         <h1 class="wordmark">TechGnomo</h1>
         <p class="line">The workshop is open.</p>
         <hr class="rule" />
+        <nav aria-label="Ways in">
+          <ul class="ways">
+            <li><a href="/fabio/">Hire Fabio</a></li>
+            <li><a href="/studio/">Work with TechGnomo</a></li>
+            <li><a href="/products/">Explore the workshop</a></li>
+          </ul>
+        </nav>
       </div>
       <div class="hub-rest">
       <p class="hub-lead">TechGnomo is the workshop. It makes its own products, takes on small jobs for venues, and keeps a lab for tests. Fabio D’Anna is the person behind it, in Brisbane.</p>
-
-      <section class="feature" aria-labelledby="featured">
-        <p class="kicker" id="featured">A TechGnomo product</p>
-        <h2>ClearMoneyPath</h2>
-        <p class="status">Beta · in development · not for sale</p>
-        <p>A pay-cycle planner: what is safe to spend until payday. An Android beta exists. A web version is being built.</p>
-        <p><a class="text-link" href="/products/clearmoneypath/">See the product</a></p>
+      <section class="section" aria-labelledby="products-heading">
+        <h2 id="products-heading">Products</h2>
+        <p>Two things on the bench. Each keeps its real status.</p>
+        <ul class="product-list">
+          <li>
+            <p class="status">Beta · in development · not for sale</p>
+            <h3><a href="/products/clearmoneypath/">ClearMoneyPath</a></h3>
+            <p>A pay-cycle planner. An Android beta exists. A web version is being built.</p>
+          </li>
+          <li>
+            <p class="status">Prototype</p>
+            <h3><a href="/products/gnomorestaurant/">GnomoRestaurant</a></h3>
+            <p>Costing, menu prices, suppliers, stocktake and ordering for a venue. No public build yet.</p>
+          </li>
+        </ul>
+        <p>The <a href="/lab/">lab</a> is for tests that are not products yet.</p>
       </section>
-
-      <ul class="paths">
-        <li>
-          <a href="/products/">
-            <span class="path-name">Products</span>
-            <span class="path-note">What TechGnomo makes. ClearMoneyPath and GnomoRestaurant are the two on the bench.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/studio/">
-            <span class="path-name">Studio</span>
-            <span class="path-note">Small, fixed jobs for independent cafés and restaurants. Not an agency.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/fabio/">
-            <span class="path-name">Fabio</span>
-            <span class="path-note">The founder. For recruiters: skills, diplomas, and the hospitality years.</span>
-          </a>
-        </li>
-        <li>
-          <a href="/lab/">
-            <span class="path-name">Lab</span>
-            <span class="path-note">Experiments. One of them you can use in the browser today.</span>
-          </a>
-        </li>
-      </ul>
       </div>
 
     </main>
 
     <footer class="foot">
-      
+      <span class="mark" aria-hidden="true"></span>
       <span>© TechGnomo · Brisbane</span>
       <a href="/products/">Products</a>
       <a href="/studio/">Studio</a>
