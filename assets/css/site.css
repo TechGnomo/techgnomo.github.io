@@ -466,6 +466,9 @@ strong {
 
 .shot img {
   width: 100%;
+  height: auto;
+  aspect-ratio: 780 / 1688;
+  object-fit: contain;
   border: 1px solid var(--rule);
   background: var(--surface-inset);
 }

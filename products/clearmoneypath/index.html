@@ -133,19 +133,19 @@
         <p class="measure quiet">Android beta. These figures are sample data, not a person’s accounts.</p>
         <div class="shots">
           <figure class="shot">
-            <img src="/assets/img/cmp-home.webp" width="540" height="1117" alt="ClearMoneyPath home screen with sample data: what is left this cycle, bills due, savings and debt." />
+            <img src="/assets/img/cmp-home.webp" width="780" height="1688" alt="ClearMoneyPath home with sample data. Left this cycle is shown, with a line that this is general information, not personal financial advice." />
             <figcaption>Home. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-money.webp" width="540" height="1117" alt="ClearMoneyPath money screen with sample data, listing income, expenses, bills and savings." />
+            <img src="/assets/img/cmp-money.webp" width="780" height="1688" alt="ClearMoneyPath money screen with sample data, split into money in and money out." />
             <figcaption>Money in and out. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-debts.webp" width="540" height="1117" alt="ClearMoneyPath debts screen with sample data for snowball and avalanche ordering." />
-            <figcaption>Sample arithmetic: snowball and avalanche ordering. Not a recommendation.</figcaption>
+            <img src="/assets/img/cmp-debts.webp" width="780" height="1688" alt="ClearMoneyPath debts screen with sample data. Snowball is selected, and the first debt in snowball order is marked." />
+            <figcaption>Debt order: snowball, avalanche or your own. Sample data.</figcaption>
           </figure>
           <figure class="shot">
-            <img src="/assets/img/cmp-plan.webp" width="540" height="1117" alt="ClearMoneyPath payday plan with sample data." />
+            <img src="/assets/img/cmp-plan.webp" width="780" height="1688" alt="ClearMoneyPath payday plan with sample data. The cycle closes when payday arrives." />
             <figcaption>The payday plan. Sample data.</figcaption>
           </figure>
         </div>
@@ -156,10 +156,10 @@
       <section class="section" aria-labelledby="does">
         <h2 id="does">What this beta does</h2>
         <ul class="measure">
-          <li>Shows what is left this cycle, and the next payday.</li>
+          <li>Shows what is left this cycle, and the next payday. A weekly cycle closes when payday arrives.</li>
           <li>Records money in, bills, spending and savings.</li>
-          <li>Tracks debts with a minimum, a rate and a payoff estimate, and switches between snowball and avalanche.</li>
-          <li>Lays the cycle out as a short plan: bills covered, savings set aside, spending inside the safe amount.</li>
+          <li>Tracks each debt’s balance, minimum and rate, and lists debts in snowball order, avalanche order, or your order.</li>
+          <li>Lays the cycle out as a short plan: bills covered, savings set aside, spending inside what is left.</li>
         </ul>
         <p class="measure">Built with React Native, Expo and Firebase. I use AI assistance heavily while building. I decide the pay-cycle model, what a bill or a debt has to do, and whether a screen is telling the truth. Generated code still needs checking, especially around dates and money. The repository is not public yet. I’m happy to walk through it.</p>
       </section>
@@ -187,7 +187,7 @@
               <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" />
             </div>
           </div>
-          <p class="sketch-result" aria-live="polite"><span id="safe-label">Left this cycle</span> <strong id="safe-amount">$990.00</strong> <span class="advice">General information only, not personal financial advice.</span></p>
+          <p class="sketch-result" aria-live="polite"><span id="left-label">Left this cycle</span> <strong id="left-amount">$990.00</strong> <span class="advice">General information only, not personal financial advice.</span></p>
           <p class="help">Sample figures. If the bills and payments are larger than the pay, it says you are short.</p>
         </form>
       </section>
@@ -197,7 +197,7 @@
         <ul class="measure">
           <li>Not for sale. No checkout, no waitlist price, no “founding licence”.</li>
           <li>Not financial advice, and it does not suggest loans, cards or other products.</li>
-          <li>Not a public app yet. The screens on this page are sample data.</li>
+          <li>Not a public app yet. The screens on this page use sample data.</li>
         </ul>
         <p><a href="/products/">All products</a></p>
       </section>
