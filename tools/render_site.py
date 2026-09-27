@@ -45,7 +45,8 @@ def format_when(iso):
         label = f"{moment.day} {moment.strftime('%B')} {moment.year}"
     else:
         hour = str(int(moment.strftime("%I")))
-        label = f"{moment.day} {moment.strftime('%B')} {moment.year}, {hour}:{moment.strftime('%M')} {moment.strftime('%p').lower()}"
+        ampm = "AM" if moment.hour < 12 else "PM"
+        label = f"{moment.day} {moment.strftime('%B')} {moment.year}, {hour}:{moment.strftime('%M')} {ampm}"
     return label
 
 
@@ -101,9 +102,7 @@ def footer(with_mark=True):
       {mark}
       <span class="foot-sign">TechGnomo · Brisbane</span>
       <nav class="foot-nav" aria-label="Footer">
-        <a href="/studio/">Studio</a>
         <a href="/lab/">Lab</a>
-        <a href="/fabio/">Fabio</a>
         <a href="/contact/">Contact</a>
         <a href="/privacy/">Privacy</a>
       </nav>
@@ -321,14 +320,6 @@ def pages():
         "description": "TechGnomo builds practical digital products. ClearMoneyPath is coming in 3 weeks.",
         "publisher": {"@type": "Person", "name": "Fabio D’Anna", "url": ORIGIN + "/about/"},
     }
-    cmp = {
-        "@type": "SoftwareApplication",
-        "name": "ClearMoneyPath",
-        "url": ORIGIN + "/products/clearmoneypath/",
-        "description": "A TechGnomo product. Pay-cycle planner, coming in 3 weeks. Not for sale. A web version is being built.",
-        "creator": {"@type": "Person", "name": "Fabio D’Anna", "url": ORIGIN + "/about/"},
-        "isPartOf": {"@type": "WebSite", "name": "TechGnomo", "url": ORIGIN + "/"},
-    }
     scope = {
         "@type": "WebApplication",
         "name": "MVP Scope Checker",
@@ -496,7 +487,6 @@ def pages():
       <link rel="stylesheet" href="/assets/css/themes/clearmoneypath.css" />
     </noscript>""",
             "scripts": ["/assets/js/spend-sketch.js", "/assets/js/product-transition.js"],
-            "jsonld": cmp,
             "body": f"""
       <div data-stage="parent">
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/products/">Products</a> <span aria-hidden="true">/</span> <span aria-current="page">ClearMoneyPath</span></nav>
@@ -551,7 +541,7 @@ def pages():
           <li>Tracks each debt’s balance, minimum and rate, and lists debts in snowball order, avalanche order, or your order.</li>
           <li>Lays the cycle out as a short plan: bills covered, savings set aside, spending inside what is left.</li>
         </ul>
-        <p class="measure">Built with React Native, Expo and Firebase. I use AI assistance heavily while building. I decide the pay-cycle model, what a bill or a debt has to do, and whether a screen is telling the truth. Generated code still needs checking, especially around dates and money. The repository is not public yet. I’m happy to walk through it.</p>
+        <p class="measure">Built with React Native, Expo and Firebase.</p>
       </section>
 
       <section class="section" aria-labelledby="sketch-title">
@@ -559,22 +549,23 @@ def pages():
         <h2 id="sketch-title">Try the idea on this page</h2>
         <p class="measure">This is a sketch of the subtraction, not the product, and not for sale. The numbers stay in your browser.</p>
         <form id="spend-sketch">
+          <noscript><p class="help">The total needs JavaScript. These fields stay as sample figures.</p></noscript>
           <div class="sketch-grid">
             <div class="field">
               <label for="pay"><span>Pay this cycle (A$)</span></label>
-              <input id="pay" name="pay" type="number" inputmode="decimal" min="0" step="0.01" value="1840" />
+              <input id="pay" name="pay" type="number" inputmode="decimal" min="0" step="0.01" value="1840" disabled />
             </div>
             <div class="field">
               <label for="bills"><span>Bills due before next payday</span></label>
-              <input id="bills" name="bills" type="number" inputmode="decimal" min="0" step="0.01" value="620" />
+              <input id="bills" name="bills" type="number" inputmode="decimal" min="0" step="0.01" value="620" disabled />
             </div>
             <div class="field">
               <label for="debt"><span>Debt payment this cycle</span></label>
-              <input id="debt" name="debt" type="number" inputmode="decimal" min="0" step="0.01" value="150" />
+              <input id="debt" name="debt" type="number" inputmode="decimal" min="0" step="0.01" value="150" disabled />
             </div>
             <div class="field">
               <label for="save"><span>Set aside for savings</span></label>
-              <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" />
+              <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" disabled />
             </div>
           </div>
           <p class="sketch-result" aria-live="polite"><span id="left-label">Left this cycle</span> <strong id="left-amount">$990.00</strong> <span class="advice">General information only, not personal financial advice.</span></p>
@@ -637,10 +628,9 @@ def pages():
       </ul>
       <div class="note">
         <h2>Nothing to open yet</h2>
-        <p>No store listing and no public repository. If you are hiring and the domain matters, email me and I will show you the build I actually have.</p>
-        <p><a href="mailto:gnomocode@gmail.com?subject=GnomoRestaurant">gnomocode@gmail.com</a></p>
+        <p>No store listing and no public repository.</p>
       </div>
-      <p>It is not client work, and it is not for sale. The jobs I can take for a venue today are on the <a href="/studio/">studio</a> page.</p>
+      <p>It is not client work, and it is not for sale.</p>
 """,
         },
         {
@@ -648,6 +638,7 @@ def pages():
             "url": "/studio/",
             "title": "Studio | TechGnomo",
             "description": "TechGnomo Studio: two small fixed-price jobs for independent cafés and restaurants. A one-page website, or a costing and stocktake sheet.",
+            "robots": "noindex, follow",
             "section": "studio",
             "body": """
       <p class="kicker">TechGnomo Studio · Brisbane</p>
@@ -779,7 +770,7 @@ def pages():
           <li>
             <h3>Automation</h3>
             <p class="level">Currently learning</p>
-            <p>How to make a repeated admin job smaller without hiding the decision. The sheet on the studio page is the honest version of this. I am not selling an automation platform.</p>
+            <p>How to make a repeated admin job smaller without hiding the decision. A single sheet is the honest version of this. I am not selling an automation platform.</p>
           </li>
           <li>
             <h3>Cybersecurity</h3>
@@ -893,6 +884,7 @@ def pages():
             "url": "/fabio/",
             "title": "Fabio D’Anna | TechGnomo",
             "description": "Fabio D’Anna, founder of TechGnomo, Brisbane. Open to junior developer and IT support roles.",
+            "robots": "noindex, follow",
             "section": "",
             "jsonld": person,
             "body": """
@@ -952,15 +944,10 @@ def pages():
             "description": "Email Fabio D’Anna at gnomocode@gmail.com. No form service and no tracker.",
             "section": "contact",
             "body": """
-      <p class="kicker">TechGnomo</p>
-      <h1>Email Fabio.</h1>
-      <p class="lede">gnomocode@gmail.com is the contact. There is no form on a server and no tracker on this page.</p>
-      <p class="email-plate"><a href="mailto:gnomocode@gmail.com">gnomocode@gmail.com</a></p>
-      <p class="actions">
-        <a href="mailto:gnomocode@gmail.com?subject=Junior%20role%20via%20TechGnomo">About a role</a>
-        <a href="mailto:gnomocode@gmail.com?subject=Studio%20job%20via%20TechGnomo">A studio job</a>
-        <a href="mailto:gnomocode@gmail.com?subject=A%20TechGnomo%20product">A question about a product</a>
-      </p>
+      <p class="kicker">Contact</p>
+      <h1>A question for TechGnomo.</h1>
+      <p class="lede">About a product, or about TechGnomo in general. gnomocode@gmail.com. There is no form on a server and no tracker on this page.</p>
+      <p class="email-plate"><a href="mailto:gnomocode@gmail.com?subject=A%20question%20for%20TechGnomo">gnomocode@gmail.com</a></p>
       <h2>Also public</h2>
       <ul>
         <li><a href="https://github.com/TechGnomo">github.com/TechGnomo</a></li>

@@ -53,41 +53,21 @@
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "name": "ClearMoneyPath | TechGnomo",
-      "description": "ClearMoneyPath is a TechGnomo product: a pay-cycle planner coming in 3 weeks. Not for sale. Screens use sample data.",
-      "url": "https://techgnomo.com/products/clearmoneypath/",
-      "inLanguage": "en-AU",
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "TechGnomo",
-        "url": "https://techgnomo.com/"
-      },
-      "author": {
-        "@type": "Person",
-        "name": "Fabio D’Anna",
-        "url": "https://techgnomo.com/about/"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "name": "ClearMoneyPath",
-      "url": "https://techgnomo.com/products/clearmoneypath/",
-      "description": "A TechGnomo product. Pay-cycle planner, coming in 3 weeks. Not for sale. A web version is being built.",
-      "creator": {
-        "@type": "Person",
-        "name": "Fabio D’Anna",
-        "url": "https://techgnomo.com/about/"
-      },
-      "isPartOf": {
-        "@type": "WebSite",
-        "name": "TechGnomo",
-        "url": "https://techgnomo.com/"
-      }
-    }
-  ]
+  "@type": "WebPage",
+  "name": "ClearMoneyPath | TechGnomo",
+  "description": "ClearMoneyPath is a TechGnomo product: a pay-cycle planner coming in 3 weeks. Not for sale. Screens use sample data.",
+  "url": "https://techgnomo.com/products/clearmoneypath/",
+  "inLanguage": "en-AU",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "TechGnomo",
+    "url": "https://techgnomo.com/"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Fabio D’Anna",
+    "url": "https://techgnomo.com/about/"
+  }
 }
     </script>
   </head>
@@ -163,7 +143,7 @@
           <li>Tracks each debt’s balance, minimum and rate, and lists debts in snowball order, avalanche order, or your order.</li>
           <li>Lays the cycle out as a short plan: bills covered, savings set aside, spending inside what is left.</li>
         </ul>
-        <p class="measure">Built with React Native, Expo and Firebase. I use AI assistance heavily while building. I decide the pay-cycle model, what a bill or a debt has to do, and whether a screen is telling the truth. Generated code still needs checking, especially around dates and money. The repository is not public yet. I’m happy to walk through it.</p>
+        <p class="measure">Built with React Native, Expo and Firebase.</p>
       </section>
 
       <section class="section" aria-labelledby="sketch-title">
@@ -171,22 +151,23 @@
         <h2 id="sketch-title">Try the idea on this page</h2>
         <p class="measure">This is a sketch of the subtraction, not the product, and not for sale. The numbers stay in your browser.</p>
         <form id="spend-sketch">
+          <noscript><p class="help">The total needs JavaScript. These fields stay as sample figures.</p></noscript>
           <div class="sketch-grid">
             <div class="field">
               <label for="pay"><span>Pay this cycle (A$)</span></label>
-              <input id="pay" name="pay" type="number" inputmode="decimal" min="0" step="0.01" value="1840" />
+              <input id="pay" name="pay" type="number" inputmode="decimal" min="0" step="0.01" value="1840" disabled />
             </div>
             <div class="field">
               <label for="bills"><span>Bills due before next payday</span></label>
-              <input id="bills" name="bills" type="number" inputmode="decimal" min="0" step="0.01" value="620" />
+              <input id="bills" name="bills" type="number" inputmode="decimal" min="0" step="0.01" value="620" disabled />
             </div>
             <div class="field">
               <label for="debt"><span>Debt payment this cycle</span></label>
-              <input id="debt" name="debt" type="number" inputmode="decimal" min="0" step="0.01" value="150" />
+              <input id="debt" name="debt" type="number" inputmode="decimal" min="0" step="0.01" value="150" disabled />
             </div>
             <div class="field">
               <label for="save"><span>Set aside for savings</span></label>
-              <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" />
+              <input id="save" name="save" type="number" inputmode="decimal" min="0" step="0.01" value="80" disabled />
             </div>
           </div>
           <p class="sketch-result" aria-live="polite"><span id="left-label">Left this cycle</span> <strong id="left-amount">$990.00</strong> <span class="advice">General information only, not personal financial advice.</span></p>
@@ -217,7 +198,7 @@
             <div class="post-top">
               <h3 class="post-label" id="label-cmp-three-weeks">
                 <span class="post-name">TechGnomo</span>
-                <a class="post-time" href="/news/#cmp-three-weeks"><time datetime="2026-09-27T13:52:00+10:00">27 September 2026, 1:52 pm</time></a>
+                <a class="post-time" href="/news/#cmp-three-weeks"><time datetime="2026-09-27T13:52:00+10:00">27 September 2026, 1:52 PM</time></a>
               </h3>
               <p class="post-status">TEASER</p>
             </div>
@@ -237,7 +218,7 @@
               </h3>
               <p class="post-status">UPDATE</p>
             </div>
-            <p class="post-text">We fixed a bug today that was apparently convinced rent should be paid twice. It has been dealt with. Bills were being counted twice when reserving money. Each bill’s pro-rata share is now reserved once.</p>
+            <p class="post-text">We fixed a bug that was apparently convinced rent should be paid twice. It has been dealt with. Bills were being counted twice when reserving money. Each bill’s pro-rata share is now reserved once.</p>
             
             <p class="post-product"><a class="product-chip" href="/products/clearmoneypath/" style="--chip-surface:#06101E;--chip-accent:#2D7BFF;--chip-ink:#F7FAFF"><span class="chip-swatch" aria-hidden="true"></span>ClearMoneyPath</a></p>
           </div>
@@ -252,9 +233,7 @@
       <span class="mark" aria-hidden="true"></span>
       <span class="foot-sign">TechGnomo · Brisbane</span>
       <nav class="foot-nav" aria-label="Footer">
-        <a href="/studio/">Studio</a>
         <a href="/lab/">Lab</a>
-        <a href="/fabio/">Fabio</a>
         <a href="/contact/">Contact</a>
         <a href="/privacy/">Privacy</a>
       </nav>

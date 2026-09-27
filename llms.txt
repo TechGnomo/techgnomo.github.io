@@ -1,19 +1,16 @@
 # TechGnomo
 
-> TechGnomo is Fabio D’Anna’s workshop in Brisbane. The site is the hub: products, a studio, a lab, and the founder. Not a company, and not a store.
-
-ClearMoneyPath is a product in beta. A web version is being built. It is not for sale. GnomoRestaurant is a prototype. AI, automation and cybersecurity are learning, not services.
+> TechGnomo is a product lab in Brisbane. It builds practical digital products. ClearMoneyPath is coming in 3 weeks and is not for sale.
 
 ## Pages
 
 - [Hub](https://techgnomo.com/)
+- [About](https://techgnomo.com/about/)
+- [News](https://techgnomo.com/news/)
 - [Products](https://techgnomo.com/products/)
 - [ClearMoneyPath](https://techgnomo.com/products/clearmoneypath/)
-- [GnomoRestaurant](https://techgnomo.com/products/gnomorestaurant/)
-- [Studio](https://techgnomo.com/studio/)
 - [Lab](https://techgnomo.com/lab/)
 - [MVP Scope Checker](https://techgnomo.com/lab/scope-checker/)
-- [Fabio D’Anna](https://techgnomo.com/fabio/)
 - [Contact](https://techgnomo.com/contact/)
 - [Privacy](https://techgnomo.com/privacy/)
 

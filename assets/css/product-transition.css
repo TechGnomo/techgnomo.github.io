@@ -41,16 +41,19 @@ body[data-product]::before {
   z-index: -1;
   inset: 0;
   background-color: var(--color-paper);
+  /* Navy is in by 38% so the line under the screenshots sits on it even
+     when the row is one short line (wide viewports). The dusk stays in the
+     band the cards cover. Parent ink is only on the sand, above that. */
   background-image: linear-gradient(
     var(--color-paper) 0%,
     var(--field-a) 16%,
-    var(--field-b) 26%,
-    var(--field-b) 32%,
-    var(--field-pass) 34.2%,
-    var(--field-pass-cool) 35.6%,
-    var(--field-c) 38.2%,
-    var(--field-d) 40.4%,
-    var(--theme-surface) 42%,
+    var(--field-b) 24%,
+    var(--field-b) 27%,
+    var(--field-pass) 29.2%,
+    var(--field-pass-cool) 31.2%,
+    var(--field-c) 33.6%,
+    var(--field-d) 36%,
+    var(--theme-surface) 38%,
     var(--theme-surface) 93%,
     var(--field-d) 94.2%,
     var(--field-pass-cool) 95.3%,
@@ -63,13 +66,13 @@ body[data-product]::before {
     in oklch,
     var(--color-paper) 0%,
     var(--field-a) 16%,
-    var(--field-b) 26%,
-    var(--field-b) 32%,
-    var(--field-pass) 34.2%,
-    var(--field-pass-cool) 35.6%,
-    var(--field-c) 38.2%,
-    var(--field-d) 40.4%,
-    var(--theme-surface) 42%,
+    var(--field-b) 24%,
+    var(--field-b) 27%,
+    var(--field-pass) 29.2%,
+    var(--field-pass-cool) 31.2%,
+    var(--field-c) 33.6%,
+    var(--field-d) 36%,
+    var(--theme-surface) 38%,
     var(--theme-surface) 93%,
     var(--field-d) 94.2%,
     var(--field-pass-cool) 95.3%,

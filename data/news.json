@@ -17,18 +17,18 @@
     "datetime": "2026-09-27",
     "status": "UPDATE",
     "product": "clearmoneypath",
-    "text": "We fixed a bug today that was apparently convinced rent should be paid twice. It has been dealt with. Bills were being counted twice when reserving money. Each bill’s pro-rata share is now reserved once."
+    "text": "We fixed a bug that was apparently convinced rent should be paid twice. It has been dealt with. Bills were being counted twice when reserving money. Each bill’s pro-rata share is now reserved once."
   },
   {
     "id": "coming-soon-up",
     "datetime": "2026-09-27T08:04:28+10:00",
     "status": "UPDATE",
-    "text": "The coming-soon page is up on techgnomo.com. The countdown runs to Monday, 9:00 am Brisbane."
+    "text": "The coming-soon page went up on techgnomo.com. It counted down to Monday, 9:00 AM Brisbane."
   },
   {
     "id": "retired-os",
     "datetime": "2026-09-26T21:28:47+00:00",
     "status": "UPDATE",
-    "text": "The old portfolio and the old TechGnomo OS are retired. The public site stays on the countdown until Monday."
+    "text": "We retired the old portfolio and the old TechGnomo OS. The public site counted down to Monday, 9:00 AM."
   }
 ]

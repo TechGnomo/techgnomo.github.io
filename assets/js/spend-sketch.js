@@ -4,6 +4,9 @@
 
   var label = document.getElementById("left-label");
   var amount = document.getElementById("left-amount");
+  Array.prototype.forEach.call(form.elements, function (field) {
+    if (field.disabled) field.disabled = false;
+  });
   var money = new Intl.NumberFormat("en-AU", {
     style: "currency",
     currency: "AUD",
