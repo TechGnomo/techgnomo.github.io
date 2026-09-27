@@ -184,7 +184,7 @@ The prototypes load `/assets/css/prototype.css` and `/assets/js/prototype.js` on
 
 A second pass on the same branch. The v1 prototypes stay at `/prototype/` for comparison. These live at `/prototype/v2/`, still `noindex`, still unlinked from the public header. Live pages, `mark.svg`, and the transition files are untouched.
 
-The bench is graphite (`#0B0C0E` void, `#121417` bench, `#1A1D21` plate, `#24282D` raised, edge `#6A717A`). Ink is `#F4F1EA` (17.4:1 on void). The product is an object on that bench: one chamfer, a left-hand lamp, ClearMoneyPath’s own navy inside the glass. The home first viewport is that object. It is not a poster headline. Coordinates and `BUILD 001` are not carried over.
+The bench is graphite (`#0B0C0E` void, `#121417` bench, `#1A1D21` plate, `#24282D` raised, edge `#6A717A`). Ink is `#F4F1EA` (17.4:1 on void). Home opens on that plate: the TechGnomo name, one line about what is built here, then ClearMoneyPath seated in a smaller lit frame, and an empty unlit slot. The product keeps its own navy inside the glass. Coordinates and `BUILD 001` are not carried over.
 
 The lamp is `#FF5C9A`. It is for live, selected, and status, and text never sits on it. V1 `#BA0068` is 3.1:1 on void, so it cannot be the lamp. Ember `#FF5A36` (4.8:1 on raised) and amber `#FFB020` (8.1:1 on raised) pass and were set aside: one reads as red heat, the other as caution. `#FF5C9A` is 6.8:1 on void, 6.4 on the bench, 5.8 on the plate, 5.1 on raised. ClearMoneyPath blue `#2D7BFF` stays inside the product (4.9:1 on its navy).
 

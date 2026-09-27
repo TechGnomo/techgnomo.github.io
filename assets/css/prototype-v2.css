@@ -304,22 +304,145 @@ main {
   padding-bottom: 4rem;
 }
 
-.home-hero {
-  width: min(72rem, calc(100% - 2 * var(--pad)));
-  min-height: calc(100dvh - 3.25rem);
-  margin: 0 auto;
-  padding: 1.5rem 0 1.75rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.bench {
+  width: min(76rem, calc(100% - 2 * var(--pad)));
+  min-height: calc(100dvh - 4.5rem);
+  margin: 0.75rem auto 0;
 }
 
-.plaque {
-  max-width: 18rem;
-  margin: 1.25rem 0 0;
+.plate-face {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.75rem;
+  min-height: inherit;
+  padding: 1.35rem 1.1rem 1.15rem;
+  background:
+    radial-gradient(ellipse 46% 40% at 72% 78%, rgba(255, 255, 255, 0.1), transparent 64%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 16%),
+    linear-gradient(168deg, #353b43 0%, #24282d 24%, #181b1f 62%, #101214 100%);
+  border: 1px solid var(--edge);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 28px 48px rgba(0, 0, 0, 0.38);
+  clip-path: polygon(22px 0, 100% 0, 100% calc(100% - 22px), calc(100% - 22px) 100%, 0 100%, 0 22px);
+  overflow: hidden;
+}
+
+.plate-face::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 79px, rgba(255, 255, 255, 0.045) 79px 80px),
+    repeating-linear-gradient(0deg, transparent 0 79px, rgba(255, 255, 255, 0.03) 79px 80px);
+  pointer-events: none;
+}
+
+.plate-face::after {
+  content: "";
+  position: absolute;
+  left: 26px;
+  right: 14px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.12) 72%, transparent);
+  pointer-events: none;
+}
+
+.bench-id,
+.slots,
+.surface-caption {
+  position: relative;
+  z-index: 1;
+}
+
+.bench-id {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  column-gap: 0.75rem;
+  align-items: center;
+  max-width: 36rem;
+}
+
+.bench-id .peak {
+  width: 2.35rem;
+  height: 2.35rem;
+}
+
+.bench-id h1 {
+  margin: 0;
+  font-size: clamp(2.05rem, 7vw, 3.35rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 0.95;
+}
+
+.bench-line {
+  grid-column: 1 / -1;
+  max-width: 22rem;
+  margin: 0.85rem 0 0;
   color: var(--soft);
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.4;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(6.75rem, 0.72fr);
+  gap: 0.7rem;
+  align-items: end;
+}
+
+.object.is-seated {
+  width: 100%;
+  margin: 0;
+}
+
+.is-seated .object-glass {
+  aspect-ratio: 3 / 1.85;
+}
+
+.slot-empty {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 7.5rem;
+  padding: 0.75rem 0.7rem 0.7rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), transparent 30%),
+    linear-gradient(180deg, #14171b, #0c0e11);
+  border: 1px solid #3c424a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  clip-path: polygon(12px 0, 100% 0, 100% 100%, 0 100%, 0 12px);
+}
+
+.slot-empty::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 0;
+  width: 3px;
+  background: var(--signal);
+  opacity: 0.22;
+}
+
+.slot-empty p {
+  margin: 0;
+  color: var(--meta);
+}
+
+.surface-demo {
+  min-height: 11rem;
+  margin-top: 1.25rem;
+  justify-content: flex-end;
+}
+
+.surface-caption {
+  color: var(--soft);
 }
 
 .object {
@@ -346,13 +469,25 @@ main {
   z-index: 1;
   padding: 0.85rem 0.85rem 0.75rem 1rem;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.07), transparent 22%),
-    linear-gradient(180deg, #2c3138 0%, var(--plate) 28%, #14171b 100%);
+    linear-gradient(180deg, rgba(255, 255, 255, 0.16), transparent 11%),
+    linear-gradient(180deg, #3a4048 0%, #262b31 16%, var(--plate) 48%, #121418 100%);
   border: 1px solid var(--edge);
   box-shadow:
-    inset 0 1px 0 var(--satin),
-    0 22px 40px rgba(0, 0, 0, 0.42);
+    inset 0 1px 0 rgba(255, 255, 255, 0.32),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.55),
+    0 18px 32px rgba(0, 0, 0, 0.38);
   clip-path: polygon(18px 0, 100% 0, 100% 100%, 0 100%, 0 18px);
+}
+
+.object-plate::after {
+  content: "";
+  position: absolute;
+  left: 22px;
+  right: 10px;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0.08));
+  pointer-events: none;
 }
 
 .object-plate::before {
@@ -461,25 +596,33 @@ main {
 
 .feed {
   display: grid;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
+  padding: 0.15rem 0.95rem 0.2rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), transparent 12%),
+    linear-gradient(180deg, #2a2f35 0%, #1a1d21 36%, #14171b 100%);
+  border: 1px solid var(--edge);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.45);
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
 }
 
 .post {
-  display: grid;
-  grid-template-columns: 2rem minmax(0, 1fr);
-  column-gap: 0.75rem;
-  padding: 1.15rem 0;
-  border-top: 1px solid var(--seam);
+  display: block;
+  padding: 1.05rem 0 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.4);
   scroll-margin-top: 4.5rem;
 }
 
 .post:last-child {
-  border-bottom: 1px solid var(--seam);
+  border-bottom: 0;
+  box-shadow: none;
 }
 
-.post:target .post-body {
-  box-shadow: inset 2px 0 0 var(--signal);
-  padding-left: 0.7rem;
+.post:target .status-mod {
+  box-shadow: inset 2px 0 0 var(--signal), inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .avatar {
@@ -501,13 +644,17 @@ main {
   min-width: 0;
 }
 
-.byline {
+.post-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.45rem;
   margin: 0;
-  font-size: 0.8125rem;
+  min-width: 0;
+  font-size: 0.9375rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  line-height: 1.45;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
 }
 
 .handle,
@@ -522,15 +669,26 @@ main {
 }
 
 .who {
-  margin-right: 0.35rem;
+  margin-right: 0.15rem;
 }
 
-.post-status {
+.when {
+  margin-left: auto;
+  text-align: right;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.status-mod {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  margin: 0.35rem 0 0;
+  margin: 0.75rem 0 0;
+  padding: 0.28rem 0.5rem 0.28rem 0.42rem;
   color: var(--signal);
+  background: #16191d;
+  border: 1px solid #3a4048;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22);
 }
 
 .post-text {
@@ -750,6 +908,7 @@ a.ref {
 }
 
 .stage-cross .object-plate::before,
+.stage-cross .object-plate::after,
 .stage-cross .object-back,
 .stage-product .object-back {
   display: none;
@@ -827,32 +986,42 @@ a.ref {
     --pad: 1.5rem;
   }
 
-  .home-hero {
-    min-height: calc(100dvh - 3.25rem);
+  .plate-face {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(20rem, 28rem);
+    grid-template-columns: minmax(16rem, 1fr) minmax(22rem, 36rem);
+    grid-template-rows: 1fr auto;
     align-items: end;
-    gap: 4rem;
-    padding-bottom: 2.5rem;
+    padding: 2.4rem 2.5rem 2rem;
+    background:
+      radial-gradient(ellipse 42% 48% at 74% 68%, rgba(255, 255, 255, 0.12), transparent 62%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 18%),
+      linear-gradient(168deg, #353b43 0%, #24282d 24%, #181b1f 62%, #101214 100%);
   }
 
-  .plaque {
+  .bench-id {
     grid-column: 1;
-    grid-row: 1;
-    margin: 0 0 0.5rem;
-    align-self: end;
+    grid-row: 1 / span 2;
+    align-self: start;
+    padding-top: 0.5rem;
   }
 
-  .home-hero .object {
+  .slots {
     grid-column: 2;
-    grid-row: 1;
-    width: min(100%, 28rem);
-    margin: 0;
+    grid-row: 2;
     justify-self: end;
+    width: min(100%, 30rem);
+  }
+
+  .is-seated .object-glass {
+    aspect-ratio: 3 / 1.65;
   }
 
   .home-rest {
-    width: min(40rem, calc(100% - 2 * var(--pad)));
+    width: min(44rem, calc(100% - 2 * var(--pad)));
+  }
+
+  .surface-demo {
+    display: flex;
   }
 }
 
@@ -866,9 +1035,9 @@ a.ref {
 }
 
 @media (min-width: 960px) and (prefers-reduced-motion: no-preference) {
-  .home-hero .object.is-on {
+  .bench .object.is-on {
     transform: perspective(1100px) rotateY(-3.5deg) rotateX(2deg);
-    transform-origin: 70% 50%;
+    transform-origin: 60% 60%;
   }
 }
 
