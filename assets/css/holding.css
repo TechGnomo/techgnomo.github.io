@@ -127,6 +127,10 @@ body {
   animation: rise var(--duration-slow) var(--ease-out) 240ms both;
 }
 
+.when:has(.clock[hidden]) {
+  margin-top: 0;
+}
+
 .opens {
   margin: 0 0 var(--space-5);
   font-weight: 500;

@@ -10,7 +10,6 @@
   var clock = document.getElementById("clock");
   var line = document.getElementById("line");
   var opens = document.getElementById("opens");
-  var hint = document.getElementById("hint");
   var sr = document.getElementById("sr");
   var lastMinute = null;
   var timer = 0;
@@ -60,13 +59,11 @@
       });
   }
 
-  function showLive() {
+  function showHold() {
     clock.hidden = true;
     opens.hidden = true;
-    hint.hidden = false;
-    line.textContent = "The workshop is open.";
-    line.classList.add("is-open");
-    sr.textContent = "The workshop is open. Refresh the page.";
+    line.textContent = "Nearly there. The workshop opens soon.";
+    sr.textContent = "Nearly there. The workshop opens soon.";
     if (timer) {
       clearTimeout(timer);
       timer = 0;
@@ -85,8 +82,13 @@
     }
     var diff = launchMs - Date.now();
     if (diff <= 0) {
-      showLive();
+      showHold();
       return true;
+    }
+    if (!opens.hasAttribute("data-armed")) {
+      launchEl.textContent = "Opens Monday, 9:00 AM";
+      opens.setAttribute("data-armed", "");
+      sr.textContent = "Counting down to Monday 28 September 2026, 9:00 AM Brisbane time.";
     }
     var total = Math.floor(diff / 1000);
     var days = Math.floor(total / 86400);
@@ -113,10 +115,6 @@
     }
     return false;
   }
-
-  document.getElementById("reload").addEventListener("click", function () {
-    window.location.reload();
-  });
 
   function arm() {
     if (tick()) return;
