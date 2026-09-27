@@ -179,3 +179,13 @@ Stays:
 - `main`, secrets, Pages, deploy settings, and `CNAME`. Not touched.
 
 The prototypes load `/assets/css/prototype.css` and `/assets/js/prototype.js` only. They are absent from the sitemap and from the live header.
+
+## V2
+
+A second pass on the same branch. The v1 prototypes stay at `/prototype/` for comparison. These live at `/prototype/v2/`, still `noindex`, still unlinked from the public header. Live pages, `mark.svg`, and the transition files are untouched.
+
+The bench is graphite (`#0B0C0E` void, `#121417` bench, `#1A1D21` plate, `#24282D` raised, edge `#6A717A`). Ink is `#F4F1EA` (17.4:1 on void). The product is an object on that bench: one chamfer, a left-hand lamp, ClearMoneyPath’s own navy inside the glass. The home first viewport is that object. It is not a poster headline. Coordinates and `BUILD 001` are not carried over.
+
+The lamp is `#FF5C9A`. It is for live, selected, and status, and text never sits on it. V1 `#BA0068` is 3.1:1 on void, so it cannot be the lamp. Ember `#FF5A36` (4.8:1 on raised) and amber `#FFB020` (8.1:1 on raised) pass and were set aside: one reads as red heat, the other as caution. `#FF5C9A` is 6.8:1 on void, 6.4 on the bench, 5.8 on the plate, 5.1 on raised. ClearMoneyPath blue `#2D7BFF` stays inside the product (4.9:1 on its navy).
+
+Type is Instrument Sans (OFL, variable, Latin subset, about 30KB) plus the same DM Mono for time, status, and references. The prototype mark is `/assets/brand/peak.svg`: the hat as a peak and a brim, no face. Motion is 220ms and linear, and only with a fine pointer when motion is allowed. Reduced motion keeps the lit and unlit states, with no transition and no perspective. The handover is four solid stages — bench, product signal, frame gone, then the navy room — so the lamp does not blend into the blue, and text stays AA the whole way. The last line is “A TechGnomo product”.
