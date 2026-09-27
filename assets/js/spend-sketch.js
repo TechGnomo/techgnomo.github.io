@@ -2,8 +2,8 @@
   var form = document.getElementById("spend-sketch");
   if (!form) return;
 
-  var label = document.getElementById("safe-label");
-  var amount = document.getElementById("safe-amount");
+  var label = document.getElementById("left-label");
+  var amount = document.getElementById("left-amount");
   var money = new Intl.NumberFormat("en-AU", {
     style: "currency",
     currency: "AUD",
