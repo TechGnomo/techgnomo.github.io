@@ -14,6 +14,7 @@ The visual system is the one in `DESIGN.md` and `/assets/css/tokens.css`, shared
 - `/contact/`, `/privacy/`, 404, sitemap, robots
 - Old flat URLs for ClearMoneyPath and the scope checker redirect to the new paths
 - Old overlapping portfolios and the public résumé PDF removed from the served tree
+- The launch countdown (`holding.css`, `holding.js`) removed once the hub replaced the holding page
 
 ## NEXT
 
