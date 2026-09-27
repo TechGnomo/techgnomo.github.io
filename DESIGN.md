@@ -108,8 +108,8 @@ Files:
 
 - `/assets/css/site.css` — the stage frame (padding and the centred measure). It is in the first paint, so the opening does not move when the colour arrives.
 - `/assets/css/product-transition.css` — one page-height field (a gradient, not a colour per chapter), the pay-cycle rail, and the header veil.
-- `/assets/css/themes/<product>.css` — that product's destination values, plus the field stops `--field-a` through `--field-d`.
-- `/assets/js/product-transition.js` — loads the transition stylesheet, the theme (`data-product-theme`) and any product faces (`data-product-fonts`) on the first scroll, a jump to a hash, or shortly after load. Those files stay off the first paint so they do not compete with Fraunces and Source Sans. If the browser cannot do `animation-timeline: view()` and the reader has not asked for reduced motion, the same file sets `--shift` from an `IntersectionObserver`. The field does not use that value. The observer reads the entry's own geometry. It does not measure the page on scroll.
+- `/assets/css/themes/<product>.css` — that product's destination values, plus the field stops `--field-a` through `--field-d`. A product that needs a hue change on the way to its ground can also set `--field-pass` and `--field-pass-cool`, the near-neutral pair between sand and the dusk.
+- `/assets/js/product-transition.js` — loads the transition stylesheet and the theme (`data-product-theme`) on the first scroll, a jump to a hash, or shortly after load. An optional `data-product-fonts` stylesheet loads the same way when a product self-hosts a face. Those files stay off the first paint so they do not compete with Fraunces and Source Sans. If the browser cannot do `animation-timeline: view()` and the reader has not asked for reduced motion, the same file sets `--shift` from an `IntersectionObserver`. The field does not use that value. The observer reads the entry's own geometry. It does not measure the page on scroll.
 
 Chapters are marked in order:
 
@@ -128,14 +128,14 @@ The rail is the product's graphic. It is faint and short over the crossover, lon
 
 ### Why the field is not a straight mix
 
-Cream paper with dark ink and a navy ground with light ink cannot be blended under the text. In the middle, neither ink passes WCAG AA. The field still travels that whole way, in OKLCH, through a warm sand and a dusk rather than a neutral grey. The part of the ramp where text would fail sits behind the screenshots, where the only type is on the app cards. Dark ink stays on the field while it is still sand. Light ink starts once the field has reached the theme surface. Do not put a chapter background back on the stages, and do not run the failing part of the ramp under a paragraph.
+Cream paper with dark ink and a navy ground with light ink cannot be blended under the text. In the middle, neither ink passes WCAG AA. The field still travels that whole way, in OKLCH, through a warm sand and a cool dusk. Where the hue has to leave the sand, two near-neutral stops (`--field-pass`, `--field-pass-cool`) keep the chroma too low to paint a brown or a green middle. The part of the ramp where text would fail sits behind the screenshots, where the only type is on the app cards. Dark ink stays on the field while it is still sand. Light ink starts once the field has reached the theme surface. Do not put a chapter background back on the stages, and do not run the failing part of the ramp under a paragraph.
 
 ## Add a product
 
 1. Derive the palette, type and components from the real product. Do not invent a second brand, and do not add a theme for a product that has no build yet.
-2. Add `/assets/css/themes/<slug>.css`. On `[data-product="<slug>"]`, set `--theme-surface`, `--theme-surface-inset`, `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint`, `--theme-accent`, `--theme-rule`, `--theme-warm`, `--accent-fill` and `--font-product`. Set `--field-a` through `--field-d` to the warm stops between paper and the theme surface. Record where each value came from. If the chapters sit at very different heights than ClearMoneyPath, adjust the stop positions in `product-transition.css` so the failing middle of the ramp stays behind art, not under paragraphs.
-3. Self-host at most two extra font files (woff2, subset). No third-party font request. Confirm `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint` and `--theme-accent` are at least 4.5:1 on both `--theme-surface` and `--theme-surface-inset`.
-4. On that page only, link `tokens.css` and `site.css`. Set `data-product`, `data-product-theme` and, when the product has its own files, `data-product-fonts` on `body`. Include `product-transition.js`. In `<noscript>`, link `product-transition.css`, the theme and the font file, so the page is complete with JavaScript off. Mark the chapters `data-stage="parent"`, then `approach`, `crossover`, and `product`, in that order. One `product` wrapper may hold several sections. If the theme changes a component's size, put that box model in a short style block on the page so the first paint already has it.
+2. Add `/assets/css/themes/<slug>.css`. On `[data-product="<slug>"]`, set `--theme-surface`, `--theme-surface-inset`, `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint`, `--theme-accent`, `--theme-rule`, `--theme-warm`, `--accent-fill` and `--font-product`. Set `--field-a` through `--field-d` to the stops between paper and the theme surface. If the hue has to swing, set `--field-pass` and `--field-pass-cool` as a near-neutral pair so the mix does not pick up a strong chroma in between. Record where each value came from. If the chapters sit at very different heights than ClearMoneyPath, adjust the stop positions in `product-transition.css` so the failing middle of the ramp stays behind art, not under paragraphs.
+3. Prefer the product's own font stack when it is already on the system. Self-host at most two extra font files (woff2, subset) and only when the product actually ships those files. No third-party font request. Confirm `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint` and `--theme-accent` are at least 4.5:1 on both `--theme-surface` and `--theme-surface-inset`.
+4. On that page only, link `tokens.css` and `site.css`. Set `data-product` and `data-product-theme` on `body`. Set `data-product-fonts` only when a self-hosted face is required. Include `product-transition.js`. In `<noscript>`, link `product-transition.css`, the theme, and the font file when there is one, so the page is complete with JavaScript off. Mark the chapters `data-stage="parent"`, then `approach`, `crossover`, and `product`, in that order. One `product` wrapper may hold several sections. If the theme changes a component's size, put that box model in a short style block on the page so the first paint already has it.
 5. Keep the line "A TechGnomo product" (or the same attribution). Keep the header on the parent. Leave the copy, status and legal lines as they are.
 6. Check contrast at the top, at 25%, 50%, 75% and the main action, including the colours between the resting stages. Check reduced motion, JavaScript off, and that other pages did not change.
 
@@ -143,29 +143,30 @@ GnomoRestaurant is the empty slot: `/assets/css/themes/gnomorestaurant.css` is c
 
 ## ClearMoneyPath
 
-The Android beta is the source. `https://github.com/TechGnomo/ClearMoneyPath` is not public (the page says so, and the remote returns 404), including `fellowship/web-mvp` and `main`. There is no theme file to quote. Every colour below was measured on the screenshots already published at `/assets/img/cmp-home.webp`, `cmp-money.webp`, `cmp-debts.webp` and `cmp-plan.webp`. Flat fills were counted as exact pixels, not sampled by eye.
+The Android beta is the source. Colours and type below are the values the current build paints, from `App.js` at commit `ea19ef9ec0e49fcf3622b6b371fe9456024d50ad`. `App.js` sets no `fontFamily`. Text uses the React Native Web system stack (`SYSTEM_FONT_STACK` in `createReactDOMStyle.js`, applied from `Text`).
 
-The web identity is that UI, set for a long page: a navy ground, cards a step lighter, near-white text, one blue, and a pay-cycle rail (a line from payday to payday with a mark for now). The rail is the page's motif. It is CSS, it does not take space, and it appears from the crossover on.
+The web identity is that UI, set for a long page: the painted page ground, cards a step lighter, the app's own text colours, one blue, and a pay-cycle rail (a line from payday to payday with a mark for now). The rail is the page's motif. It is CSS, it does not take space, and it appears from the crossover on.
 
 | Token | Value | Provenance |
 | --- | --- | --- |
-| `--theme-surface` | `#07101f` | Screen ground. Exact fill, 81,807 pixels on `cmp-home.webp`, and the same navy at the edges of the other three shots. |
-| `--theme-surface-inset` | `#111727` | Cards. Most common exact colour on `cmp-home.webp` (121,941 pixels). |
-| `--theme-ink` | `#f4faff` | Near-white figures. The mode of the light text is `#ffffff`; `#f4faff` is the cool white clustered on the home hero (y 199–238). |
-| `--theme-ink-soft` | `#d5deea` | Secondary text. Small labels on `cmp-home.webp` antialias through `#a5b9c9`–`#c4d8ea`. This token stays in that cool gray, light enough for paragraphs. |
-| `--theme-ink-faint` | `#75849a` | Meta text. `cmp-plan.webp` holds a flat `#64748c` (3,459 pixels in the lower band; Tailwind slate-500, the inactive track). `#64748c` is 4.01:1 on `#07101f` and 3.76:1 on `#111727`, short of AA for small text. `#75849a` is that track moved toward `#f4faff` until it clears 5.0:1 on the ground and 4.7:1 on the card. |
-| `--accent-fill` | `#2d7cfe` | The app's blue. Exact mode of the saturated pixels (6,675 on `cmp-money.webp`): progress, selected tab. Used for the rail and for selection, not for small text. |
-| `--theme-accent` | `#3480fe` | The same blue, 3% toward `#f4faff`. `#2d7cfe` is 4.61:1 on the card, legal but tight once the ground is still easing. The text accent keeps a margin on both surfaces. |
-| `--theme-rule` | `#30445f` | Hairline for the dark UI. Not a flat fill in the shots; the cards meet the ground with no separate stroke. Mixed so a rule remains visible on `#07101f` without becoming a second accent. |
-| `--font-product` | Roboto 400 and 500 | The shots are the Android beta. React Native's default face there is Roboto. A custom font file could not be checked. Two self-hosted Latin woff2 files, about 22KB each (`/assets/fonts/roboto-latin-400-normal.woff2`, `roboto-latin-500-normal.woff2`, OFL). The faces arrive with the theme, on the first scroll or shortly after load (`data-product-fonts`), so they do not compete with Fraunces and Source Sans. Without JavaScript the same file is linked from `noscript`. |
-| Corners | 16px cards, 12px fields | Card corners on `cmp-money.webp` ease in over about 28 bitmap pixels on a 540-wide shot, roughly a 16px web corner. Not pills. |
-| Rail | payday, now, payday | The shots use horizontal progress fills in `#2d7cfe`. The page turns that into one cycle line. Faint over the screens, full above the sketch. |
-| `--field-a` | `#efe5d2` | Not a pixel in the app. Paper moved a short way toward the navy in OKLCH, hue kept warm, so the opening can cool without going grey. |
+| `--theme-surface` | `#06101E` | Painted page and the stage behind it. `appBackgroundDark.backgroundColor` (`App.js` line 4845) and `stage.backgroundColor` (line 4856). |
+| `--theme-surface-inset` | `#101827` | Cards, stat tiles, and action cards. `card.backgroundColor` (`App.js` line 4407). |
+| `--theme-ink` | `#F7FAFF` | Page titles. `pageTitle.color` (`App.js` line 4296). 18.2:1 on the page, 17.0:1 on the card. |
+| `--theme-ink-soft` | `#8292A8` | Explanatory copy. `emptyText.color` (`App.js` line 4442). 6.0:1 on the page, 5.6:1 on the card. |
+| `--theme-ink-faint` | `#7F90A8` | Supporting lines. `smallMutedText.color` (`App.js` line 4436). 5.9:1 on the page, 5.5:1 on the card. |
+| `--theme-accent`, `--accent-fill` | `#2D7BFF` | Primary buttons, the home tab, and icons. `primaryButton.backgroundColor` (`App.js` line 4510). 4.9:1 on the page, 4.6:1 on the card. The hero fill `#0B203A` (`premiumHero.backgroundColor`, line 4014) is a separate surface; this blue is 4.2:1 there, so the page does not set small accent text on that hero blue. |
+| `--theme-rule` | `#1F2D43` | Card hairline. `card.borderColor` (`App.js` line 4412). |
+| `--font-product` | system UI stack | `-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`. The `Roboto` name is the local family on Android, not a file this site serves. No self-hosted product face. |
+| Corners | 22px cards, 15px fields | `card.borderRadius` is 22 (`App.js` line 4408). `primaryButton.borderRadius` is 15 (line 4511). The sketch card uses the card radius. |
+| Rail | payday, now, payday | Drawn in `#2D7BFF`. Faint over the screens, full above the sketch. |
+| `--field-a` | `#efe5d2` | The page's own stop, not a pixel in the app. Paper moved a short way toward the navy, hue kept warm. |
 | `--field-b` | `#e2d4bd` | Same path, still light enough for the parent faint ink (the screens introduction). |
-| `--field-c` | `#8a7260` | The dusk behind the screenshots, where there is no body text. |
-| `--field-d` | `#3c2c24` | The last warm dark before `#07101f`. |
+| `--field-pass` | `#bfbdb9` | Near-neutral, still warm. Chroma low enough that the next hue change does not paint a brown or a green band. |
+| `--field-pass-cool` | `#9b9fa3` | The same near-neutral, hue already with the slate. |
+| `--field-c` | `#4c6075` | Cool dusk behind the screenshot row. |
+| `--field-d` | `#1d2f44` | The last deep blue before `#06101E`. |
 
-Parent Fraunces and Source Sans 3 stay through the opening, the problem and the screens. Roboto is only the product chapter (what the beta does, the sketch, what it is not). Type is not scrubbed with the scroll: a live font swap would move the line lengths.
+Parent Fraunces and Source Sans 3 stay through the opening, the problem and the screens. The product chapter (what the beta does, the sketch, what it is not) uses the system UI stack. Type is not scrubbed with the scroll: a live font swap would move the line lengths. The sketch figure is weight 700, in the range the app uses for emphasis (`smallMutedText.fontWeight` is 700; titles go heavier).
 
 Spacing stays on the parent scale. Changing it as you scroll would move the layout.
 
@@ -173,8 +174,8 @@ On `/products/clearmoneypath/`:
 
 - Header and the opening (the "A TechGnomo product" line, the name, the beta status) are parent. The header bar is a paper veil, so it warms toward the field instead of staying a solid cream strip.
 - "The problem" is the approach. The field has only begun to warm.
-- "Screens with sample data" is the crossover. Parent type. The field passes from sand into navy behind the shots. The line under the shots is already the product's light ink. The shots themselves sit on `#07101f`. Their box and ground are repeated in a short style block in the page head, the same rules as the theme, so they do not change size when the theme file arrives. The rail is faint here.
-- "What this beta does", the sketch, and "What it is not" are the product world, in Roboto. The same attribution, "A TechGnomo product", sits above the sketch. The rail is fully drawn there.
-- The footer returns to the parent along the bottom of the same field: navy eases back to paper in the padding under the last chapter, then the mark, the workshop links and the brass sill. The visit ends in the workshop.
+- "Screens with sample data" is the crossover. Parent type. The field passes from sand into the cool dusk and then the navy behind the shots. The line under the shots is already the product's light ink, on the navy. The shots themselves sit on `#06101E`, with a 22px card and a `#1F2D43` hairline. That box is repeated in a short style block in the page head, the same rules as the theme, so the cards do not change size when the theme file arrives. The rail is faint here.
+- "What this beta does", the sketch, and "What it is not" are the product world, in the system UI stack. The same attribution, "A TechGnomo product", sits above the sketch. The rail is fully drawn there.
+- The footer returns to the parent along the bottom of the same field: navy eases back through the cool dusk and the sand in the padding under the last chapter, then the mark, the workshop links and the brass sill. The visit ends in the workshop.
 
 Copy, the beta status, "General information only, not personal financial advice.", "Left this cycle" / "Short this cycle", and the schema are unchanged. No FinanceApplication. No new claims.
