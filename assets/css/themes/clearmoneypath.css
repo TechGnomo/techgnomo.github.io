@@ -16,6 +16,12 @@
   --theme-warm: #2d7cfe;
   --accent-fill: #2d7cfe;
   --font-product: "Roboto", "Segoe UI", system-ui, sans-serif;
+  /* Field stops. Warm sand, then a dusk behind the screens, then the app navy.
+     Hue stays warm while the ground is still light, so the path does not go grey. */
+  --field-a: #efe5d2;
+  --field-b: #e2d4bd;
+  --field-c: #8a7260;
+  --field-d: #3c2c24;
 }
 
 /* The screenshots are already the product. They sit on the app's own ground

@@ -974,7 +974,9 @@ body[data-product] [data-stage="parent"] {
 }
 
 body[data-product] [data-stage="product"] {
-  padding-bottom: var(--space-9);
+  /* Room under the last chapter so the field can return to paper
+     before the footer, without a hard edge under the text. */
+  padding-bottom: clamp(18rem, 40vh, 28rem);
 }
 
 body[data-product] [data-stage].section,

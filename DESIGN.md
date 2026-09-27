@@ -107,36 +107,33 @@ TechGnomo is the parent. A product page may leave that room as the reader scroll
 Files:
 
 - `/assets/css/site.css` — the stage frame (padding and the centred measure). It is in the first paint, so the opening does not move when the colour arrives.
-- `/assets/css/product-transition.css` — the safe mix, the pay-cycle rail, and the scroll-driven `--shift`.
-- `/assets/css/themes/<product>.css` — that product's destination values for the same semantic roles.
-- `/assets/js/product-transition.js` — loads the transition stylesheet, the theme (`data-product-theme`) and any product faces (`data-product-fonts`) on the first scroll, a jump to a hash, or shortly after load. Those files stay off the first paint so they do not compete with Fraunces and Source Sans. If the browser cannot do `animation-timeline: view()` and the reader has not asked for reduced motion, the same file sets `--shift` from an `IntersectionObserver`. The observer reads the entry's own geometry. It does not measure the page on scroll.
+- `/assets/css/product-transition.css` — one page-height field (a gradient, not a colour per chapter), the pay-cycle rail, and the header veil.
+- `/assets/css/themes/<product>.css` — that product's destination values, plus the field stops `--field-a` through `--field-d`.
+- `/assets/js/product-transition.js` — loads the transition stylesheet, the theme (`data-product-theme`) and any product faces (`data-product-fonts`) on the first scroll, a jump to a hash, or shortly after load. Those files stay off the first paint so they do not compete with Fraunces and Source Sans. If the browser cannot do `animation-timeline: view()` and the reader has not asked for reduced motion, the same file sets `--shift` from an `IntersectionObserver`. The field does not use that value. The observer reads the entry's own geometry. It does not measure the page on scroll.
 
 Chapters are marked in order:
 
-| `data-stage` | Where it rests | What the reader should feel |
+| `data-stage` | Type and ink | What the reader should feel |
 | --- | --- | --- |
-| `parent` | `--shift: 0` | Still TechGnomo. Type, colour, header. |
-| `approach` | `0.18` | The ground cools. Easy to feel, easy to miss. |
-| `crossover` | `0.46` | Both are present. Product headings, parent body, the product's graphic, the parent's ink. |
-| `product` | `1` | The product's own world. |
+| `parent` | Parent type, dark ink | Still TechGnomo. The field is paper. |
+| `approach` | Parent type, dark ink | The field warms. Easy to feel, easy to miss. |
+| `crossover` | Parent type, dark ink, then the product's light ink on the closing line | The app's screens sit in the field while it passes from warm sand into the product ground. |
+| `product` | Product type, light ink | The product's own world. |
 
-`body` carries `data-product="<slug>"`. The header, the footer and the brass sill stay on the parent tokens. With motion allowed, each stage eases `--shift` as it enters the viewport (`animation-timeline: view()`), then holds. Only colour is eased, through custom properties. Type, radius and the rail are set per stage, not scrubbed, so the layout does not move.
+`body` carries `data-product="<slug>"`. Chapters do not paint their own backgrounds. One gradient on `body::before`, interpolated in OKLCH, runs the height of the page: paper, the theme's field stops, the theme surface, then paper again under the footer. There is no seam between chapters. The header keeps the parent wordmark, nav and mark, and its bar is a 90% paper veil so the field tints it. The footer and the brass sill stay on the parent tokens. The return to paper is the bottom of the same gradient, in the padding under the last chapter.
 
-`prefers-reduced-motion: reduce` turns those animations off. Each stage shows the resting state in the table. Same destinations, no scroll-linked change. Without JavaScript the page does the same, because the resting states are in CSS.
+The rail is the product's graphic. It is faint and short over the crossover, longer at the product chapter, and fully drawn above the sketch. It does not take space. Product type is only on the product chapter, so a font does not reflow the opening.
 
-### Why the mix is not a straight line
+`prefers-reduced-motion: reduce` changes nothing about the field: it is a gradient, not a scroll animation. The rail simply shows its resting opacity. Without JavaScript the same CSS applies, linked from `noscript`.
 
-Cream paper with dark ink and a navy ground with light ink cannot be blended in one smooth ramp. Around the middle gray, every text colour fails WCAG AA. The shared CSS therefore keeps two legal bands:
+### Why the field is not a straight mix
 
-- Light chapters mix the ground only as far as `--m: 0.36` (still dark text). Faint, soft and accent darken toward the parent ink as the ground cools, so they do not wash out.
-- The product chapter starts at `--m: 0.56`, where light text is already safe, and eases to the theme's own colours.
-
-The step between those bands is the chapter turn into the product. It is deliberate. Do not "smooth" `--m` through `0.36`–`0.56`.
+Cream paper with dark ink and a navy ground with light ink cannot be blended under the text. In the middle, neither ink passes WCAG AA. The field still travels that whole way, in OKLCH, through a warm sand and a dusk rather than a neutral grey. The part of the ramp where text would fail sits behind the screenshots, where the only type is on the app cards. Dark ink stays on the field while it is still sand. Light ink starts once the field has reached the theme surface. Do not put a chapter background back on the stages, and do not run the failing part of the ramp under a paragraph.
 
 ## Add a product
 
 1. Derive the palette, type and components from the real product. Do not invent a second brand, and do not add a theme for a product that has no build yet.
-2. Add `/assets/css/themes/<slug>.css`. On `[data-product="<slug>"]`, set `--theme-surface`, `--theme-surface-inset`, `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint`, `--theme-accent`, `--theme-rule`, `--theme-warm`, `--accent-fill` and `--font-product`. Record where each value came from.
+2. Add `/assets/css/themes/<slug>.css`. On `[data-product="<slug>"]`, set `--theme-surface`, `--theme-surface-inset`, `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint`, `--theme-accent`, `--theme-rule`, `--theme-warm`, `--accent-fill` and `--font-product`. Set `--field-a` through `--field-d` to the warm stops between paper and the theme surface. Record where each value came from. If the chapters sit at very different heights than ClearMoneyPath, adjust the stop positions in `product-transition.css` so the failing middle of the ramp stays behind art, not under paragraphs.
 3. Self-host at most two extra font files (woff2, subset). No third-party font request. Confirm `--theme-ink`, `--theme-ink-soft`, `--theme-ink-faint` and `--theme-accent` are at least 4.5:1 on both `--theme-surface` and `--theme-surface-inset`.
 4. On that page only, link `tokens.css` and `site.css`. Set `data-product`, `data-product-theme` and, when the product has its own files, `data-product-fonts` on `body`. Include `product-transition.js`. In `<noscript>`, link `product-transition.css`, the theme and the font file, so the page is complete with JavaScript off. Mark the chapters `data-stage="parent"`, then `approach`, `crossover`, and `product`, in that order. One `product` wrapper may hold several sections. If the theme changes a component's size, put that box model in a short style block on the page so the first paint already has it.
 5. Keep the line "A TechGnomo product" (or the same attribution). Keep the header on the parent. Leave the copy, status and legal lines as they are.
@@ -162,18 +159,22 @@ The web identity is that UI, set for a long page: a navy ground, cards a step li
 | `--theme-rule` | `#30445f` | Hairline for the dark UI. Not a flat fill in the shots; the cards meet the ground with no separate stroke. Mixed so a rule remains visible on `#07101f` without becoming a second accent. |
 | `--font-product` | Roboto 400 and 500 | The shots are the Android beta. React Native's default face there is Roboto. A custom font file could not be checked. Two self-hosted Latin woff2 files, about 22KB each (`/assets/fonts/roboto-latin-400-normal.woff2`, `roboto-latin-500-normal.woff2`, OFL). The faces arrive with the theme, on the first scroll or shortly after load (`data-product-fonts`), so they do not compete with Fraunces and Source Sans. Without JavaScript the same file is linked from `noscript`. |
 | Corners | 16px cards, 12px fields | Card corners on `cmp-money.webp` ease in over about 28 bitmap pixels on a 540-wide shot, roughly a 16px web corner. Not pills. |
-| Rail | payday, now, payday | The shots use horizontal progress fills in `#2d7cfe`. The page turns that into one cycle line. |
+| Rail | payday, now, payday | The shots use horizontal progress fills in `#2d7cfe`. The page turns that into one cycle line. Faint over the screens, full above the sketch. |
+| `--field-a` | `#efe5d2` | Not a pixel in the app. Paper moved a short way toward the navy in OKLCH, hue kept warm, so the opening can cool without going grey. |
+| `--field-b` | `#e2d4bd` | Same path, still light enough for the parent faint ink (the screens introduction). |
+| `--field-c` | `#8a7260` | The dusk behind the screenshots, where there is no body text. |
+| `--field-d` | `#3c2c24` | The last warm dark before `#07101f`. |
 
-Parent Fraunces and Source Sans 3 stay through the top and the approach. At the crossover, headings switch to Roboto and the body stays Source Sans. In the product chapter both are Roboto. Type is not scrubbed with the scroll: a live font swap would move the line lengths.
+Parent Fraunces and Source Sans 3 stay through the opening, the problem and the screens. Roboto is only the product chapter (what the beta does, the sketch, what it is not). Type is not scrubbed with the scroll: a live font swap would move the line lengths.
 
 Spacing stays on the parent scale. Changing it as you scroll would move the layout.
 
 On `/products/clearmoneypath/`:
 
-- Header and the opening (the "A TechGnomo product" line, the name, the beta status) are parent.
-- "The problem" is the approach.
-- "Screens with sample data" is the crossover. The shots themselves sit on `#07101f`, so the app is already in the room while the page is still between the two. Their box and ground are repeated in a short style block in the page head, the same rules as the theme, so they do not change size when the theme file arrives.
-- "What this beta does", the sketch, and "What it is not" are the product world. The sketch is the action on this page.
-- The footer returns to the parent: the mark, the workshop links and the brass sill are the frame the header never left. The visit ends in the workshop. A hairline separates that frame from the product chapter.
+- Header and the opening (the "A TechGnomo product" line, the name, the beta status) are parent. The header bar is a paper veil, so it warms toward the field instead of staying a solid cream strip.
+- "The problem" is the approach. The field has only begun to warm.
+- "Screens with sample data" is the crossover. Parent type. The field passes from sand into navy behind the shots. The line under the shots is already the product's light ink. The shots themselves sit on `#07101f`. Their box and ground are repeated in a short style block in the page head, the same rules as the theme, so they do not change size when the theme file arrives. The rail is faint here.
+- "What this beta does", the sketch, and "What it is not" are the product world, in Roboto. The same attribution, "A TechGnomo product", sits above the sketch. The rail is fully drawn there.
+- The footer returns to the parent along the bottom of the same field: navy eases back to paper in the padding under the last chapter, then the mark, the workshop links and the brass sill. The visit ends in the workshop.
 
 Copy, the beta status, "General information only, not personal financial advice.", "Left this cycle" / "Short this cycle", and the schema are unchanged. No FinanceApplication. No new claims.

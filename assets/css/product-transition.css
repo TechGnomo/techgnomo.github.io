@@ -1,15 +1,7 @@
 /* Shared product transition.
-   A product page sets data-product on body and data-stage on each chapter:
-   parent → approach → crossover → product.
-   The theme file supplies the destination colours. This file moves toward
-   them without entering the luminance band where no text colour can pass
-   WCAG AA. See /DESIGN.md. */
-
-@property --shift {
-  syntax: "<number>";
-  inherits: true;
-  initial-value: 0;
-}
+   One field behind the whole page, not a background on each chapter.
+   The theme file supplies the destination and the field stops.
+   See /DESIGN.md. */
 
 [data-product] {
   --theme-surface: var(--color-paper);
@@ -22,10 +14,65 @@
   --theme-warm: var(--color-brass);
   --accent-fill: var(--color-seal);
   --font-product: var(--font-display);
+  --field-a: var(--color-paper);
+  --field-b: var(--color-paper);
+  --field-c: var(--theme-surface);
+  --field-d: var(--theme-surface);
   --stage-pad: max(var(--space-page), calc((100% - 76rem) / 2 + var(--space-page)));
 }
 
-/* Workshop chrome stays on the parent tokens, including the mobile menu. */
+/* Keep the canvas paper so the body's field is not promoted to the
+   viewport. The field itself is the body's ::before, the height of the page. */
+html:has(body[data-product]) {
+  background: var(--color-paper);
+}
+
+body[data-product] {
+  position: relative;
+  z-index: 0;
+  background: transparent;
+}
+
+body[data-product]::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background-color: var(--color-paper);
+  background-image: linear-gradient(
+    var(--color-paper) 0%,
+    var(--field-a) 16%,
+    var(--field-b) 26%,
+    var(--field-b) 34%,
+    var(--field-c) 41%,
+    var(--field-d) 46%,
+    var(--theme-surface) 50%,
+    var(--theme-surface) 93%,
+    var(--field-d) 94.6%,
+    var(--field-b) 96.2%,
+    var(--color-paper) 97.6%,
+    var(--color-paper) 100%
+  );
+  background-image: linear-gradient(
+    in oklch,
+    var(--color-paper) 0%,
+    var(--field-a) 16%,
+    var(--field-b) 26%,
+    var(--field-b) 34%,
+    var(--field-c) 41%,
+    var(--field-d) 46%,
+    var(--theme-surface) 50%,
+    var(--theme-surface) 93%,
+    var(--field-d) 94.6%,
+    var(--field-b) 96.2%,
+    var(--color-paper) 97.6%,
+    var(--color-paper) 100%
+  );
+  background-repeat: no-repeat;
+}
+
+/* Wordmark, nav and mark stay the parent. The bar is a paper veil, so the
+   field shows through and the header tints as the ground changes. */
 body[data-product] .site-header,
 body[data-product] .foot,
 body[data-product] .sill {
@@ -42,46 +89,64 @@ body[data-product] .sill {
   --radius: var(--radius-sm);
 }
 
+body[data-product] .site-header {
+  background: color-mix(in oklab, var(--color-paper) 90%, transparent);
+  border-bottom-color: color-mix(in oklab, var(--color-ink) 12%, transparent);
+}
+
 body[data-product] .foot {
-  background: var(--surface);
-  border-top: 1px solid var(--rule);
+  background: transparent;
+  border-top: 0;
 }
 
 body[data-product] .page {
   max-width: none;
   padding: 0;
+  background: transparent;
 }
 
 body[data-product] [data-stage] {
-  --shift: 0;
   position: relative;
   margin: 0;
   padding: var(--space-8) var(--stage-pad) 0;
-  background: var(--surface);
+  background: transparent;
   color: var(--ink);
   font-family: var(--font-body);
 }
 
 body[data-product] [data-stage="parent"] {
-  --shift: 0;
   padding-top: var(--space-6);
 }
 
-body[data-product] [data-stage="approach"] {
-  --shift: 0.18;
+body[data-product] [data-stage="approach"],
+body[data-product] [data-stage="crossover"] {
+  --ink: var(--color-ink);
+  --ink-soft: var(--color-ink-soft);
+  --ink-faint: var(--color-ink-faint);
+  --accent: var(--color-seal);
+  --rule: var(--color-line);
+  --warm: var(--color-brass);
 }
 
-body[data-product] [data-stage="crossover"] {
-  --shift: 0.46;
-  --font-display: var(--font-product);
+/* The line under the screens is already on the product ground. */
+body[data-product] [data-stage="crossover"] > .measure:last-child {
+  color: var(--theme-ink-soft);
 }
 
 body[data-product] [data-stage="product"] {
-  --shift: 1;
+  --surface: var(--theme-surface);
+  --surface-inset: var(--theme-surface-inset);
+  --ink: var(--theme-ink);
+  --ink-soft: var(--theme-ink-soft);
+  --ink-faint: var(--theme-ink-faint);
+  --accent: var(--theme-accent);
+  --rule: var(--theme-rule);
+  --warm: var(--accent-fill);
   --font-display: var(--font-product);
   --font-body: var(--font-product);
   --radius: 12px;
-  padding-bottom: var(--space-9);
+  padding-bottom: clamp(18rem, 40vh, 28rem);
+  color: var(--ink);
   color-scheme: dark;
   font-synthesis: none;
 }
@@ -95,42 +160,6 @@ body[data-product] [data-stage="product"] > .section + .section {
   margin-top: var(--space-8);
 }
 
-/* Light chapters, after the opening. The parent stage does not mix:
-   its text is the LCP, and it should resolve the same plain tokens as
-   every other page. --m stops at 0.36: darker than that, the parent ink
-   drops below 4.5:1 and white is not safe yet. Faint, soft and accent
-   darken toward ink as the ground cools, so they keep their contrast. */
-body[data-product] [data-stage="approach"],
-body[data-product] [data-stage="crossover"] {
-  --m: clamp(0, var(--shift) * 0.7826087, 0.36);
-  --soft-amt: clamp(0, var(--m) / 0.34, 1);
-  --faint-amt: clamp(0, var(--m) / 0.16, 1);
-  --accent-amt: clamp(0, var(--m) / 0.22, 1);
-  --surface: color-mix(in oklab, var(--theme-surface) calc(var(--m) * 100%), var(--color-paper));
-  --surface-inset: color-mix(in oklab, var(--theme-surface-inset) calc(var(--m) * 100%), var(--color-paper-deep));
-  --ink: var(--color-ink);
-  --ink-soft: color-mix(in oklab, var(--color-ink) calc(var(--soft-amt) * 100%), var(--color-ink-soft));
-  --ink-faint: color-mix(in oklab, var(--color-ink) calc(var(--faint-amt) * 100%), var(--color-ink-faint));
-  --accent: color-mix(in oklab, #2c1612 calc(var(--accent-amt) * 100%), var(--color-seal));
-  --rule: color-mix(in oklab, var(--theme-rule) calc(var(--m) * 100%), var(--color-line));
-  --warm: color-mix(in oklab, var(--theme-warm) calc(var(--m) * 100%), var(--color-brass));
-}
-
-/* Dark chapters start at --m 0.56, where light text is already safe,
-   and ease to the product. They do not animate back through 0.36–0.56. */
-body[data-product] [data-stage="product"] {
-  --m: clamp(0.56, 0.56 + (var(--shift) - 0.58) * 1.047619, 1);
-  --u: clamp(0, (var(--m) - 0.56) / 0.44, 1);
-  --surface: color-mix(in oklab, var(--theme-surface) calc(var(--m) * 100%), var(--color-paper));
-  --surface-inset: color-mix(in oklab, var(--theme-surface-inset) calc(var(--m) * 100%), var(--color-paper-deep));
-  --ink: var(--theme-ink);
-  --ink-soft: color-mix(in oklab, var(--theme-ink-soft) calc(var(--u) * 100%), var(--theme-ink));
-  --ink-faint: color-mix(in oklab, var(--theme-ink-faint) calc(var(--u) * 100%), #f7fbfe);
-  --accent: color-mix(in oklab, var(--theme-accent) calc(var(--u) * 100%), var(--theme-ink));
-  --rule: color-mix(in oklab, var(--theme-rule) calc(var(--m) * 100%), var(--color-line));
-  --warm: var(--accent-fill);
-}
-
 body[data-product] [data-stage="product"] ::selection {
   background: var(--accent-fill);
   color: var(--theme-surface);
@@ -140,11 +169,11 @@ body[data-product] [data-stage="product"] strong {
   font-weight: 500;
 }
 
-/* Pay-cycle rail: a line from one payday to the next, with a mark for now.
-   It arrives with the crossover and stays in the product world. It does not
-   take space, so it cannot shift layout. */
+/* Pay-cycle rail. Faint over the screens, further along at the product
+   chapter, fully drawn above the sketch. It does not take space. */
 body[data-product] [data-stage="crossover"]::before,
-body[data-product] [data-stage="product"]::before {
+body[data-product] [data-stage="product"]::before,
+body[data-product] [data-stage="product"] .section:has(#sketch-title)::before {
   content: "";
   position: absolute;
   z-index: 0;
@@ -153,62 +182,40 @@ body[data-product] [data-stage="product"]::before {
   top: 1.05rem;
   height: 0.7rem;
   pointer-events: none;
+  transform-origin: left center;
   background:
     linear-gradient(var(--accent-fill), var(--accent-fill)) 0 0.28rem / 100% 2px no-repeat,
     radial-gradient(circle, var(--accent-fill) 0 2px, transparent 2.4px) 0 0.28rem / 0.55rem 0.55rem no-repeat,
     radial-gradient(circle, var(--accent-fill) 0 3px, transparent 3.5px) 50% 0.22rem / 0.7rem 0.7rem no-repeat,
     radial-gradient(circle, var(--accent-fill) 0 2px, transparent 2.4px) 100% 0.28rem / 0.55rem 0.55rem no-repeat;
-  opacity: 0.9;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  @supports (animation-timeline: view()) {
-    body[data-product] [data-stage="approach"] {
-      animation: stage-approach linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-    }
-
-    /* The crossover often holds the screenshots, so it eases across the
-       whole time that chapter is in view, not only as it enters. */
-    body[data-product] [data-stage="crossover"] {
-      animation: stage-crossover linear both;
-      animation-timeline: view();
-      animation-range: cover 0% cover 100%;
-    }
-
-    body[data-product] [data-stage="product"] {
-      animation: stage-product linear both;
-      animation-timeline: view();
-      animation-range: entry 0% cover 40%;
-    }
-  }
+body[data-product] [data-stage="crossover"]::before {
+  opacity: 0.38;
+  transform: scaleX(0.46);
 }
 
-@keyframes stage-approach {
-  from { --shift: 0; }
-  to { --shift: 0.18; }
+body[data-product] [data-stage="product"]::before {
+  opacity: 0.72;
+  transform: scaleX(0.74);
 }
 
-@keyframes stage-crossover {
-  from { --shift: 0.18; }
-  to { --shift: 0.46; }
+body[data-product] [data-stage="product"] .section:has(#sketch-title) {
+  position: relative;
 }
 
-@keyframes stage-product {
-  from { --shift: 0.58; }
-  to { --shift: 1; }
+body[data-product] [data-stage="product"] .section:has(#sketch-title)::before {
+  top: -1.35rem;
+  left: 0;
+  opacity: 1;
+  transform: scaleX(1);
 }
 
-@supports not (background: color-mix(in oklab, black 50%, white)) {
-  body[data-product] [data-stage="product"] {
-    --surface: var(--theme-surface);
-    --surface-inset: var(--theme-surface-inset);
-    --ink: var(--theme-ink);
-    --ink-soft: var(--theme-ink-soft);
-    --ink-faint: var(--theme-ink-faint);
-    --accent: var(--theme-accent);
-    --rule: var(--theme-rule);
-    --warm: var(--theme-warm);
+@media (prefers-reduced-motion: reduce) {
+  /* The field is already one gradient. These edges only soften the rail. */
+  body[data-product] [data-stage="crossover"]::before,
+  body[data-product] [data-stage="product"]::before,
+  body[data-product] [data-stage="product"] .section:has(#sketch-title)::before {
+    transition: none;
   }
 }
