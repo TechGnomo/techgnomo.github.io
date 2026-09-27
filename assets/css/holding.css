@@ -286,6 +286,11 @@ body {
   }
 }
 
+.plate.is-revealing {
+  opacity: 0;
+  transition: opacity 700ms var(--ease-out);
+}
+
 @media (min-width: 800px) {
   .wordmark {
     font-weight: 560;
