@@ -17,6 +17,28 @@
     <link rel="preload" href="/assets/fonts/source-sans-3-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="stylesheet" href="/assets/css/tokens.css" />
     <link rel="stylesheet" href="/assets/css/site.css" />
+    <style>
+      [data-product="clearmoneypath"] .shot {
+        background: #07101f;
+        color: #f4faff;
+        border: 1px solid #243044;
+        border-radius: 16px;
+        padding: var(--space-3);
+      }
+      [data-product="clearmoneypath"] .shot img {
+        border: 0;
+        background: transparent;
+        border-radius: 12px;
+      }
+      [data-product="clearmoneypath"] .shot figcaption {
+        color: #75849a;
+      }
+    </style>
+    <noscript>
+      <link rel="stylesheet" href="/assets/css/product-transition.css" />
+      <link rel="stylesheet" href="/assets/css/themes/clearmoneypath.css" />
+      <link rel="stylesheet" href="/assets/css/themes/clearmoneypath-fonts.css" />
+    </noscript>
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="en_AU" />
     <meta property="og:site_name" content="TechGnomo" />
@@ -71,7 +93,7 @@
 }
     </script>
   </head>
-  <body>
+  <body data-product="clearmoneypath" data-product-theme="/assets/css/themes/clearmoneypath.css" data-product-fonts="/assets/css/themes/clearmoneypath-fonts.css">
     <a class="skip" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="header-bar">
@@ -90,6 +112,7 @@
       </div>
     </header>
     <main id="main" class="page">
+      <div data-stage="parent">
 
       <nav class="crumbs" aria-label="Breadcrumb"><a href="/products/">Products</a> <span aria-hidden="true">/</span> <span aria-current="page">ClearMoneyPath</span></nav>
       <p class="kicker">A TechGnomo product</p>
@@ -97,14 +120,15 @@
       <p class="status">Beta · in development · not for sale</p>
       <p class="lede">A pay-cycle planner for the stretch between paydays. Bills, a debt payment and savings come out first. What remains is left this cycle.</p>
       <p class="measure">An Android beta exists. It is not a public release, and it is not on Google Play or the App Store. A web version is being built. There is nothing to buy.</p>
+      </div>
 
-      <section class="section" aria-labelledby="problem">
+      <section class="section" data-stage="approach" aria-labelledby="problem">
         <h2 id="problem">The problem</h2>
         <p class="measure">A bank balance is not a plan. Pay does not always land on the first of the month, and bills do not wait. Rent and a debt payment that fall before the next payday are still sitting in that balance, pretending to be spendable.</p>
         <p class="measure">I know that week from hospitality: the hours change, the pay changes, the bills do not. ClearMoneyPath is the planner for that stretch.</p>
       </section>
 
-      <section class="section" aria-labelledby="screens">
+      <section class="section" data-stage="crossover" aria-labelledby="screens">
         <h2 id="screens">Screens with sample data</h2>
         <p class="measure quiet">Android beta. These figures are sample data, not a person’s accounts.</p>
         <div class="shots">
@@ -128,6 +152,7 @@
         <p class="measure">General information only, not personal financial advice.</p>
       </section>
 
+      <div data-stage="product">
       <section class="section" aria-labelledby="does">
         <h2 id="does">What this beta does</h2>
         <ul class="measure">
@@ -175,6 +200,7 @@
         </ul>
         <p><a href="/products/">All products</a></p>
       </section>
+      </div>
 
     </main>
 
@@ -192,5 +218,6 @@
     <div class="sill" aria-hidden="true"></div>
     <script src="/assets/js/nav.js" defer></script>
     <script src="/assets/js/spend-sketch.js" defer></script>
+    <script src="/assets/js/product-transition.js" defer></script>
   </body>
 </html>

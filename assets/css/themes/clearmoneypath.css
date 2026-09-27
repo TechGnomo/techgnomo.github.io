@@ -1,0 +1,62 @@
+/* ClearMoneyPath theme. Provenance is documented in /DESIGN.md.
+   Measured from the Android beta screenshots in /assets/img/cmp-*.webp.
+   The app repository is not public. */
+
+/* Roboto faces live in clearmoneypath-fonts.css and are applied after load
+   so they do not compete with Fraunces and Source Sans on the first paint. */
+
+[data-product="clearmoneypath"] {
+  --theme-surface: #07101f;
+  --theme-surface-inset: #111727;
+  --theme-ink: #f4faff;
+  --theme-ink-soft: #d5deea;
+  --theme-ink-faint: #75849a;
+  --theme-accent: #3480fe;
+  --theme-rule: #30445f;
+  --theme-warm: #2d7cfe;
+  --accent-fill: #2d7cfe;
+  --font-product: "Roboto", "Segoe UI", system-ui, sans-serif;
+}
+
+/* The screenshots are already the product. They sit on the app's own ground
+   even while the page around them is still crossing over. */
+[data-product="clearmoneypath"] .shot {
+  background: #07101f;
+  color: #f4faff;
+  border: 1px solid #243044;
+  border-radius: 16px;
+  padding: var(--space-3);
+}
+
+[data-product="clearmoneypath"] .shot img {
+  border: 0;
+  background: transparent;
+  border-radius: 12px;
+}
+
+[data-product="clearmoneypath"] .shot figcaption {
+  color: #75849a;
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] #spend-sketch {
+  background: var(--surface-inset);
+  border: 1px solid var(--rule);
+  border-radius: 16px;
+  padding: var(--space-5);
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] input {
+  background: #07101f;
+  border-color: #3d5270;
+  border-radius: 12px;
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] .sketch-result {
+  border-top-color: var(--rule);
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] .sketch-result strong {
+  font-family: var(--font-product);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
