@@ -1,0 +1,68 @@
+/* ClearMoneyPath theme. Provenance is documented in /DESIGN.md.
+   Colours and type are the current app build (App.js, commit ea19ef9).
+   The field stops are the page's own path from paper to that ground. */
+
+[data-product="clearmoneypath"] {
+  --theme-surface: #06101e;
+  --theme-surface-inset: #101827;
+  --theme-ink: #f7faff;
+  --theme-ink-soft: #8292a8;
+  --theme-ink-faint: #7f90a8;
+  --theme-accent: #2d7bff;
+  --theme-rule: #1f2d43;
+  --theme-warm: #2d7bff;
+  --accent-fill: #2d7bff;
+  --font-product: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  /* Sand while the parent ink is still on the field, then a near-neutral
+     pair so the hue can reach the slate, then the cool dusk and the navy. */
+  --field-a: #efe5d2;
+  --field-b: #e2d4bd;
+  --field-pass: #bfbdb9;
+  --field-pass-cool: #9b9fa3;
+  --field-c: #4c6075;
+  --field-d: #1d2f44;
+}
+
+/* The screenshots are already the product. They sit on the app's own ground
+   even while the page around them is still crossing over. */
+[data-product="clearmoneypath"] .shot {
+  background: #06101e;
+  color: #f7faff;
+  border: 1px solid #1f2d43;
+  border-radius: 22px;
+  padding: var(--space-3);
+}
+
+[data-product="clearmoneypath"] .shot img {
+  border: 0;
+  background: transparent;
+  border-radius: 16px;
+}
+
+[data-product="clearmoneypath"] .shot figcaption {
+  color: #7f90a8;
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] #spend-sketch {
+  background: var(--surface-inset);
+  border: 1px solid var(--rule);
+  border-radius: 22px;
+  padding: var(--space-5);
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] input {
+  background: #06101e;
+  border-color: #1f2d43;
+  border-radius: 15px;
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] .sketch-result {
+  border-top-color: var(--rule);
+}
+
+[data-product="clearmoneypath"] [data-stage="product"] .sketch-result strong {
+  font-family: var(--font-product);
+  font-weight: 700;
+  font-variation-settings: normal;
+  letter-spacing: 0;
+}

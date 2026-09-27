@@ -75,4 +75,22 @@
   --duration-quick: 160ms;
   --duration-calm: 380ms;
   --duration-slow: 880ms;
+
+  /* Semantic tokens. Components read these.
+     Each one points at a primitive above, so the workshop renders as before.
+     A product theme may override them inside a stage. See /DESIGN.md. */
+  --surface: var(--color-paper);
+  --surface-inset: var(--color-paper-deep);
+  --ink: var(--color-ink);
+  --ink-soft: var(--color-ink-soft);
+  --ink-faint: var(--color-ink-faint);
+  --accent: var(--color-seal);
+  --warm: var(--color-brass);
+  --rule: var(--color-line);
+  --font-body: var(--font-text);
+  --radius: var(--radius-sm);
+  --motion-ease: var(--ease-out);
+  --motion-quick: var(--duration-quick);
+  --motion-calm: var(--duration-calm);
+  --motion-slow: var(--duration-slow);
 }
