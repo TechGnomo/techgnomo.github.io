@@ -119,11 +119,11 @@ def page(spec):
     <meta property="og:title" content="{title}" />
     <meta property="og:description" content="{description}" />
     <meta property="og:url" content="{canonical}" />
-    <meta property="og:image" content="{ORIGIN}/assets/img/og-v1.png" />
+    <meta property="og:image" content="{ORIGIN}/assets/img/og-v1b.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="{title}" />
     <meta name="twitter:description" content="{description}" />
-    <meta name="twitter:image" content="{ORIGIN}/assets/img/og-v1.png" />
+    <meta name="twitter:image" content="{ORIGIN}/assets/img/og-v1b.png" />
     <script>document.documentElement.classList.replace("no-js","js");</script>
     <script type="application/ld+json">
 {jsonld}
